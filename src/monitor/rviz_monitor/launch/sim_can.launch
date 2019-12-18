@@ -1,0 +1,8 @@
+<launch>
+    <group ns="radar1">
+        <node name="sim_radar_node" pkg="rviz_monitor" type="sim_radar_node"  args="5"  output="screen" />
+    </group>
+    <group ns="radar2">
+        <node name="sim_radar_node" pkg="rviz_monitor" type="sim_radar_node"  args="6"  output="screen" />  
+    </group>
+</launch>

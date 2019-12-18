@@ -1,0 +1,10 @@
+<launch>
+   <rosparam command="load" file="$(find control)/config/control_params.yaml"/>
+   <node pkg="control" type="control" name="control" output="screen" args="3"/>
+   <node pkg="can_wr" type="can_wr_n" name="imu_gnss" args="2"/>
+   <node pkg="com2agv" type="com2agv" name="com2agv"/>
+   <node pkg="data_fusion" type="FusionCenter" name="FusionCenter"/>
+   <!--<node pkg="control" type="load_control" name="load_control" output="screen"/>-->
+   <!--<node pkg="control" type="showtrajectory" name="showtrajectory"/>-->
+   <!--<node pkg="rviz" type="rviz" name="rviz"/>-->
+</launch>

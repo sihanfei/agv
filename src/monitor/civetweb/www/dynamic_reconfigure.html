@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+
+    <script type="text/javascript"
+        src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+    <script type="text/javascript">
+        // Connecting to ROS
+        // -----------------
+
+        var ros = new ROSLIB.Ros({
+            url: 'ws://192.168.2.200:9090'
+        });
+
+        ros.on('connection', function () {
+            console.log('Connected to websocket server.');
+        });
+
+        ros.on('error', function (error) {
+            console.log('Error connecting to websocket server: ', error);
+        });
+
+        ros.on('close', function () {
+            console.log('Connection to websocket server closed.');
+        });
+
+        // Setting dynamic_reconfigurable parameters using ROS services
+        // -----------------
+
+        var dynaRecClient = new ROSLIB.Service({
+            ros: ros,
+            name: '/left_wheel_pid/set_parameters',
+            serviceType: 'dynamic_reconfigure/Reconfigure'
+        });
+
+        var request = new ROSLIB.ServiceRequest({
+            config: {
+                bools: [
+                    // {name: '', value: false}
+                ],
+                ints: [
+                    // {name: '', value: 0}
+                ],
+                strs: [
+                    // {name: '', value: ''}
+                ],
+                doubles: [
+                    { name: 'Kp_scale', value: 10.0 },
+                    { name: 'Kp', value: 0.1 },
+                    { name: 'Ki_scale', value: 0.1 },
+                    { name: 'Ki', value: 0.2 },
+                    { name: 'Kd_scale', value: 1.0 },
+                    { name: 'Kd', value: 0.3 },
+                ],
+                groups: [
+                    // {name: '', state: false, id: 0, parent: 0}
+                ]
+            }
+        });
+
+        dynaRecClient.callService(request, function (result) {
+            console.log('Result for service call on '
+                + dynaRecClient.name
+                + ': '
+                + JSON.stringify(result, null, 2));
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Simple dynamic_reconfigure example using roslibjs</h1>
+    <p>Check your Web Console for output.</p>
+</body>
+
+</html>

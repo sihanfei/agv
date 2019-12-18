@@ -1,0 +1,3 @@
+﻿1,I0801001,0,Exception:Normal information,1,exception_task_ID\exception_task_status\Exception_Status\Exception_Type\Exception_Error_Ser_Num,常规消息,exception.cpp/exception,,exception_node,exception 01,安全 08
+2,E0801002,2,Exception:Failed to open file,1,,打开列表文件失败,exception.cpp/exception,检查文件路径,,,
+3,E0801003,2,Exception:FSM command is invalid,1,FSM_control\CMD_Type\FSM_exception_id,FSM指令值异常,exception.cpp/exception,检查FSM指令,,,

@@ -1,0 +1,140 @@
+car_length: 15470 #车体长度，单位mm
+car_width: 2865   #车体宽度，单位mm
+Lf: 5508.5        #前桥长度，单位mm
+Lr: 5508.5        #后桥长度，单位mm
+
+Ultrasonic_front_list:
+- ultrasonic_info:
+  - index: 0
+  - x: 7735
+  - y: 542.4
+- ultrasonic_info:
+  - index: 1
+  - x: 7735
+  - y: 180.8
+- ultrasonic_info:
+  - index: 2
+  - x: 7735
+  - y: -180.8
+- ultrasonic_info:
+  - index: 3
+  - x: 7735
+  - y: -542.4
+
+Ultrasonic_left_list:
+- ultrasonic_info:
+  - index: 4
+  - x: 3380.4
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 5
+  - x: 2765.8
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 6
+  - x: 2151.2
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 7
+  - x: 1536.6
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 8
+  - x: 922
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 9
+  - x: 307.4
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 10
+  - x: -307.6
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 11
+  - x: -921.8
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 12
+  - x: -1536.4
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 13
+  - x: -2151
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 14
+  - x: -2765.6
+  - y: -1432.5
+- ultrasonic_info:
+  - index: 15
+  - x: -3380.2
+  - y: -1432.5
+
+Ultrasonic_tail_list:
+- ultrasonic_info:
+  - index: 16
+  - x: -7735
+  - y: -542.4
+- ultrasonic_info:
+  - index: 17
+  - x: -7735
+  - y: -180.8
+- ultrasonic_info:
+  - index: 18
+  - x: -7735
+  - y: 180.8
+- ultrasonic_info:
+  - index: 19
+  - x: -7735
+  - y: 542.4
+
+Ultrasonic_right_list:
+- ultrasonic_info:
+  - index: 20
+  - x: -3380.2
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 21
+  - x: -2765.6
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 22
+  - x: -2151
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 23
+  - x: -1536.4
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 24
+  - x: -921.8
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 25
+  - x: -307.6
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 26
+  - x: 307.4
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 27
+  - x: 922
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 28
+  - x: 1536.6
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 29
+  - x: 2151.2
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 30
+  - x: 2765.8
+  - y: 1432.5
+- ultrasonic_info:
+  - index: 31
+  - x: 3380.4
+  - y: 1432.5

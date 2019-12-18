@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>node monitor</title>
+    <!--引入css-->
+    <link rel="stylesheet" type="text/css" href="scripts/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="scripts/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="scripts/font-awesome.min.css" />
+
+
+    <link rel="stylesheet" type="text/css" href="./scripts/jquery.dataTables.min.css">
+
+    <!--引入JavaScript-->
+    <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" language="javascript" src="./scripts/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="./scripts/three.js"></script>
+    <script type="text/javascript" src="./scripts/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="./scripts/roslib.js"></script>
+    <script type="text/javascript" src="./scripts/ros3d.js"></script>
+    <!-- <script type="text/javascript" src="./scripts/jquery.min.js"></script>-->
+    <script type="text/javascript" src="./scripts/bootstrap.min.js"></script>      
+    <script type="text/javascript" src="./scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./scripts/bootbox.min.js"></script>
+
+    <script type="text/javascript" src="./js/dat.gui.js"></script>
+
+
+
+    <!-- ECharts单文件引入 -->
+    <!-- <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script> -->
+
+    <!-- <script type="text/javascript" src="./echarts/echarts.min.js"></script> -->
+
+
+    <!-- <script type="text/javascript" src="./theme/gray.js"></script>-->
+
+    <style>
+        * {
+            font-family: Verdana, Arial, sans-serif;
+        }
+
+        a:link {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: #000;
+        }
+
+        a:hover {
+            color: #33F;
+        }
+
+        .button {
+            background: -webkit-linear-gradient(top, #008dfd 0, #0370ea 100%);
+            border: 1px solid #076bd2;
+            border-radius: 3px;
+            color: #fff;
+            display: none;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.3;
+            padding: 8px 25px;
+            text-align: center;
+            text-shadow: 1px 1px 1px #076bd2;
+            letter-spacing: normal;
+        }
+
+        .center {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .final {
+            color: black;
+            padding-right: 3px;
+        }
+
+        .cmd_err {
+            color: red;
+        }
+
+        .info {
+            font-size: 14px;
+            text-align: center;
+            color: #777;
+            display: none;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .vcenter {
+            display: inline-block;
+            vertical-align: middle;
+            float: none;
+        }
+
+        #headline {
+            font-size: 40px;
+            font-weight: 300;
+        }
+
+        #info {
+            font-size: 20px;
+            text-align: center;
+            color: #777;
+            visibility: hidden;
+        }
+
+        #results {
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+            min-height: 100px;
+        }
+
+        .navbar-custom a {
+            color: white;
+            background-color: black;
+        }
+
+        #menu001.navbar-default .navbar-brand {
+            color: rgba(119, 119, 119, 1);
+        }
+
+        #menu001.navbar-default {
+            font-size: 20px;
+            background-color: rgba(224, 224, 224, 1);
+            border-width: 1px;
+            border-radius: 4px;
+        }
+
+        #menu001.navbar-default .navbar-nav>li>a {
+            color: rgba(119, 119, 119, 1);
+            background-color: rgba(248, 248, 248, 0);
+            padding-right: 50px;
+        }
+
+        #menu001.navbar-default .navbar-nav>li>a:hover,
+        #menu001.navbar-default .navbar-nav>li>a:focus {
+            color: rgba(51, 51, 51, 1);
+            background-color: rgba(248, 248, 248, 0);
+        }
+
+        #menu001.navbar-default .navbar-nav>.active>a,
+        #menu001.navbar-default .navbar-nav>.active>a:hover,
+        #menu001.navbar-default .navbar-nav>.active>a:focus {
+            color: rgba(85, 85, 85, 1);
+            background-color: rgba(231, 231, 231, 1);
+        }
+
+        #menu001.navbar-default .navbar-toggle {
+            border-color: #ddd;
+        }
+
+        #menu001.navbar-default .navbar-toggle:hover,
+        #menu001.navbar-default .navbar-toggle:focus {
+            background-color: #ddd;
+        }
+
+        #menu001.navbar-default .navbar-toggle .icon-bar {
+            background-color: #888;
+        }
+
+        #menu001.navbar-default .navbar-toggle:hover .icon-bar,
+        #menu001.navbar-default .navbar-toggle:focus .icon-bar {
+            background-color: #888;
+        }
+
+        #robot-url {
+            font-size: 25px;
+        }
+
+        #url {
+            font-size: 25px;
+        }
+
+        #canvas1 {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            margin: 20px;
+
+            border: thin solid #aaaaaa;
+        }
+
+        #canvas2 {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            margin: 20px;
+            border: thin solid #aaaaaa;
+        }
+    </style>
+    <script type="text/javascript">
+
+        var ros;
+        var listener1;
+
+        var connected = false;
+
+        // var ros = new ROSLIB.Ros({
+        //     url: 'ws://192.168.2.200:9090'
+        // });
+        var jq = $.noConflict();
+
+        var table;
+
+        var dataSet;
+        //////////////////init
+        function init() {
+            var temp;
+            micBg = document.getElementById("mic-bg");
+            mic = document.getElementById("mic");
+            micSlash = document.getElementById("mic-slash");
+            if (localStorage.firstResultOK == undefined) {
+                localStorage.firstResultOK = 0;
+            }
+            if (localStorage.otherResultOK == undefined) {
+                localStorage.otherResultOK = 0;
+            }
+            if (localStorage.robotUrl != undefined) {
+                temp = localStorage.robotUrl;		// use the last robot address
+            } else {
+                temp = "ws://superg.qicp.vip:37482";  //guess at it
+            }
+            document.getElementById("robotUrlEntry").value = temp;
+            if (window.SpeechSynthesisUtterance === undefined) {
+                muted = true;
+            }
+            showInfo("info_none");
+        }
+        ////////////////////connect///////////////////////
+
+
+
+        function connect() {
+            var connectButton;
+            if (connected) {			// disconnect
+                ros.close();
+            } else {
+                robotUrl = document.getElementById("robotUrlEntry").value.trim();
+                if (robotUrl == '') {
+                    bootbox.alert("Please supply the robot's URL and port");
+                    return;
+                }
+                robotUrl = robotUrl.replace("https:", "wss:");
+                robotUrl = robotUrl.replace("http:", "ws:");
+                if ((robotUrl.slice(0, 6) != "wss://") && (robotUrl.slice(0, 5) != "ws://")) {
+
+                    var r = bootbox.alert
+                        ("The robot's URL should begin with http, https, ws, or wss, " +
+                            "and end with a port number, like ':9090'.");
+                    return;
+                }
+                ros = new ROSLIB.Ros({						// Connecting to ROS.
+                    url: robotUrl
+                });
+            }
+
+            ///////////ros.on
+            ros.on('connection', function () {
+                localStorage.robotUrl = robotUrl;
+                connectButton = document.getElementById("connectButton");
+                connectButton.innerHTML = "Disconnect";
+                connectButton.style.background = "#00cc00";    		// green
+                connected = true;
+                addLog('Connected to websocket server.');
+                listener1 = new ROSLIB.Topic({
+                    ros: ros,
+                    name: '/monitor/pid_status_msg',
+                    messageType: 'monitor_msgs/PidStatusArray'
+                });
+                listener1.subscribe(function (message) {
+                    //console.log('Received message on ' + listener1.name + ': ' + message.header.seq);
+                    dataSet = message.pid_status;
+
+
+                    table.clear();
+                    table.rows.add(dataSet);
+                    table.draw();
+                    // str_pretty2 = JSON.stringify(message.pid_status, null, 4);
+                    // addLog(str_pretty2);
+                    //jq("#test").html('<pre>' + str_pretty2 + '</pre>');
+                    //listener1.unsubscribe();
+                });
+
+
+            });
+            ros.on('error', function (error) {
+                addLog(error);
+                //say('Darn. We failed to connect.');
+                //none of the following work... 
+                //alert (error.stack);
+                //alert (error.message);
+                //alert (JSON.stringify(error));
+                bootbox.alert('Error connecting to websocket server. ');
+            });
+            ros.on('close', function () {
+                if (connected) {			// throw away a second call
+                    connected = false;
+                    connectButton = document.getElementById("connectButton");
+                    connectButton.style.background = "#006dcc";
+                    connectButton.innerHTML = "Connect"
+                    addLog('Connection to websocket server closed.');
+                    listener1.unsubscribe();
+                }
+            });
+        }
+        ////////////showInfo///////////////////////////
+        function showInfo(s) {
+            if (s) {
+                for (var child = info.firstChild; child; child = child.nextSibling) {
+                    if (child.style) {
+                        child.style.display = child.id == s ? 'inline' : 'none';
+                    }
+                }
+                info.style.visibility = 'visible';
+            } else {
+                info.style.visibility = 'hidden';
+            }
+        }
+        function addLog(text, textColor) {
+            var table_log = document.getElementById("commandLog");
+            var row = table_log.insertRow(0);
+            var cell1 = row.insertCell(0);
+            if (textColor) {
+                cell1.style.color = "red";
+            }
+            cell1.innerHTML = text;
+        }
+        ////////////////////////////////////////////////////
+
+
+        jq(document).ready(function () {
+            //配置DataTables默认参数
+
+            //jq('#node_tb').DataTable();
+            table = jq('#example').DataTable({
+                // 是否允许检索
+                "searching": true,
+                // 是否允许排序
+                "ordering": true,
+                // 初期排序列
+                //"order": [[0,'asc'],[1,'desc']],
+                // 是否显示情报 就是"当前显示1/100记录"这个信息
+                "info": false,
+                // 是否允许翻页，设成false，翻页按钮不显示
+                "paging": false,
+                // 水平滚动条
+                "scrollX": false,
+                // 垂直滚动条
+                "scrollY": false,
+                // 件数选择功能 默认true
+                "lengthChange": false,
+                // 件数选择下拉框内容
+                "lengthMenu": [10, 25, 50, 75, 100],
+                // 每页的初期件数 用户可以操作lengthMenu上的值覆盖
+                "pageLength": 50,
+                "language": {
+                    "processing": "处理中...",
+                    "lengthMenu": "显示 _MENU_ 项结果",
+                    "zeroRecords": "没有匹配结果",
+                    "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "infoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "infoPostFix": "",
+                    "search": "搜索:",
+                    "searchPlaceholder": "搜索...",
+                    "url": "",
+                    "emptyTable": "表中数据为空",
+                    "loadingRecords": "载入中...",
+                    "infoThousands": ",",
+                    "paginate": {
+                        "first": "首页",
+                        "previous": "上页",
+                        "next": "下页",
+                        "last": "末页"
+                    },
+                    "aria": {
+                        "paginate": {
+                            "first": "首页",
+                            "previous": "上页",
+                            "next": "下页",
+                            "last": "末页"
+                        },
+                        "sortAscending": "以升序排列此列",
+                        "sortDescending": "以降序排列此列"
+                    },
+                    "thousands": "."
+                },
+                //ajax: dataSet,
+                data: dataSet,
+                destroy: true,
+                //"retrieve": true,
+                columns: [
+                    { data: 'node_name' },
+                    { data: 'node_pid' },
+                    {
+                        data: 'cpu_occupy',
+                        render: function (data, type, row, meta) {
+
+                            return data.toFixed(2);
+                        },
+                        "createdCell": function (td, cellData, rowData, row, col) {
+                            if (cellData > 30 && cellData < 50) {
+                                $(td).css('background-color', 'yellow').css('font-weight', "bold");
+                            } else if (cellData >= 50)
+                                $(td).css('background-color', 'red').css('font-weight', "bold");
+                        }
+                    },
+                    {
+                        data: 'mem_occupy',
+                        render: function (data, type, row, meta) {
+
+                            return data.toFixed(2);;
+                        },
+                        "createdCell": function (td, cellData, rowData, row, col) {
+                            if (cellData > 30 && cellData < 50) {
+                                $(td).css('background-color', 'yellow').css('font-weight', "bold");
+                            } else if (cellData >= 50)
+                                $(td).css('background-color', 'red').css('font-weight', "bold");
+                        }
+                    }
+                ]
+            });
+        });
+        function test() {
+            table = jq('#example').DataTable();
+            table.clear();
+        }
+
+    </script>
+</head>
+
+<body onload="init()">
+    <div class="page-header" style="text-align:center;margin-bottom:0" role="navigation">
+        <h1><b>Node Monitor</b></h1>
+    </div>
+    <!-- 菜单-->
+    <div id="menu001" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                        class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="/map.html">Home</a></li>
+                    <li><a href="/node_monitor.html">Node Monitor</a></li>
+
+
+                    <li><a href="#" data-toggle="modal" data-target="#helpModal">Help</a>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="usingSpeech"><strong>Using HmiControlAD Commands</strong></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="commandHeader"><strong>Commands</strong></p>
+                    <p>NULL：空命令</p>
+                    <p>Start Planning：车辆启动，按照规划路径行进</p>
+                    <p>Lift Up</p>
+                    <p>Lift Down</p>
+                    <p>Charging</p>
+                    <p>Stop Charge</p>
+                    <p>...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="aboutSpeech">About</h4>
+                </div>
+                <div class="modal-body">
+                    <p>通过WEB页面发送AD控制命令
+                    </p>
+                    <p>Author: hai.lin@superg.ai</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--连接websocket-->
+    <div class="container-fluid" id="my-gui-container">
+        <form role="form" class="form-horizontal" autocomplete="on" onsubmit="connect()">
+            <div id="robot-url" class="form-group form-group-lg">
+                <label for="robotUrlEntry" class="control-label col-xs-3">AGV URL:</label>
+                <div class="col-xs-6">
+                    <input type="url" name="url" id="robotUrlEntry" class="form-control input-lg" placeholder="ws://"
+                        value="ws://192.168.2.200:9090" />
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" id="connectButton" class="btn btn-primary btn-lg" style="font-size:25"
+                        onclick="connect()">
+                        <strong>Connect</strong></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row">
+            <!-- 表格开始 -->
+            <table id="example" class="display" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>节点名称</th>
+                        <th>进程PID</th>
+                        <th>CPU占用率(%)</th>
+                        <th>内存占用率(%)</th>
+                    </tr>
+                </thead>
+
+                <tfoot>
+                    <tr>
+                        <th>节点名称</th>
+                        <th>进程PID</th>
+                        <th>CPU占用率(%)</th>
+                        <th>内存占用率(%)</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+
+    </div>
+
+    <div id="info">
+        <p id="info_none"><br><br></p>
+        <p id="info_start">Click on the microphone and begin speaking.</p>
+        <p id="info_no_connect">请先连接websocket服务</p>
+
+        <p id="info_upgrade">This browser doesn't support the Web Speech API. Use <a
+                href="//www.google.com/chrome">Chrome</a> version 25 or later.</p>
+    </div>
+
+    <div id="results">
+        Command Log:
+        <div style="height: 100px; overflow: auto;">
+            <table id="commandLog">
+            </table>
+        </div>
+        <br>
+    </div>
+    <p>
+        Run the following commands in the terminal then refresh this page.
+    </p>
+    <ol>
+        <li><tt>ssh higo@192.168.2.200</tt></li>
+        <li><tt>rosrun rviz_monitor node_monitor_node</tt></li>
+    </ol>
+</body>
+
+</html>

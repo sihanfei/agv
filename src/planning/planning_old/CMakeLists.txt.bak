@@ -1,0 +1,140 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(planning)
+
+## Compile as C++11, supported in ROS Kinetic and newer
+# add_compile_options(-std=c++11)
+
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+)
+
+add_compile_options(-std=c++11)
+
+find_package(catkin REQUIRED COMPONENTS
+ roscpp
+ rospy
+ std_msgs
+ message_generation
+ common_msgs
+ location_msgs
+ perception_msgs
+ plan_msgs
+ control_msgs
+ map_msgs
+ status_msgs
+ dynamic_reconfigure
+)
+
+# System dependencies are found with CMake's conventions
+find_package(Eigen3 REQUIRED)
+
+find_package(OpenMP REQUIRED)
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+
+# Generate dynamic_reconfigure server
+generate_dynamic_reconfigure_options(
+ cfg/TrajectotyParameterINFO_1.cfg
+ cfg/TrajectotyParameterINFO_2.cfg
+)
+
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES planning
+#  CATKIN_DEPENDS other_catkin_pkg
+#  DEPENDS system_lib
+)
+
+include_directories(
+ include
+ ${catkin_INCLUDE_DIRS}
+)
+
+add_library(lattice_planner
+ src/lattice/lattice_planner.cpp
+ src/lattice/trajectory_generator.cpp
+ src/lattice/trajectory_scorer.cpp
+ src/lattice/trajectory_checker.cpp
+ src/lattice/lattice_trajectory1d.cpp
+#  src/lattice/collision.cpp
+)
+
+add_dependencies(lattice_planner ${lattice_planner_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(lattice_planner
+ ${catkin_LIBRARIES}
+)
+
+add_library(common
+ src/math/quartic_polynomial.cpp
+ src/math/quintic_polynomial.cpp
+ src/math/cartesian_frenet_converter.cpp
+ src/math/box2d.cpp
+ src/common/cartesian_point.cpp
+ src/common/frenet_point.cpp
+ src/common/reference_line.cpp
+ src/common/perception_info.cpp
+ src/common/control_info.cpp
+ src/common/trajectory.cpp
+ src/common/trajectory_pair.cpp
+ src/common/sl_boundary.cpp
+ src/common/vcu_status.cpp
+)
+
+add_dependencies(common ${lattice_planner_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(common
+ ${catkin_LIBRARIES}
+)
+
+add_library(pt_graph
+ src/pt_graph/path_time_graph.cpp
+ src/pt_graph/path_time_obstacle.cpp
+ src/pt_graph/path_time_point.cpp
+ src/pt_graph/sample_point.cpp
+)
+
+add_dependencies(pt_graph ${lattice_planner_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(pt_graph
+ ${catkin_LIBRARIES}
+)
+
+add_library(planning
+ src/planning.cpp
+ src/decision.cpp
+)
+
+add_dependencies(planning ${planning_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(planning
+ lattice_planner
+ common
+ pt_graph
+ ${Boost_LIBRARIES}
+ ${catkin_LIBRARIES}
+)
+
+add_library(rtk_support src/rtk_support.cpp)
+
+add_dependencies(rtk_support ${planning_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(rtk_support
+ common
+ ${Boost_LIBRARIES}
+ ${catkin_LIBRARIES}
+)
+
+add_executable(planning_node src/planning_node.cpp)
+
+add_dependencies(planning_node ${planning_node_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(planning_node
+ planning
+ rtk_support
+ ${catkin_LIBRARIES}
+)

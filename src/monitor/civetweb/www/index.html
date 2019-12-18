@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ros Web Example</title>
+
+  <link rel="stylesheet" type="text/css" href="./scripts/jquery-ui.css" />
+  <link rel="stylesheet" type="text/css" href="./scripts/bootstrap.min.css" />
+
+  <script type="text/javascript" src="./scripts/jquery.min.js"></script>
+
+  <script type="text/javascript" src="./scripts/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./scripts/three.js"></script>
+  <script type="text/javascript" src="./scripts/eventemitter2.min.js"></script>
+  <script type="text/javascript" src="./scripts/roslib.js"></script>
+  <script type="text/javascript" src="./scripts/ros3d.js"></script>
+            
+  <script type="text/javascript" src="./scripts/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="./scripts/bootbox.min.js"></script>
+  <script type="text/javascript" src="./js/dat.gui.js"></script>
+  <script type="text/javascript" src="./scripts/map-moveLine.js"></script>
+  <!-- ECharts单文件引入 -->
+  <!-- <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script> -->
+
+  <script type="text/javascript" src="./echarts/echarts.min.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #canvas_selectpoint {
+      position: absolute;
+
+      border: thin solid #aaaaaa;
+    }
+
+    #robot-url {
+      font-size: 25px;
+    }
+
+    .info {
+      font-size: 14px;
+      text-align: center;
+      color: #777;
+      display: none;
+    }
+
+    #info {
+      font-size: 20px;
+      text-align: center;
+      color: #777;
+      visibility: hidden;
+    }
+
+    #canvas_map {
+      position: absolute;
+
+      border: thin solid #aaaaaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+        <div class="row clearfix">
+          <div class="col-md-6 column">
+            <form role="form" class="form-horizontal" autocomplete="on" onsubmit="connect()">
+              <div id="robot-url" class="form-group form-group-lg">
+
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6 column">
+            <div class="row clearfix">
+              <div class="col-md-6 column">
+                <div class="btn-group">
+                  <button type="button" id="btn5" class="btn btn-info btn-lg" style="font-size:25">全屏</button>
+                  <button type="button" id="btn6" class="btn btn-info btn-lg" style="font-size:25">退出全屏</button>
+                </div>
+              </div>
+              <div class="col-md-6 column">
+                <div class="btn-group">
+                  <button id="btn2" class="btn btn-info btn-lg" style="font-size:25" type="button">车辆启动</button>
+                  <button type="button" id="btn3" class="btn btn-danger btn-lg"
+                    style="font-size:25"><strong>急停</strong></button>
+                  <button type="button" id=btn4" class="btn btn-warning btn-lg" style="font-size:25">滑停</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12" style="text-align:left;width: 100%;height:1100px;">
+        <canvas id="canvas_map" width="100%" height="400" style="border: 1px solid black;"></canvas>
+        <canvas id="canvas_refline" width="800" height="400"
+          style="border: 1px solid black;position: absolute;"></canvas>
+        <canvas id="canvas_planning" width="800" height="400"
+          style="border: 1px solid black;position: absolute;"></canvas>
+        <canvas id="canvas_refline_move" width="800" height="400"
+          style="border: 1px solid black;position: absolute;"></canvas>
+        <canvas id="canvas_agv" width="800" height="400" style="border: 1px solid black;position: absolute;"></canvas>
+
+        <canvas id="canvas_obstacle" width="800" height="400"
+          style="border: 1px solid black;position: absolute;"></canvas>
+        <canvas id="canvas_obstacle_camera" width="800" height="400"
+          style="border: 1px solid black;position: absolute;"></canvas>
+        <canvas id="canvas_three" width="920" height="400" style="border: 1px solid black;position: absolute;"></canvas>
+        <canvas id="canvas_selectpoint" width="800" height="400"
+          style="border: 1px solid black;;position: absolute;"></canvas>
+
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <script type="text/javascript">
+
+    var ros;
+    var connected = false;
+    var websocketurl = 'ws://localhost:9090';
+
+
+    var img_map;
+    var map_width;
+    var map_height;
+
+    var moveLine;
+
+    var data;
+
+
+    var jq = $.noConflict();
+
+    var g_agv_x_ = 0;
+    var g_agv_y_ = 0;
+
+
+
+    ////////////////////////////////////////////////////
+    jq(document).ready(function () {
+      /*
+          *函数功能：从href获得参数
+          *sHref:   http://www.artfh.com/arg.htm?arg1=d&arg2=re
+          *sArgName:arg1, arg2
+          *return:    the value of arg. d, re
+          */
+      function GetArgsFromHref(sHref, sArgName) {
+        var args = sHref.split("?");
+        var retval = "";
+
+        if (args[0] == sHref) /*参数为空*/ {
+          return retval; /*无需做任何处理*/
+        }
+        var str = args[1];
+        args = str.split("&");
+        for (var i = 0; i < args.length; i++) {
+          str = args[i];
+          var arg = str.split("=");
+          if (arg.length <= 1) continue;
+          if (arg[0] == sArgName) {
+            websocketurl = arg[1];
+            retval = arg[1];
+          }
+
+        }
+        return retval;
+      };
+      GetArgsFromHref(window.location.href, 'url');
+      //全屏
+      function fullScreen() {
+        var el = document.documentElement;
+        var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+        if (typeof rfs != "undefined" && rfs) {
+          rfs.call(el);
+        };
+        return;
+      };
+      //退出全屏
+      function exitScreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+        else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        }
+        else if (document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen();
+        }
+        else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+        if (typeof cfs != "undefined" && cfs) {
+          cfs.call(el);
+        }
+      };
+      ////////////////////connect///////////////////////
+
+      function RosConnect() {
+
+        // Connecting to ROS.
+        ros = new ROSLIB.Ros({
+          url: websocketurl
+        });
+
+        //////////////listener
+        ///////////ros.on
+
+
+        ros.on('connection', function () {
+
+          connected = true;
+          //addLog('Connected to websocket server.');
+
+          //订阅全局规划路径
+          var listener_route = new ROSLIB.Topic({
+            ros: ros,
+            name: '/monitor/route_msg',
+            messageType: 'visualization_msgs/MarkerArray'
+          });
+
+          listener_route.subscribe(function (message) {
+            //console.log('Received message on ' + listener1.name + ': ' + message.header.seq);
+            var routing_points = [];
+            var temp_points = [];
+            for (var i = 0; i < message.markers.length; i++) {
+              if (message.markers[i].ns == '/route_plan_point') {
+
+                //console.log(i);
+                //console.log(message.markers[i].points);
+                var arr = Object.values(message.markers[i].points);
+                temp_points.push.apply(temp_points, arr);
+              }
+
+            }
+            for (var key in temp_points) {
+
+              routing_points.push([temp_points[key]['x'] / Scaling - x_offset, y_offset - temp_points[key]['y'] / Scaling]);
+            }
+            if (routing_points.length > 1) {
+              make_routing(routing_points);
+            }
+
+            //console.log(temp_points);
+
+
+          });
+          //订阅 planning 路线
+          var listener_route = new ROSLIB.Topic({
+            ros: ros,
+            name: '/plan/decision_info',
+            messageType: 'plan_msgs/DecisionInfo'
+          });
+
+          listener_route.subscribe(function (message) {
+            var planning_points = [];
+
+            var arr = Object.values(message.path_data_REF);
+            if (arr.length > 0)
+              make_planning(arr);
+            // planning_points.push.apply(planning_points, arr);
+
+
+            // if (planning_points.length > 0) {
+            // }
+          });
+
+          //订阅 lcl planning 路线
+          var listener_route = new ROSLIB.Topic({
+            ros: ros,
+            name: '/map/decision_info',
+            messageType: 'plan_msgs/DecisionInfo'
+          });
+
+          listener_route.subscribe(function (message) {
+            var lcl_planning_points = [];
+
+            var arr = Object.values(message.path_data_REF);
+
+            lcl_planning_points.push.apply(lcl_planning_points, arr);
+
+
+            if (lcl_planning_points.length > 0) {
+              data = [{
+                from: '起点',
+                to: '终点',
+                ref_points: lcl_planning_points
+              }];
+              moveLine.update({
+                //marker点半径
+                markerRadius: 5,
+                //marker点颜色,为空或null则默认取线条颜色
+                markerColor: '#ff0808',
+                //线条类型 solid、dashed、dotted
+                lineType: 'solid',
+                //线条宽度
+                lineWidth: 3,
+                //线条颜色
+                colors: ['#F9815C', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+                //移动点半径
+                moveRadius: 4,
+                //移动点颜色
+                fillColor: '#a908c1',
+                //移动点阴影颜色
+                shadowColor: '#00ffff',
+                //移动点阴影大小
+                shadowBlur: 5,
+
+                mapWidth: img_map.width,
+                mapHeight: img_map.height,
+
+                data: data
+              });
+            } else {
+              data = [];
+              moveLine.update({
+                //marker点半径
+                markerRadius: 5,
+                //marker点颜色,为空或null则默认取线条颜色
+                markerColor: '#ff0808',
+                //线条类型 solid、dashed、dotted
+                lineType: 'solid',
+                //线条宽度
+                lineWidth: 2,
+                //线条颜色
+                colors: ['#ff0808', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+                //移动点半径
+                moveRadius: 3,
+                //移动点颜色
+                fillColor: '#fff',
+                //移动点阴影颜色
+                shadowColor: '#00ffff',
+                //移动点阴影大小
+                shadowBlur: 5,
+
+                mapWidth: img_map.width,
+                mapHeight: img_map.height,
+
+                data: data
+              });
+
+              clearScene();
+            }
+          });
+
+          //订阅 选点信息
+          var listener_select_point_msg = new ROSLIB.Topic({
+            ros: ros,
+            name: '/monitor/select_point_info',
+            messageType: 'visualization_msgs/MarkerArray'
+          });
+
+          listener_select_point_msg.subscribe(function (message) {
+            clearScene();
+
+            for (var i = 0; i < message.markers.length; i++) {
+              if (message.markers[i].ns == 'ref_point Mark') {
+
+                add_target_point(message.markers[i].pose.position.x / Scaling - x_offset, y_offset - message.markers[i].pose.position.y / Scaling);
+              }
+
+            }
+
+          });
+
+          //订阅camera 障碍物 位置
+          // var listener_agv = new ROSLIB.Topic({
+          //   ros: ros,
+          //   //name: '/drivers/perception/camera_obstacle_info',
+          //   name: '/perception/detection_lidar',
+          //   messageType: 'perception_sensor_msgs/ObjectList'
+          // });
+
+          // listener_agv.subscribe(function (message) {
+          //   camera_obs_count++;
+          //   if (camera_obs_count > 0) {
+          //     camera_obs_count = 0;
+          //     var arr_obs = [];
+          //     for (var i = 0; i < message.object_list.length; i++) {
+
+          //       arr_obs.push(message.object_list[i].peek);
+
+          //     }
+          //     if (arr_obs.length > 1)
+          //       make_obs_camera(arr_obs);
+          //   }
+          // });
+
+
+
+          //订阅雷达探测目标
+          var listener_obs_lidar = new ROSLIB.Topic({
+            ros: ros,
+            name: '/perception/rviz_obstacle_cam_lidar_msg',
+            messageType: 'visualization_msgs/MarkerArray'
+          });
+
+          listener_obs_lidar.subscribe(function (message) {
+            obs_count++;
+            if (obs_count > 0) {
+              obs_count = 0;
+              var arr_obs = [];
+              for (var i = 0; i < message.markers.length; i++) {
+                if (message.markers[i].ns == '/per/new_lidar_obstacle_show') {
+
+                  //   var arr = Object.values(message.markers[i].points);
+                  // temp_points.push.apply(temp_points, arr);
+
+                  //arr_obs.push(Object.values(message.markers[i].points));
+                  arr_obs.push(message.markers[i].points);
+                }
+              }
+              if (arr_obs.length > 1)
+                make_obs_lidar(arr_obs);
+            }
+
+          });
+
+          //订阅融合数据，车辆位置也在这里
+          var chart1_count = 0;
+          var listener_fusion_msg = new ROSLIB.Topic({
+            ros: ros,
+            name: '/localization/fusion_msg',
+            messageType: 'location_msgs/FusionDataInfo'
+          });
+
+          listener_fusion_msg.subscribe(function (message) {
+            //var timestamp = parseInt(message.header.stamp.secs + '' + message.header.stamp.nsecs.toString().substring(0, 3));
+
+            chart1_count++;
+
+
+
+
+            if (chart1_count > 9) {
+              chart1_count = 0;
+
+              //agv
+              g_agv_x_ = message.pose.x;
+              g_agv_y_ = message.pose.y;
+
+              make_agv_pose(g_agv_x_, g_agv_y_, (message.yaw * Math.PI / 180));
+
+
+            }
+
+          });
+
+
+          var listener = new ROSLIB.Topic({
+            ros: ros,
+            name: '/monitor/hmi_control_ad',
+            messageType: 'hmi_msgs/HMIControlAD'
+          });
+
+          listener.subscribe(function (message) {
+            str_pretty = JSON.stringify(message, null, 4);
+
+          });
+
+          //svr
+          // var addTwoIntsClient = new ROSLIB.Service({
+          //     ros: ros,
+          //     name: '/rosapi/get_param_names',
+          //     serviceType: 'rosapi::GetParamNames'
+          // });
+
+          // var request = new ROSLIB.ServiceRequest({
+
+          // });
+
+          // addTwoIntsClient.callService(request, function (result) {
+          //     console.log('Result for service call on '
+          //         + addTwoIntsClient.name
+          //         + ': '
+          //         + JSON.stringify(result, null, 2));
+          // });
+        });
+        ros.on('error', function (error) {
+          //addLog(error);
+          //say('Darn. We failed to connect.');
+          //none of the following work... 
+          //alert (error.stack);
+          //alert (error.message);
+          //alert (JSON.stringify(error));
+          //bootbox.alert('Error connecting to websocket server. ');
+        });
+        ros.on('close', function () {
+          if (connected) {			// throw away a second call
+            connected = false;
+            console.log('Connection to websocket server closed.');
+            //addLog('Connection to websocket server closed.');
+          }
+        });
+      }
+      ////////////showInfo///////////////////////////
+      function showInfo(s) {
+        if (s) {
+          for (var child = info.firstChild; child; child = child.nextSibling) {
+            if (child.style) {
+              child.style.display = child.id == s ? 'inline' : 'none';
+            }
+          }
+          info.style.visibility = 'visible';
+        } else {
+          info.style.visibility = 'hidden';
+        }
+      }
+
+      setInterval(function () {
+
+        if (connected == false) {
+          console.log(websocketurl);
+          RosConnect();
+        }
+      }, 3000);
+
+
+      //map
+      var mycanvas = document.getElementById('canvas_map');
+      var ctx = mycanvas.getContext('2d');
+
+      img_map = new Image();
+      img_map.src = "./img/ningbo.png";
+      map_width = img_map.width;
+      map_height = img_map.height;
+
+      img_map.onload = function () {
+
+        // 将图片画到canvas上面上去！
+        mycanvas.width = img_map.width;
+        mycanvas.height = img_map.height;
+
+        ctx.fillStyle = '#118215';
+        ctx.fillRect(0, 0, img_map.width, img_map.height);
+
+
+        ctx.drawImage(img_map, 0, 0, img_map.width, img_map.height);
+        var imgData = ctx.getImageData(0, 0, mycanvas.width, mycanvas.height);
+
+        ctx.putImageData(imgData, 0, 0);
+
+        //改变其他canvas大小
+        var can1 = document.getElementById('canvas_selectpoint');
+        can1.width = img_map.width;
+        can1.height = img_map.height;
+
+        var can2 = document.getElementById('canvas_three');
+        can2.width = img_map.width;
+        can2.height = img_map.height;
+
+
+        can2 = document.getElementById('canvas_refline');
+        can2.width = img_map.width;
+        can2.height = img_map.height;
+
+        can2 = document.getElementById('canvas_refline_move');
+        can2.width = img_map.width;
+        can2.height = img_map.height;
+
+        can2 = document.getElementById('canvas_agv');
+        can2.width = img_map.width;
+        can2.height = img_map.height;
+
+        can2 = document.getElementById('canvas_planning');
+        can2.width = img_map.width;
+        can2.height = img_map.height;
+
+        can2 = document.getElementById('canvas_obstacle');
+        can2.width = img_map.width;
+        can2.height = img_map.height;
+
+        can2 = document.getElementById('canvas_obstacle_camera');
+        can2.width = img_map.width;
+        can2.height = img_map.height;
+
+        map_width = img_map.width;
+        map_height = img_map.height;
+      }
+
+      jq("#btn1").click(function () {
+        if (!connected) {
+          showInfo("info_no_connect");
+          return;
+        }
+        showInfo("info_none");
+        bootbox.confirm({
+          message: "确定要发送[" + jq("#HmiControlAD").find("option:selected").text() + "]命令?",
+          buttons: {
+            confirm: {
+              label: '确认',
+              className: 'btn-success'
+            },
+            cancel: {
+              label: '取消',
+              className: 'btn-danger'
+            }
+          },
+          callback: function (result) {
+            if (result) {
+              var cmdVel = new ROSLIB.Topic({
+                ros: ros,
+                name: '/monitor/hmi_control_ad',
+                messageType: 'hmi_msgs/HMIControlAD'
+              });
+
+              var HmiControlAD = new ROSLIB.Message({
+                header: { frame_id: '/odom', stamp: 0, seq: 0 },
+                CMD_Type: parseInt(jq("#HmiControlAD").val().trim())
+              });
+              cmdVel.publish(HmiControlAD);
+            }
+          }
+        });
+      });
+
+
+      jq("#btn5").click(function () {
+
+        fullScreen();
+      });
+      jq("#btn6").click(function () {
+
+        exitScreen();
+      });
+      jq("#btn4").click(function () {
+
+
+      });
+
+
+      moveLine = new MoveLine({
+        //marker点半径
+        markerRadius: 5,
+        //marker点颜色,为空或null则默认取线条颜色
+        markerColor: null,
+        //线条类型 solid、dashed、dotted
+        lineType: 'solid',
+        //线条宽度
+        lineWidth: 2,
+        //线条颜色
+        colors: ['#F9815C', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+        //移动点半径
+        moveRadius: 3,
+        //移动点颜色
+        fillColor: '#ff0000',
+        //移动点阴影颜色
+        shadowColor: '#00ffff',
+        //移动点阴影大小
+        shadowBlur: 5,
+
+        mapWidth: img_map.width,
+        mapHeight: img_map.height,
+
+        data: data
+      });
+
+
+
+    });//jq ready
+
+  </script>
+  <script>
+    ; (function (window) {
+      window.G = {};
+      // var c = document.getElementById("canvas_selectpoint");
+      // c.onmousewheel = function (ev) {
+      //   var e = ev || event;
+      //   //var num += e.wheelDelta / 1200;
+      //   console.log('num = ' + e.wheelDelta);
+      //   r = 30 * num;
+      //   ctx.clearRect(0, 0, c.width, c.height);
+      //   if (ax == null || ay == null) {
+      //     createBlock(200, 200, r);
+      //   } else {
+      //     if (r > 0) {
+      //       createBlock(ax, ay, r);
+      //     }
+      //   }
+      // };
+      function bindEvent(obj, event, fn) {
+        if (obj.attachEvent) { //ie
+          obj.attachEvent('on' + event, function () {
+            fn.call(obj);
+          });
+        } else {
+          //chrome&ff
+          obj.addEventListener(event, fn, false);
+        }
+      }
+
+      G.getPos = function (dom) {
+        var oPos = { x: 0, y: 0 };
+        bindEvent(dom, 'mousemove', function (ev) {
+          var oEvent = ev || event, x, y;
+          var mousePos = mouseCoords(ev);
+          // if (oEvent.pageX || oEvent.pageY) {
+          //     x = oEvent.pageX;
+          //     y = oEvent.pageY;
+          // } else {
+          //     x = oEvent.clientX + document.body.scrollLeft || document.documentElement.scrollLeft;
+          //     y = oEvent.clientX + document.body.scrollTop || document.documentElement.scrollTop;
+          // }
+          // x -= dom.offsetLeft;
+          // y -= dom.offsetTop;
+          // oPos.x = x;
+          // oPos.y = y;
+          oPos.x = mousePos.x;
+          oPos.y = mousePos.y;
+        });
+        return oPos;
+      };
+
+    })(window);
+  </script>
+  <script>
+
+    var x_offset = -2143;
+    var y_offset = 33;
+    var Scaling = 0.07657 * 0.5; //0.138
+
+    var origin_x = -2143;
+    var origin_y = 33;
+    var origin_Scaling = 0.07657;
+
+
+    var options = {
+      //marker点半径
+      markerRadius: 5,
+      //marker点颜色,为空或null则默认取线条颜色
+      markerColor: null,
+      //线条类型 solid、dashed、dotted
+      lineType: 'solid',
+      //线条宽度
+      lineWidth: 2,
+      //线条颜色
+      colors: ['#F9815C', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+      //移动点半径
+      moveRadius: 3,
+      //移动点颜色
+      fillColor: '#ff0000',
+      //移动点阴影颜色
+      shadowColor: '#00ffff',
+      //移动点阴影大小
+      shadowBlur: 5,
+
+      mapWidth: map_width,
+      mapHeight: map_height,
+
+      data: data
+    };
+
+    function finished() {
+      //addLog(options);
+    }
+
+
+
+    var gui = new dat.GUI({
+      autoPlace: true,
+      nameMap: {
+        moveRadius: '移动点半径',
+        fillColor: '移动点颜色',
+        shadowColor: '移动点阴影颜色',
+        shadowBlur: '移动点阴影大小',
+      }
+    });
+
+    // var customContainer = document.getElementById('body');
+    // customContainer.appendChild(gui.domElement);
+
+
+    finished();
+    gui.add(options, 'moveRadius', 1, 10).step(1).onFinishChange(finished);
+    gui.addColor(options, 'fillColor').onChange(finished);
+    gui.addColor(options, 'shadowColor').onChange(finished);
+    gui.add(options, 'shadowBlur', 0, 20).step(1).onChange(finished);
+    gui.closed = true;
+
+    function GetRandomNum(Min, Max) {
+      var Range = Max - Min;
+      var Rand = Math.random();
+      return (Min + Math.round(Rand * Range));
+    }
+
+    function mouseCoords(ev) {
+      var e = event || window.event;
+      var x = e.offsetX || e.layerX;
+      var y = e.offsetY || e.layerY;
+      return { x, y };
+    }
+
+    var globl_w = map_width;
+    var globl_h = map_height;
+    makerect(0, 0, globl_w, globl_w);
+
+    //鼠标点击生成圆
+    jq("#canvas_selectpoint").click(function (e) {
+      var ev = ev || window.event;
+      var mousePos = mouseCoords(ev);
+      mousePosX = mousePos.x;
+      mousePosY = mousePos.y;
+      console.log(mousePosX);
+      console.log(mousePosY);
+      makearc(mousePosX, mousePosY, GetRandomNum(4, 4), 0, 180, 'red');
+      //发送ROS命令
+      if (!connected) {
+        showInfo("info_no_connect");
+        return;
+      }
+
+      // var cmdVel = new ROSLIB.Topic({
+      //     ros: ros,
+      //     name: '/clicked_point',
+      //     messageType: 'geometry_msgs/PointStamped'
+      // });
+
+      // var message = new ROSLIB.Message({
+      //     header: { frame_id: '/odom', stamp: 0, seq: 0 },
+      //     point: {
+      //         x: ((mousePosX + x_offset) * Scaling),
+      //         y: ((y_offset - mousePosY) * Scaling),
+      //         z: 0.0
+      //     }
+
+      // });
+      // cmdVel.publish(message);
+    })
+
+    function myAnimation() {
+      ctx.clearRect(0, 0, map_width, map_height);
+    }
+
+    //生成圆
+    function makearc(x, y, r, s, e, color) {
+      var can = document.getElementById('canvas_selectpoint');
+      var ctx = can.getContext("2d");
+      ctx.clearRect(0, 0, map_width, map_height);
+      ctx.beginPath();
+      ctx.fillStyle = color;
+      ctx.arc(x, y, r, s, e);
+      ctx.fill();
+
+      ctx.font = 'bold 20px Arial';
+      //oGc.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      ctx.fillStyle = '#ff0000';
+
+
+
+      ctx.fillText('选点:(' + ((x + x_offset) * Scaling).toFixed(2) + ',' + ((y_offset - y) * Scaling).toFixed(2) + ')', 10, 50);
+    }
+
+    function makerect(x, y, w, h) {
+      var can = document.getElementById('canvas_selectpoint');
+      var ctx = can.getContext("2d");
+      ctx.strokeRect(x, y, w, h);
+    }
+    //画局部规划
+    function make_planning(planning_points) {
+      var can = document.getElementById('canvas_planning');
+      var ctx = can.getContext("2d");
+      ctx.clearRect(0, 0, map_width, map_height);
+      var icount = 0;
+      for (var i = 0; i < planning_points.length; i++) {
+        icount++;
+        if (icount > 4) {
+          icount = 0;
+          drawArrow(ctx, planning_points[i].x / Scaling - x_offset, y_offset - planning_points[i].y / Scaling, (planning_points[i].theta + 90) % 360, 30, 10, 3, '#0f0');
+        }
+        // var fromx = agv_x / Scaling - x_offset;
+        // var fromy = y_offset - agv_y / Scaling;
+
+      }
+    }
+    //画AGV
+    function make_agv_pose(agv_x, agv_y, agv_yaw) {
+      var can = document.getElementById('canvas_agv');
+      var ctx = can.getContext("2d");
+
+      ctx.clearRect(0, 0, map_width, map_height);
+
+      var agv_w = 3.0;
+      var agv_l = 16.0;
+
+      var agv_pose_x = agv_x + agv_l / 2 * Math.sin(agv_yaw) - agv_w / 2 * Math.cos(agv_yaw);
+      var agv_pose_y = agv_y + agv_l / 2 * Math.cos(agv_yaw) + agv_w / 2 * Math.sin(agv_yaw);
+
+      ctx.beginPath();
+      ctx.lineWidth = 3;
+      ctx.moveTo(agv_pose_x / Scaling - x_offset, y_offset - agv_pose_y / Scaling);
+
+      agv_pose_x = agv_x + agv_l / 2 * Math.sin(agv_yaw) + agv_w / 2 * Math.cos(agv_yaw);
+      agv_pose_y = agv_y + agv_l / 2 * Math.cos(agv_yaw) - agv_w / 2 * Math.sin(agv_yaw);
+      ctx.lineTo(agv_pose_x / Scaling - x_offset, y_offset - agv_pose_y / Scaling);
+
+      agv_pose_x = agv_x - agv_l / 2 * Math.sin(agv_yaw) + agv_w / 2 * Math.cos(agv_yaw);
+      agv_pose_y = agv_y - agv_l / 2 * Math.cos(agv_yaw) - agv_w / 2 * Math.sin(agv_yaw);
+      ctx.lineTo(agv_pose_x / Scaling - x_offset, y_offset - agv_pose_y / Scaling);
+
+      agv_pose_x = agv_x - agv_l / 2 * Math.sin(agv_yaw) - agv_w / 2 * Math.cos(agv_yaw);
+      agv_pose_y = agv_y - agv_l / 2 * Math.cos(agv_yaw) + agv_w / 2 * Math.sin(agv_yaw);
+      ctx.lineTo(agv_pose_x / Scaling - x_offset, y_offset - agv_pose_y / Scaling);
+      ctx.closePath();//闭合路径
+      ctx.strokeStyle = 'red';
+      ctx.stroke();
+
+      // var fromx = agv_x / Scaling - x_offset;
+      // var fromy = y_offset - agv_y / Scaling;
+      // var tox = (agv_x + agv_l / 2 * Math.sin(agv_yaw)) / Scaling - x_offset;
+      // var toy = y_offset - (agv_y + agv_l / 2 * Math.cos(agv_yaw)) / Scaling;
+
+    }
+    function drawArrow(ctx, toX, toY, angle, theta, headlen, width, color) {
+
+      theta = typeof (theta) != 'undefined' ? theta : 30;
+      headlen = typeof (theta) != 'undefined' ? headlen : 10;
+      width = typeof (width) != 'undefined' ? width : 1;
+      color = typeof (color) != 'color' ? color : '#f00';
+
+      // 计算各角度和对应的P2,P3坐标
+      var angle1 = (angle + theta) * Math.PI / 180,
+        angle2 = (angle - theta) * Math.PI / 180,
+        topX = headlen * Math.cos(angle1),
+        topY = headlen * Math.sin(angle1),
+        botX = headlen * Math.cos(angle2),
+        botY = headlen * Math.sin(angle2);
+
+      ctx.save();
+      ctx.beginPath();
+
+      var arrowX, arrowY;
+
+      arrowX = toX + topX;
+      arrowY = toY + topY;
+      ctx.moveTo(arrowX, arrowY);
+      ctx.lineTo(toX, toY);
+      arrowX = toX + botX;
+      arrowY = toY + botY;
+      ctx.lineTo(arrowX, arrowY);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.stroke();
+      ctx.restore();
+    };
+    //画障碍物
+    var obs_count = 0;
+    function make_obs_lidar(obs_points) {
+      var can = document.getElementById('canvas_obstacle');
+      var ctx = can.getContext("2d");
+      ctx.clearRect(0, 0, map_width, map_height);
+
+      for (var i = 0; i < obs_points.length; i++) {
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        var t1 = obs_points[i][0].x / Scaling - x_offset;
+        var t2 = y_offset - obs_points[i][0].y / Scaling
+        console.log('moveTo = ' + t1 + ' y = ' + t2);
+        ctx.moveTo(obs_points[i][0].x / Scaling - x_offset, y_offset - obs_points[i][0].y / Scaling);
+        ctx.lineTo(obs_points[i][1].x / Scaling - x_offset, y_offset - obs_points[i][1].y / Scaling);
+        ctx.lineTo(obs_points[i][2].x / Scaling - x_offset, y_offset - obs_points[i][2].y / Scaling);
+        ctx.lineTo(obs_points[i][3].x / Scaling - x_offset, y_offset - obs_points[i][3].y / Scaling);
+        ctx.closePath();//闭合路径
+        ctx.strokeStyle = 'orange';
+        ctx.stroke();
+      }
+
+
+    }
+
+    var camera_obs_count = 0;
+    function make_obs_camera(camera_obs_points) {
+      var can = document.getElementById('canvas_obstacle_camera');
+      var ctx = can.getContext("2d");
+      ctx.clearRect(0, 0, map_width, map_height);
+
+      for (var i = 0; i < camera_obs_points.length; i++) {
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.moveTo((g_agv_x_ + camera_obs_points[i][0].x) / Scaling - x_offset, y_offset - (g_agv_y_ + camera_obs_points[i][0].y) / Scaling);
+        ctx.lineTo((g_agv_x_ + camera_obs_points[i][1].x) / Scaling - x_offset, y_offset - (g_agv_y_ + camera_obs_points[i][1].y) / Scaling);
+        ctx.lineTo((g_agv_x_ + camera_obs_points[i][2].x) / Scaling - x_offset, y_offset - (g_agv_y_ + camera_obs_points[i][2].y) / Scaling);
+        ctx.lineTo((g_agv_x_ + camera_obs_points[i][3].x) / Scaling - x_offset, y_offset - (g_agv_y_ + camera_obs_points[i][3].y) / Scaling);
+        ctx.closePath();//闭合路径
+        ctx.strokeStyle = 'magenta';
+        ctx.stroke();
+      }
+
+
+    }
+
+    //绘制全局路线
+    function make_routing(routing_points) {
+      var can = document.getElementById('canvas_refline');
+      var context = can.getContext("2d");
+      context.clearRect(0, 0, map_width, map_height);
+
+      var pointList = routing_points;
+      var len = pointList.length;
+      context.save();
+      context.beginPath();
+      context.lineWidth = 2;
+      context.strokeStyle = 'blue';;
+
+      if (!options.lineType || options.lineType == 'solid') {
+        context.moveTo(pointList[0][0], pointList[0][1]);
+        for (var i = 0; i < len; i++) {
+          context.lineTo(pointList[i][0], pointList[i][1]);
+        }
+      } else if (options.lineType == 'dashed' || options.lineType == 'dotted') {
+        for (var i = 1; i < len; i += 2) {
+          context.moveTo(pointList[i - 1][0], pointList[i - 1][1]);
+          context.lineTo(pointList[i][0], pointList[i][1]);
+        }
+      }
+      context.stroke();
+      context.restore();
+      //this.step = 0; //缩放地图时重新绘制动画
+    }
+
+    //three/////////////////////////////////////////
+
+    var angularSpeed = 0.5;
+    var lastTime = 0;
+
+    var list_target_point = [];
+    var add_target_point = function (x, y) {
+      this.x = x;
+      this.y = y;
+
+      // octa
+      var octa = new THREE.OctahedronGeometry(10, 0);
+      var material_octa = new THREE.MeshLambertMaterial({ color: '#7833aa' });
+      var octa1 = new THREE.Mesh(octa, material_octa);
+      octa1.position.set(x - w / 2, h / 2 - y, 0);
+      //octa1.position.set(400, -400, 0);
+      scene.add(octa1);
+      list_target_point.push(octa1);
+    }
+
+    function animate() {
+      // update
+      var time = (new Date()).getTime();
+      var timeDiff = time - lastTime;
+      var angleChange = angularSpeed * timeDiff * 2 * Math.PI / 750;
+
+
+      for (var i = 0; i < list_target_point.length; i++) {
+        list_target_point[i].rotation.z += angleChange;
+      }
+      lastTime = time;
+
+      // render
+      renderer.render(scene, camera_Or);
+
+      requestAnimationFrame(function () {
+        animate();
+      });
+    }
+
+    /**
+* 清除模型，模型中有 group 和 scene,需要进行判断
+* @param scene
+* @returns
+*/
+    function clearScene() {
+      // 从scene中删除模型并释放内存
+      if (list_target_point.length > 0) {
+        for (var i = 0; i < list_target_point.length; i++) {
+          var currObj = list_target_point[i];
+
+          // 判断类型
+          if (currObj instanceof THREE.Scene) {
+            var children = currObj.children;
+            for (var i = 0; i < children.length; i++) {
+              deleteGroup(children[i]);
+            }
+          } else {
+            deleteGroup(currObj);
+          }
+          scene.remove(currObj);
+        }
+      }
+    }
+
+    // 删除group，释放内存
+    function deleteGroup(group) {
+      //console.log(group);
+      if (!group) return;
+      // 删除掉所有的模型组内的mesh
+      group.traverse(function (item) {
+        if (item instanceof THREE.Mesh) {
+          item.geometry.dispose(); // 删除几何体
+          item.material.dispose(); // 删除材质
+        }
+      });
+    }
+    // renderer
+
+    var scene = new THREE.Scene();
+    var h = 2808,
+      w = 2000;
+
+    //创建相机
+    var camera_Or = new THREE.OrthographicCamera(w / -2, w / 2, h / 2, h / -2, 1, 1000);
+    //camera_Or.position.z=5;
+    camera_Or.position.set(0, 0, 100);
+    camera_Or.lookAt(new THREE.Vector3(0, 0, 0))
+    scene.add(camera_Or);
+
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas_three, alpha: true, antialias: true });
+    renderer.setSize(w, h);
+
+    //Ambient light
+    var light = new THREE.AmbientLight(0xffffff, .5);
+
+    var shadowLight = new THREE.DirectionalLight(0xffffff, 5);
+    shadowLight.position.set(200, 200, 200);
+    shadowLight.castShadow = true;
+
+    var backLight = new THREE.DirectionalLight(0xffffff, .5);
+    backLight.position.set(-100, -200, 50);
+    backLight.castShadow = true;
+    scene.add(backLight);
+    scene.add(light);
+    scene.add(shadowLight);
+
+    // add_target_point(0, 0);
+    // add_target_point(460, 460);
+    // add_target_point(900, 0);
+    // add_target_point(0, 900);
+    // add_target_point(900, 900);
+
+    animate();
+          ///////////////////////////////////////////////////////////
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+2015-05-07	sinpowei<sinpowei@gmail.com>
+    version 1.3.1
+    build with QT v5.3.2
+
+    Source code repository migrated from Google Code to GitHub
+
+2011-11-30	sinpowei<sinpowei@gmail.com>
+    version 1.3
+    build with QT v4.7.2
+
+    fixed: reset receive & send counter when clear output window
+
+2011-09-21	sinpowei<sinpowei@gmail.com>
+    version 1.2
+    build with QT v4.7.2
+
+    add linux version
+    UI adjustment for linux desktop
+    few small bug fixed
+
+2010-11-17	sinpowei<sinpowei@gmail.com>
+    first release version 1.0
+    build with QT v4.7.1
+

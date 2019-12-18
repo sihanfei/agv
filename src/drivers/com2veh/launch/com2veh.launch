@@ -1,0 +1,7 @@
+<launch>
+    <node 
+    pkg= "com2veh"
+    type= "com2veh"
+    name= "com2veh"
+    args= "1"/>
+</launch>

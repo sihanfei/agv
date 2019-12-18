@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="../scripts/three.js"></script>
+    <script src="../scripts/eventemitter2.js"></script>
+    <script src="../scripts/roslib.js"></script>
+    <script src="../scripts/ros3d.js"></script>
+    <script>
+        function init() {
+            var ros = new ROSLIB.Ros({
+                url: 'ws://localhost:9090'
+            });
+            ros.on('connection', function () {
+                console.log('Connected to websocket server.');
+            });
+
+            ros.on('error', function (error) {
+                console.log('Error connecting to websocket server: ', error);
+            });
+
+            ros.on('close', function () {
+                console.log('Connection to websocket server closed.');
+            });
+
+            var viewer = new ROS3D.Viewer({
+                divID: 'markers',
+                width: window.innerWidth,
+                height: window.innerHeight,
+                antialias: true
+            });
+
+            viewer.addObject(new ROS3D.Grid({
+                color: '#0181c4',
+                cellSize: 0.5,
+                num_cells: 20
+            }));
+
+            // Setup a client to listen to TFs.
+
+            tfClient = new ROSLIB.TFClient({
+                ros: ros,
+                fixedFrame: 'my_frame',
+                angularThres: 100,
+                transThres: 1000,
+                rate: 10.0
+            });
+
+            var markerClient = new ROS3D.MarkerClient({
+                ros: ros,
+                tfClient: tfClient,
+                topic: '/visualization_marker',
+                rootObject: viewer.scene
+            });
+
+            // Subscribing to a Topic
+            // ----------------------
+
+            // var listener = new ROSLIB.Topic({
+            //     ros: ros,
+            //     name: '/listener',
+            //     messageType: 'std_msgs/String'
+            // });
+
+            // listener.subscribe(function (message) {
+            //     console.log('Received message on ' + listener.name + ': ' + message.data);
+            //     listener.unsubscribe();
+            // });
+
+            var listener1 = new ROSLIB.Topic({
+                ros: ros,
+                name: '/visualization_marker',
+                messageType: 'visualization_msgs/Marker'
+            });
+
+            listener1.subscribe(function (message) {
+                console.log('Received message on ' + listener1.name + ': ' + message.header.seq);
+                //listener1.unsubscribe();
+            });
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <div id="markers"></div>
+</body>
+
+</html>

@@ -1,0 +1,504 @@
+#include "logmanager.h"
+
+using namespace std;
+
+#define LOG_MANAGER_YAML_FILE_PATH "/work/superg_agv/src/drivers/can_wr/config"
+#define LOG_MANAGER_YAML_FILE_NAME "/log_manager.yaml"
+
+list<string> sensor_list;
+
+logmanage::logmanage()
+{
+    dir = getenv("HOME");
+    yaml_path  = dir + LOG_MANAGER_YAML_FILE_PATH + LOG_MANAGER_YAML_FILE_NAME;
+    YAML::Node yamlConfig = YAML::LoadFile(yaml_path);
+    // dir += "/work";
+    dir += yamlConfig["work_space"].as<string>();
+    for(unsigned i = 0;i < yamlConfig["sensor_type_list"].size();++i)
+    {
+        cantype[i] = yamlConfig["sensor_type_list"][i]["sensor_name"].as<string>();
+    }
+    dirInit();
+}
+
+logmanage::~logmanage()
+{
+
+}
+
+void logmanage::Createdir(string dirpath)
+{
+    int flag = mkdir(dirpath.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    if(0 == flag)
+    {
+        ROS_INFO("make dir:%s successfully",dirpath.c_str());
+    }
+    else
+    {
+        ROS_INFO("make dir:%s filed",dirpath.c_str());
+    }
+}
+
+void logmanage::dirInit()
+{
+    time(&logtime);
+    ptminfo = localtime(&logtime);
+    ostringstream date1;
+    ostringstream date2;
+    date1 << to_string(ptminfo->tm_year + 1900) << setw(2) << setfill('0') << to_string(ptminfo->tm_mon + 1)
+          << setw(2) << setfill('0') << to_string(ptminfo->tm_mday) << "-" << to_string(ptminfo->tm_hour);
+    date2 << to_string(ptminfo->tm_year + 1900) << setw(2) << setfill('0')  << to_string(ptminfo->tm_mon + 1)
+          << setw(2) << setfill('0') << to_string(ptminfo->tm_mday) << "-" << to_string(ptminfo->tm_hour + 1);
+    // date >> date2;
+    // string date1 = to_string(ptminfo->tm_year + 1900) + to_string(ptminfo->tm_mon + 1) + to_string(ptminfo->tm_mday) + "-" + to_string(ptminfo->tm_hour);
+    // string date2 = to_string(ptminfo->tm_year + 1900) + to_string(ptminfo->tm_mon + 1) + to_string(ptminfo->tm_mday) + "-" + to_string(ptminfo->tm_hour + 1);
+    string dir_ = "";
+    string logname = "";
+    if(!dirIsexistence(dir))
+    {
+        ROS_INFO("%s is not existing!",dir.c_str());
+        Createdir(dir.c_str());
+
+        dir = dir + "/log";
+        Createdir(dir.c_str());
+
+        for(uint8_t i = 0;i < sizeof(cantype)/sizeof(cantype[0]);++i)
+        {
+            dir_ = dir + "/" + cantype[i];
+            Createdir(dir_.c_str());
+
+            dir_ = dir + "/" + cantype[i] + "/" + date1.str();
+            Createdir(dir_.c_str());
+            // if(!cantype[i].compare("camera"))
+            // {
+            //     for(uint8_t j = ptminfo->tm_min; j < 60; ++j)
+            //     {
+            //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+            //         Createfile(dir_.c_str(),logname);
+            //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+            //         Createfile(dir_.c_str(),logname);
+            //     }
+            // }
+            // else
+            // {
+            //     for(uint8_t j = ptminfo->tm_min; j < 60; ++j)
+            //     {
+            //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+            //         Createfile(dir_.c_str(),logname);
+            //     }
+            // }
+
+            dir_ = dir + "/" + cantype[i] + "/" + date2.str();
+            Createdir(dir_.c_str());
+            // if(!cantype[i].compare("camera"))
+            // {
+            //     for(uint8_t j = 0; j < 60; ++j)
+            //     {
+            //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+            //         Createfile(dir_.c_str(),logname);
+            //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+            //         Createfile(dir_.c_str(),logname);
+            //     }
+            // }
+            // else
+            // {
+            //     for(uint8_t j = 0; j < 60; ++j)
+            //     {
+            //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+            //         Createfile(dir_.c_str(),logname);
+            //     }
+            // }
+        }
+    }
+    else
+    {
+        dir = dir + "/log";
+        if(!dirIsexistence(dir))//log is exist?
+        {
+            ROS_INFO("%s is not existing!",dir.c_str());
+            Createdir(dir.c_str());
+
+            for(uint8_t i = 0;i < sizeof(cantype)/sizeof(cantype[0]);++i)
+            {
+                dir_ = dir + "/" + cantype[i];
+                Createdir(dir_.c_str());
+
+                dir_ = dir + "/" + cantype[i] + "/" + date1.str();
+                Createdir(dir_.c_str());
+                // if(!cantype[i].compare("camera"))
+                // {
+                    
+                //     for(uint8_t j = ptminfo->tm_min; j < 60; ++j)
+                //     {
+                //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+                //         Createfile(dir_.c_str(),logname);
+                //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+                //         Createfile(dir_.c_str(),logname);
+                //     }
+                // }
+                // else
+                // {
+                //     for(uint8_t j = ptminfo->tm_min; j < 60; ++j)
+                //     {
+                //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+                //         Createfile(dir_.c_str(),logname);
+                //     }
+                // }
+
+                dir_ = dir + "/" + cantype[i] + "/" + date2.str();
+                Createdir(dir_.c_str());
+                // if(!cantype[i].compare("camera"))
+                // {
+                //     for(uint8_t j = 0; j < 60; ++j)
+                //     {
+                //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+                //         Createfile(dir_.c_str(),logname);
+                //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+                //         Createfile(dir_.c_str(),logname);
+                //     }
+                // }
+                // else
+                // {
+                //     for(uint8_t j = 0; j < 60; ++j)
+                //     {
+                //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+                //         Createfile(dir_.c_str(),logname);
+                //     }
+                // }
+            }
+        }
+        else
+        {
+            for(uint8_t i = 0;i < sizeof(cantype)/sizeof(cantype[0]);++i)
+            {
+                dir_ = dir + "/" + cantype[i];
+                if(!dirIsexistence(dir_))
+                {
+                    Createdir(dir_.c_str());
+
+                    dir_ = dir + "/" + cantype[i] + "/" + date1.str();
+                    Createdir(dir_.c_str());
+                    // if(!cantype[i].compare("camera"))
+                    // {
+                    //     for(uint8_t j = ptminfo->tm_min; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //     }
+                    // }
+                    // else
+                    // {
+                    //     for(uint8_t j = ptminfo->tm_min; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //     }
+                    // }
+
+                    dir_ = dir + "/" + cantype[i] + "/" + date2.str();
+                    Createdir(dir_.c_str());
+                    // if(!cantype[i].compare("camera"))
+                    // {
+                    //     for(uint8_t j = 0; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //     }
+                    // }
+                    // else
+                    // {
+                    //     for(uint8_t j = 0; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //     }
+                    // }
+
+                }
+                else
+                {
+                    dir_ = dir + "/" + cantype[i] + "/" + date1.str();
+                    if(!dirIsexistence(dir_))
+                    {
+                        Createdir(dir_.c_str());
+                    }
+                    // if(!cantype[i].compare("camera"))
+                    // {
+                    //     for(uint8_t j = ptminfo->tm_min; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //     }
+                    // }
+                    // else
+                    // {
+                    //     for(uint8_t j = ptminfo->tm_min; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //     }
+                    // }
+                    dir_ = dir + "/" + cantype[i] + "/" + date2.str();
+                    if(!dirIsexistence(dir_))
+                    {
+                        Createdir(dir_.c_str());
+                    }
+                    // if(!cantype[i].compare("camera"))
+                    // {
+                    //     for(uint8_t j = 0; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //     }
+                    // }
+                    // else
+                    // {
+                    //     for(uint8_t j = 0; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "-" + to_string(j) +packaged ".csv";
+                    //         Createfile(dir_.c_str(),logname);
+                    //     }
+                    // }
+                }
+            }
+        }
+    }
+}
+
+bool logmanage::dirIsexistence(string dirpath)
+{
+    if(-1 == access(dirpath.c_str(),F_OK))
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool logmanage::fileIsexistence(string pram1, string pram2)
+{
+    string allname = pram1 + "/" + pram2;
+    ofstream file(allname);
+    if(file.is_open())
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+bool logmanage::Createfile(string pram1, string pram2)
+{
+    string allname = pram1 + "/" + pram2;
+    if(logfile.is_open())
+    {
+        return false;
+    }
+    else
+    {
+        logfile.open(allname);
+        logfile.close();
+        return true;
+    }
+}
+
+bool logmanage::package(string dir,string filename)
+{
+    // string cmd = "tar zcvf " + filename + ".tar " + dir + "/" + filename;
+    // string cmd  = "tar zcvf " + dir + ".tar " + dir;
+    string cmd  = "7zr a " + dir + ".7z " + dir;
+    system(cmd.c_str());
+}
+
+bool logmanage::remove(string dir,string filename)
+{
+    string cmd = "rm -r " + dir;
+    if(dirIsexistence(dir))
+    {
+        system(cmd.c_str());
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void logmanage::time2Createfile()
+{
+    uint8_t package_hour = 25;
+    string path = "/home/hx/work/log/";
+    string path_ = "";
+    ostringstream date1;
+    ostringstream date2;
+    ostringstream packdate;
+    string packpath = "";
+    string logname = "";
+    while(ros::ok())
+    {
+        time(&creattime);
+        pcreattime = localtime(&creattime);
+        ROS_INFO("time.min:%d",pcreattime->tm_min);
+        if(5 == pcreattime->tm_min && package_hour != (ptminfo->tm_hour + 1))
+        {
+            package_hour = ptminfo->tm_hour + 1;
+            ROS_INFO("time to create dir and file!");
+            // date1 = to_string(ptminfo->tm_year + 1900) + to_string(ptminfo->tm_mon + 1) + to_string(ptminfo->tm_mday) + "-" + to_string(ptminfo->tm_hour);
+            // date2 = to_string(ptminfo->tm_year + 1900) + to_string(ptminfo->tm_mon + 1) + to_string(ptminfo->tm_mday) + "-" + to_string(ptminfo->tm_hour + 1);
+            // packdate = to_string(ptminfo->tm_year + 1900) + to_string(ptminfo->tm_mon + 1) + to_string(ptminfo->tm_mday) + "-" + to_string(ptminfo->tm_hour -1);
+            date1.clear();
+            date2.clear();
+            date1 << to_string(ptminfo->tm_year + 1900)  << setw(2) << setfill('0') << to_string(ptminfo->tm_mon + 1)
+                  << setw(2) << setfill('0') << to_string(ptminfo->tm_mday) + "-" + to_string(ptminfo->tm_hour);
+            date2 << to_string(ptminfo->tm_year + 1900)  << setw(2) << setfill('0') << to_string(ptminfo->tm_mon + 1)
+                  << setw(2) << setfill('0') << to_string(ptminfo->tm_mday) + "-" + to_string(ptminfo->tm_hour + 1);
+            packdate << to_string(ptminfo->tm_year + 1900)  << setw(2) << setfill('0') << to_string(ptminfo->tm_mon + 1)
+                  << setw(2) << setfill('0') << to_string(ptminfo->tm_mday) + "-" + to_string(ptminfo->tm_hour - 1);
+            for(uint8_t i = 0;i < sizeof(cantype)/sizeof(cantype[0]);++i)
+            {
+                packpath = path + cantype[i] + "/" + packdate.str();
+                qtimepath.push(packpath);
+                path_ = path + cantype[i] + "/" + date1.str();
+                if(!dirIsexistence(path_.c_str()))//不存在
+                {
+                    Createdir(path_.c_str());
+                    // if(!cantype[i].compare("camera"))
+                    // {
+                    //     for(uint8_t j = 0; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+                    //         Createfile(packpath.c_str(),logname);
+                    //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+                    //         Createfile(packpath.c_str(),logname);
+                    //     }
+                    // }
+                    // else
+                    // {
+                    //     for(uint8_t j = 0; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+                    //         Createfile(packpath.c_str(),logname);
+                    //     }
+                    // }
+                }
+                path_ = path + cantype[i] + "/" + date2.str();
+                if(!dirIsexistence(path_.c_str()))//不存在
+                {
+                    Createdir(path_.c_str());
+                    // if(!cantype[i].compare("camera"))
+                    // {
+                    //     for(uint8_t j = 0; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "_1-" + to_string(j) + ".csv";
+                    //         Createfile(packpath.c_str(),logname);
+                    //         logname = cantype[i] + "_2-" + to_string(j) + ".csv";
+                    //         Createfile(packpath.c_str(),logname);
+                    //     }
+                    // }
+                    // else
+                    // {
+                    //     for(uint8_t j = 0; j < 60; ++j)
+                    //     {
+                    //         logname = cantype[i] + "-" + to_string(j) + ".csv";
+                    //         Createfile(packpath.c_str(),logname);
+                    //     }
+                    // }
+                }
+            }
+            cond_package.notify_one();
+        }
+        sleep(1);
+    }
+}
+
+void logmanage::time2Package()
+{
+    ROS_INFO("LOGMANAGER time2Package is running~");
+    unique_lock<mutex> lock(mtx_package);
+    string packpath = "";
+    while(ros::ok())
+    {
+        // CPU_OCCUPY cpu_stat1;
+        // CPU_OCCUPY cpu_stat2;
+        // get_cpuoccupy(( CPU_OCCUPY * )&cpu_stat1);
+        //     sleep(1);
+        //     get_cpuoccupy(( CPU_OCCUPY * )&cpu_stat2);
+        // int cpu = cal_cpuoccupy(( CPU_OCCUPY * )&cpu_stat1, ( CPU_OCCUPY * )&cpu_stat2);
+
+        cond_package.wait(lock);
+        while(true)
+        {
+            CPU_OCCUPY cpu_stat1;
+            CPU_OCCUPY cpu_stat2;
+            get_cpuoccupy(( CPU_OCCUPY * )&cpu_stat1);
+            sleep(1);
+            get_cpuoccupy(( CPU_OCCUPY * )&cpu_stat2);
+            int cpu = cal_cpuoccupy(( CPU_OCCUPY * )&cpu_stat1, ( CPU_OCCUPY * )&cpu_stat2);
+            if(cpu < 5000)
+            {
+                if(!qtimepath.empty())
+                {
+                    for(uint8_t i = 0; i < qtimepath.size(); ++i)
+                    {
+                        packpath = qtimepath.front();
+                        package(packpath,"");
+                        qtimepath.pop();
+                        remove(packpath,"");
+                    }
+                }
+
+                ROS_INFO("package!");
+                break;
+            }
+            sleep(10);
+        }
+    }
+}
+
+int logmanage::cal_cpuoccupy(CPU_OCCUPY *o, CPU_OCCUPY *n)
+{
+    unsigned long od, nd;
+    unsigned long id, sd;
+    int cpu_use = 0;
+
+    od = ( unsigned long )(o->user + o->nice + o->system + o->idle); //第一次(用户+优先级+系统+空闲)的时间再赋给od
+    nd = ( unsigned long )(n->user + n->nice + n->system + n->idle); //第二次(用户+优先级+系统+空闲)的时间再赋给od
+
+    id = ( unsigned long )(n->user - o->user);     //用户第一次和第二次的时间之差再赋给id
+    sd = ( unsigned long )(n->system - o->system); //系统第一次和第二次的时间之差再赋给sd
+    if ((nd - od) != 0)
+        cpu_use = ( int )((sd + id) * 10000) / (nd - od); //((用户+系统)乖100)除(第一次和第二次的时间差)再赋给g_cpu_used
+    else
+        cpu_use = 0;
+     printf("cpu: %u\n", cpu_use);
+    return cpu_use;
+}
+
+void logmanage::get_cpuoccupy(CPU_OCCUPY *cpust) //对无类型get函数含有一个形参结构体类弄的指针O
+{
+    FILE *fd;
+    int n;
+    char buff[256];
+    CPU_OCCUPY *cpu_occupy;
+    cpu_occupy = cpust;
+
+    fd = fopen("/proc/stat", "r");
+    fgets(buff, sizeof(buff), fd);
+
+    sscanf(buff, "%s %u %u %u %u", cpu_occupy->name, &cpu_occupy->user, &cpu_occupy->nice, &cpu_occupy->system,
+            &cpu_occupy->idle);
+
+    fclose(fd);
+}

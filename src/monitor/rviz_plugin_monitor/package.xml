@@ -1,0 +1,25 @@
+<package>
+  <name>rviz_plugin_monitor</name>
+  <version>0.0.1</version>
+  <description>
+     RVIZ plugin to show the clicked point coordinates in the side panel.
+  </description>
+  <maintainer email="alireza.mixedreality@gmail.com">Alireza Hosseini</maintainer>
+  <license>CLOSED</license>
+
+  <author>Alireza Hosseini</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>qtbase5-dev</build_depend>
+  <build_depend>rviz</build_depend>
+
+  <run_depend>libqt5-core</run_depend>
+  <run_depend>libqt5-gui</run_depend>
+  <run_depend>libqt5-widgets</run_depend>
+  <run_depend>rviz</run_depend>
+
+  <export>
+      <rviz plugin="${prefix}/plugin_description.xml"/>
+  </export>
+</package>

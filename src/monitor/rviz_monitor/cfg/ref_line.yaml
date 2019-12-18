@@ -1,0 +1,27 @@
+#文件所在目录都是~/work/superg_agv/src/monitor/rviz_monitor/data/map_data/ 这里只填写文件名称即可
+map_file_path: "/work/superg_agv/src/monitor/rviz_monitor/data/map_data/"
+
+map_img_file_name: "ningbo.png" #ningbo.png(3000,2594) (2143,33)  0.07657
+map_offset_x: -164.08951  #px 2143*0.07657
+map_offset_y: -196.09577  #px (2594-33)*0.07657
+map_grid_size: 0.07657
+
+# map_img_file_name: "white.png" #ningbo.png 2143 33  0.074
+# map_offset_x: -125.90  #px 1964*0.253
+# map_offset_y: -125.04  #px 2807-2376*0.253
+# map_grid_size: 0.253
+
+#文件所在目录都是~/work/superg_agv/src/routing/map_new/data/ 这里只填写文件名称即可
+find_closest_fef_point_file_name: "ref_points.json" #这个参数是配置选点后要通过哪个参考点文件来查询最近目标点。
+
+ref_line_list:
+- ref_line_file_name: "ref_line.json"
+  ref_point_file_name: "ref_points.json"
+  topic_name: "/monitor/reference_line"
+  points_color: "0.0,1.0,0.0"  #在RVIZ上显示的点的颜色，使用字符串传入R,G,B
+
+- ref_line_file_name: "base_map_02_ref_line.json"
+  ref_point_file_name: "base_map_02_ref_points.json"
+  topic_name: "/monitor/reference2_line"
+  points_color: "0.0,1.0,1.0"  #在RVIZ上显示的点的颜色，使用字符串传入R,G,B
+

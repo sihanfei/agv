@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/dac_test.dir/dac_test.cpp.o  -o dac_test  -L/usr/local/adcusdk/examples/../lib -lWiseADCUSdk -lpthread -Wl,-rpath,/usr/local/adcusdk/examples/../lib 

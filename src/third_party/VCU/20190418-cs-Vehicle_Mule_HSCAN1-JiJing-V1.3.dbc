@@ -1,0 +1,377 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: LCD VCU IEPS TBS_R TBS_F SAS_R SAS_F CDS_R CDS_F
+VAL_TABLE_ IEPS_AutoDrive_Enable 1 "自动驾驶有效，VCU执行指令" 0 "自动驾驶无效，VCU不执行指令" ;
+VAL_TABLE_ VCU2IEPS 3 "SOC小于25%" 2 "SOC小于50%" 1 "SOC小于75%" 0 "SOC满电" ;
+VAL_TABLE_ LCD_CnnctFlag 1 "有通讯（与某接收端建立连接）" 0 "无通讯（未与接收端建立连接）" ;
+VAL_TABLE_ LCD_Dir_PRND 4 "后退档" 3 "NA" 2 "停车挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_TABLE_ VCU_2LCD_SOCAlarm 1 "灯亮，电量不足" 0 "灯灭，电量充足" ;
+VAL_TABLE_ VCU_2LCD_HVStatus 1 "灯亮，已上高压" 0 "灯灭，未上高压" ;
+VAL_TABLE_ VCU_2LCD_Fault 1 "灯亮，整车有故障" 0 "灯灭，整车无故障" ;
+VAL_TABLE_ VCU_2LCD_ChgStatus 1 "灯亮，充电中" 0 "灯灭，未充电" ;
+VAL_TABLE_ LCD_SteerMode 8 "前后轴反向" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "后轴转向（前轴回正）" 3 "Description for the value '0x3'" 2 "前轴转向（后轴回正）" 1 "前后轴同向" 0 "Description for the value '0x0'" ;
+VAL_TABLE_ LCD_DriveMode 4 "后轮驱动" 3 "Description for the value '0x3'" 2 "四轮驱动" 1 "前轴驱动" 0 "Description for the value '0x0'" ;
+VAL_TABLE_ LCD_EStop 1 "急停按下" 0 "急停未按下" ;
+VAL_TABLE_ LCD_LiftCmd 4 "下降" 3 "NA" 2 "停止" 1 "举升" 0 "Description for the value '0x0'" ;
+VAL_TABLE_ LCD_SpdLimit 4 "低速模式，限速5km/h" 3 "Description for the value '0x3'" 2 "中速模式，限速15km/h" 1 "高速模式，限速25km/h" 0 "Description for the value '0x0'" ;
+VAL_TABLE_ VCU_VEHMode 3 "手动（遥控）" 2 "自动" 1 "调试" 0 "故障" ;
+VAL_TABLE_ VCU_VEHFlt 3 "3级故障" 2 "2级故障" 1 "1级故障" 0 "无故障" ;
+VAL_TABLE_ VCU_HVStatus 1 "启动（上高压）" 0 "非启动（未上高压）" ;
+VAL_TABLE_ IEPS_Gear_Req 2 "后退档" 1 "前进挡" 0 "驻车档" ;
+VAL_TABLE_ IEPS_EStop 1 "请求制动" 0 "正常（无请求）" ;
+VAL_TABLE_ IEPS_EPB 1 "松开" 0 "闭合（制动）" ;
+VAL_TABLE_ IEPS_LiftCmd 2 "举升下" 1 "举升上" 0 "不动作" ;
+VAL_TABLE_ LCD_Lift 2 "下降" 1 "举升" 0 "不动作" ;
+VAL_TABLE_ LCD_GCMD 5 "NA" 4 "上高压" 3 "紧急制动" 2 "档位" 1 "NA" 0 "NA" ;
+VAL_TABLE_ MotSpeed_TB_Vd 1 "Valid" 0 "Not valid" ;
+VAL_TABLE_ TB_Failure 1 "failure" 0 "no failure" ;
+VAL_TABLE_ TB_WorkReq 1 "req" 0 "not req" ;
+VAL_TABLE_ TB_Mode 10 "ESC fault" 3 "PFC(Pedal force compensation)" 2 "EBR(External brake requests)" 1 "BFB(Brake force boost)" 0 "NULL" ;
+
+
+BO_ 257 VCU_Status2LCD: 8 VCU
+ SG_ VCU_2LCD_StrAgl : 15|8@0+ (1,-50) [-50|50] "°"  LCD
+ SG_ VCU_2LCD_Speed : 23|16@0+ (0.1,0) [0|25] "km/h"  LCD
+ SG_ VCU_2LCD_SOCAlarm : 0|1@1+ (1,0) [0|0] ""  LCD
+ SG_ VCU_2LCD_HVStatus : 2|1@1+ (1,0) [0|0] ""  LCD
+ SG_ VCU_2LCD_Fault : 3|1@1+ (1,0) [0|0] ""  LCD
+ SG_ VCU_2LCD_ChgStatus : 1|1@1+ (1,0) [0|0] ""  LCD
+
+BO_ 650 SAS_R_Angl_Ab2: 4 SAS_R
+ SG_ Angl_Ab : 0|32@1+ (0.02197265625,0) [0|0] ""  VCU
+
+BO_ 651 SAS_F_Angl_Ab2: 4 SAS_F
+
+BO_ 1803 CDS_F_2: 1 CDS_F
+
+BO_ 1796 CDS_F_1: 1 CDS_F
+
+BO_ 385 LCD_Cmd2VCU: 8 LCD
+ SG_ LCD_CnnctFlag : 56|1@0+ (1,0) [0|0] ""  VCU
+ SG_ LCD_Backup2 : 19|1@0+ (1,0) [0|0] ""  VCU
+ SG_ LCD_Backup2 : 20|1@0+ (1,0) [0|1] ""  VCU
+ SG_ LCD_Dir_PRND : 18|3@0+ (1,0) [0|0] ""  VCU
+ SG_ LCD_DrivePedal : 39|8@0+ (1,0) [0|255] ""  VCU
+ SG_ LCD_LeftSteerAglValue : 47|8@0+ (1,0) [0|255] ""  VCU
+ SG_ LCD_SteerMode : 6|4@0+ (1,0) [0|16] ""  VCU
+ SG_ LCD_DriveMode : 2|3@0+ (1,0) [0|8] ""  VCU
+ SG_ LCD_EStop : 63|1@0+ (1,0) [0|1] ""  VCU
+ SG_ LCD_RightSteerAglValue : 55|8@0+ (1,0) [0|255] ""  VCU
+ SG_ LCD_BrakePedal : 31|8@0+ (1,0) [0|255] ""  VCU
+ SG_ LCD_LiftCmd : 13|3@0+ (1,0) [0|0] ""  VCU
+ SG_ LCD_SpdLimit : 10|3@0+ (1,0) [0|0] ""  VCU
+
+BO_ 128 Synch_VCU_CANopen: 8 VCU
+ SG_ Synch_CANopen : 7|16@0+ (1,0) [0|0] ""  SAS_R,SAS_F,CDS_R,CDS_F
+
+BO_ 394 SAS_R_Angl_Ab: 4 SAS_R
+ SG_ Angl_Ab : 0|32@1+ (0.02197265625,0) [0|0] ""  VCU
+
+BO_ 388 CDS_R_dis: 8 CDS_R
+ SG_ displt_CDS_InvN : 32|32@1+ (0.1,0) [0|0] ""  VCU
+ SG_ displt_CDS_Direct : 0|32@1+ (0.1,0) [0|0] ""  VCU
+
+BO_ 273 IEPS_Cmd: 8 IEPS
+ SG_ IEPS_AutoDrive_Enable : 42|1@0+ (1,0) [0|0] ""  VCU
+ SG_ IEPS_Rolling_Counter : 59|4@0+ (1,0) [0|0] ""  VCU
+ SG_ IEPS_VehAgl_R : 39|10@0+ (0.1,-45) [-45|45] "°"  VCU
+ SG_ IEPS_EStop : 41|1@0+ (1,0) [0|0] ""  VCU
+ SG_ IEPS_EPB : 40|1@0+ (1,0) [0|0] ""  VCU
+ SG_ IEPS_Vel_Req : 7|12@0+ (0.01,0) [0|2000] "m/s"  VCU
+ SG_ IEPS_Dir_PRND : 29|3@0+ (1,0) [0|0] ""  VCU
+ SG_ IEPS_LiftCmd : 26|3@0+ (1,0) [0|0] ""  VCU
+ SG_ IEPS_VehAgl_F : 23|10@0+ (0.1,-45) [-45|45] "°"  VCU
+
+BO_ 274 VCU_Status2IEPS: 8 VCU
+ SG_ VCU2IEPS_SOC : 45|2@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ VCU2IEPS_Dir_PRND : 43|3@0+ (1,0) [0|0] ""  IEPS
+ SG_ VCU_Rolling_Counter : 59|4@0+ (1,0) [0|0] ""  IEPS
+ SG_ VCU_ActualAgl_F : 17|10@0+ (0.1,-45) [-45|45] "°"  IEPS
+ SG_ VCU_ActualAgl_R : 11|10@0+ (0.1,-45) [-45|45] "°"  IEPS
+ SG_ VCU_ActualSpd : 7|12@0+ (0.01,0) [0|0] "m/s"  IEPS
+ SG_ VCU_LiftStatus : 37|2@0+ (1,0) [0|0] ""  IEPS
+ SG_ VCU_HVStatus : 38|1@0+ (1,0) [0|0] ""  IEPS
+ SG_ VCU_EStopStatus : 39|1@0+ (1,0) [0|0] ""  IEPS
+ SG_ VCU_VEHMode : 33|2@0+ (1,0) [0|0] ""  IEPS
+ SG_ VCU_VEHFlt : 35|2@0+ (1,0) [0|0] ""  IEPS
+ SG_ VCU_EPBStatus : 40|1@0+ (1,0) [0|0] ""  IEPS
+
+BO_ 1329 VCU_TBS_R: 8 VCU
+ SG_ TB_EN : 4|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ TB_CheckSum : 56|8@1+ (1,0) [0|0] ""  TBS_R
+ SG_ TB_RolCnt : 48|4@1+ (1,0) [0|0] ""  TBS_R
+ SG_ TB_TarMCP : 8|12@1+ (0.01,-20.48) [-20.48|20.48] ""  TBS_R
+ SG_ TB_Mode : 0|4@1+ (1,0) [0|0] ""  TBS_R
+
+BO_ 1330 TBS_R_Status: 8 TBS_R
+ SG_ TBS_PedalPosition : 12|12@1+ (0.1,-20.48) [-20.48|389.02] "mm"  VCU
+ SG_ TB_RealMCP : 0|12@1+ (0.01,-20.48) [-20.48|20.47] "MPa"  VCU
+ SG_ TBS_motorCurrent : 24|16@1+ (0.01,0) [0|655.35] "A"  VCU
+
+BO_ 386 CDS_F_dis: 8 CDS_F
+ SG_ displt_CDS_InvN : 32|32@1+ (0.1,0) [0|0] ""  VCU
+ SG_ displt_CDS_Direct : 0|32@1+ (0.1,0) [0|0] ""  VCU
+
+BO_ 0 Start_VCU_CANopen: 2 VCU
+ SG_ Start_CANopen : 7|16@0+ (1,0) [0|0] ""  SAS_R,SAS_F,CDS_R,CDS_F
+
+BO_ 395 SAS_F_Angl_Ab: 4 SAS_F
+ SG_ Angl_Ab : 0|32@1+ (0.02197265625,0) [0|0] ""  VCU
+
+BO_ 1321 VCU_TBS_F: 8 VCU
+ SG_ TB_EN : 4|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ TB_CheckSum : 56|8@1+ (1,0) [0|0] ""  TBS_F
+ SG_ TB_RolCnt : 48|4@1+ (1,0) [0|0] ""  TBS_F
+ SG_ TB_TarMCP : 8|12@1+ (0.01,-20.48) [-20.48|20.48] ""  TBS_F
+ SG_ TB_Mode : 0|4@1+ (1,0) [0|0] ""  TBS_F
+
+BO_ 1328 TBS_F_Status: 8 TBS_F
+ SG_ TBS_PedalPosition : 12|12@1+ (0.01,-20.48) [-20.48|20.47] "mm"  VCU
+ SG_ TB_RealMCP : 0|12@1+ (0.01,-20.48) [-20.48|20.47] "MPa"  VCU
+ SG_ TBS_motorCurrent : 24|16@1+ (0.01,0) [0|655.35] "A"  VCU
+
+
+
+CM_ SG_ 650 Angl_Ab "陈:
+分辨率14位
+
+
+
+陈:
+16384
+
+
+
+陈:
+样本有说
+
+
+
+陈:
+16384=360度
+
+
+
+陈:
+1代表0,02197265625度
+";
+CM_ SG_ 385 LCD_Backup2 "1为有故障VCU不响应指令，0为无故障";
+CM_ SG_ 128 Synch_CANopen "VCU	发送	0x00	2Byte	01 00	一次即可
+";
+CM_ SG_ 394 Angl_Ab "陈:
+分辨率14位
+
+
+
+陈:
+16384
+
+
+
+陈:
+样本有说
+
+
+
+陈:
+16384=360度
+
+
+
+陈:
+1代表0,02197265625度
+";
+CM_ SG_ 273 IEPS_EStop "1为紧停";
+CM_ SG_ 273 IEPS_EPB "1为拉起手刹，0为释放手刹。";
+CM_ SG_ 273 IEPS_Dir_PRND "00:N档
+01:D档
+10:R档
+11:P档";
+CM_ SG_ 273 IEPS_LiftCmd "1为上升，0为不响应。";
+CM_ SG_ 274 VCU2IEPS_Dir_PRND "00:N档
+01:D档
+10:R档
+11:P档";
+CM_ SG_ 274 VCU_LiftStatus "1   举升到位
+2   下降到位
+3   执行动作中
+4   未知";
+CM_ SG_ 274 VCU_HVStatus "0  HV未吸合不可行驶
+1 HV已吸合，可行驶";
+CM_ SG_ 274 VCU_EStopStatus "1为紧停";
+CM_ SG_ 274 VCU_VEHMode "0  未知（故障状态）
+1  调试
+2  自动(感知系统)
+3 手动（遥控手柄）
+";
+CM_ SG_ 274 VCU_VEHFlt "0  无故障
+1 一级故障
+2 二级故障
+3 三级故障
+";
+CM_ SG_ 274 VCU_EPBStatus "1为手刹处于被拉合，
+0为手刹处于释放状态";
+CM_ SG_ 1329 TB_EN "The enable switch of TBS
+TBS工作使能
+";
+CM_ SG_ 1329 TB_CheckSum "TBS control singal checksum about all siganals above and rollingcounter
+ESC发送的TBS命令校验值
+";
+CM_ SG_ 1329 TB_Mode "TBS work mode
+TBS工作模式";
+CM_ SG_ 1330 TBS_PedalPosition "Brake pedal force collected by TBS as a reference
+制动踏板力
+";
+CM_ SG_ 1330 TB_RealMCP "Real motor speed 
+TBS电机实际转速
+";
+CM_ SG_ 1330 TBS_motorCurrent "Real motor current
+TBS电机实际电流
+";
+CM_ SG_ 0 Start_CANopen "VCU	发送	0x00	2Byte	01 00	一次即可
+";
+CM_ SG_ 395 Angl_Ab "陈:
+分辨率14位
+
+
+
+陈:
+16384
+
+
+
+陈:
+样本有说
+
+
+
+陈:
+16384=360度
+
+
+
+陈:
+1代表0,02197265625度
+";
+CM_ SG_ 1321 TB_EN "The enable switch of TBS
+TBS工作使能
+";
+CM_ SG_ 1321 TB_CheckSum "TBS control singal checksum about all siganals above and rollingcounter
+ESC发送的TBS命令校验值
+";
+CM_ SG_ 1321 TB_Mode "TBS work mode
+TBS工作模式";
+CM_ SG_ 1328 TBS_PedalPosition "Brake pedal force collected by TBS as a reference
+制动踏板力
+";
+CM_ SG_ 1328 TB_RealMCP "Real motor speed 
+TBS电机实际转速
+";
+CM_ SG_ 1328 TBS_motorCurrent "Real motor current
+TBS电机实际电流
+";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","not_used","not_used","not_used","not_used","Cyclic","not_used","IfActive","NoMsgSendType";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_ "DBName" "demo01";
+BA_ "GenMsgCycleTime" BO_ 257 100;
+BA_ "GenMsgCycleTime" BO_ 650 100;
+BA_ "GenMsgCycleTime" BO_ 651 100;
+BA_ "GenMsgCycleTime" BO_ 385 100;
+BA_ "GenMsgCycleTime" BO_ 128 100;
+BA_ "GenMsgCycleTime" BO_ 394 100;
+BA_ "GenMsgSendType" BO_ 388 0;
+BA_ "GenMsgCycleTime" BO_ 388 100;
+BA_ "GenMsgSendType" BO_ 273 0;
+BA_ "GenMsgCycleTime" BO_ 273 20;
+BA_ "GenMsgCycleTime" BO_ 274 20;
+BA_ "GenMsgCycleTime" BO_ 1329 10;
+BA_ "GenMsgCycleTime" BO_ 1330 10;
+BA_ "GenMsgCycleTime" BO_ 386 100;
+BA_ "GenMsgCycleTime" BO_ 0 100;
+BA_ "GenMsgCycleTime" BO_ 395 100;
+BA_ "GenMsgCycleTime" BO_ 1321 10;
+BA_ "GenMsgCycleTime" BO_ 1328 10;
+VAL_ 257 VCU_2LCD_SOCAlarm 1 "灯亮，电量不足" 0 "灯灭，电量充足" ;
+VAL_ 257 VCU_2LCD_HVStatus 1 "启动（上高压）" 0 "非启动（未上高压）" ;
+VAL_ 257 VCU_2LCD_Fault 1 "灯亮，整车有故障" 0 "灯灭，整车无故障" ;
+VAL_ 257 VCU_2LCD_ChgStatus 1 "灯亮，充电中" 0 "灯灭，未充电" ;
+VAL_ 385 LCD_CnnctFlag 1 "有通讯（与某接收端建立连接）" 0 "无通讯（未与接收端建立连接）" ;
+VAL_ 385 LCD_Dir_PRND 4 "后退档" 3 "NA" 2 "停车挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_ 385 LCD_SteerMode 8 "前后轴反向" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "后轴转向（前轴回正）" 3 "Description for the value '0x3'" 2 "前轴转向（后轴回正）" 1 "前后轴同向" 0 "Description for the value '0x0'" ;
+VAL_ 385 LCD_DriveMode 4 "后轮驱动" 3 "Description for the value '0x3'" 2 "四轮驱动" 1 "前轴驱动" 0 "Description for the value '0x0'" ;
+VAL_ 385 LCD_EStop 1 "急停按下" 0 "急停未按下" ;
+VAL_ 385 LCD_LiftCmd 4 "下降" 3 "NA" 2 "停止" 1 "举升" 0 "Description for the value '0x0'" ;
+VAL_ 385 LCD_SpdLimit 4 "低速模式，限速5km/h" 3 "Description for the value '0x3'" 2 "中速模式，限速15km/h" 1 "高速模式，限速25km/h" 0 "Description for the value '0x0'" ;
+VAL_ 273 IEPS_AutoDrive_Enable 1 "自动驾驶有效，VCU执行指令" 0 "自动驾驶无效，VCU不执行指令" ;
+VAL_ 273 IEPS_EStop 1 "请求制动" 0 "正常（无请求）" ;
+VAL_ 273 IEPS_EPB 1 "松开" 0 "闭合（制动）" ;
+VAL_ 273 IEPS_Dir_PRND 4 "后退档" 3 "NA" 2 "停车挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_ 273 IEPS_LiftCmd 4 "下降" 3 "NA" 2 "停止" 1 "举升" 0 "Description for the value '0x0'" ;
+VAL_ 274 VCU2IEPS_SOC 3 "SOC小于25%" 2 "SOC小于50%" 1 "SOC小于75%" 0 "SOC满电" ;
+VAL_ 274 VCU2IEPS_Dir_PRND 4 "后退档" 3 "NA" 2 "停车挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_ 274 VCU_LiftStatus 3 "运动中" 2 "下降到位" 1 "上升到位" 0 "未知" ;
+VAL_ 274 VCU_HVStatus 1 "启动（上高压）" 0 "非启动（未上高压）" ;
+VAL_ 274 VCU_EStopStatus 1 "请求制动" 0 "正常（无请求）" ;
+VAL_ 274 VCU_VEHMode 3 "手动（遥控）" 2 "自动" 1 "调试" 0 "故障" ;
+VAL_ 274 VCU_VEHFlt 3 "3级故障" 2 "2级故障" 1 "1级故障" 0 "无故障" ;
+VAL_ 274 VCU_EPBStatus 1 "松开" 0 "闭合（制动）" ;
+VAL_ 1321 TB_EN 1 "Enable" 0 "Disable" ;
+VAL_ 1321 TB_Mode 10 "ESC fault" 3 "PFC(Pedal force compensation)" 2 "EBR(External brake requests)" 1 "BFB(Brake force boost)" 0 "NULL" ;
+

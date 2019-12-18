@@ -1,0 +1,6 @@
+<launch>
+   <rosparam command="load" file="$(find control)/config/control_params.yaml"/>
+   <node pkg="control" type="control" name="control" output="screen" args="4"/>
+   <!--<node pkg="control" type="showtrajectory" name="showtrajectory"/>-->
+   <!--<node pkg="rviz" type="rviz" name="rviz"/>-->
+</launch>

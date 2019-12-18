@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <script type="text/javascript">
+        (function () {
+            var c = document.getElementById("canvas");
+            var ctx = c.getContext("2d");
+            var ax, ay, r = 30, num = 1;//绘制图形的参数
+            var timeOutEvent = 0;//区分拖拽和点击的参数
+            //创建图形
+            function createBlock(a, b, r) {
+                ctx.beginPath();
+                ctx.fillStyle = "red";
+                ctx.arc(a, b, r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            createBlock(200, 200, 30);
+            function longPress() {
+                timeOutEvent = 0;
+            }
+            c.onmousedown = function (ev) {
+                var e = ev || event;
+                var x = e.clientX;
+                var y = e.clientY;
+                timeOutEvent = setTimeout("longPress()", 500);
+                e.preventDefault();
+                drag(x, y, r);
+            };
+            //缩放
+            c.onmousewheel = function (ev) {
+                var e = ev || event;
+                num += e.wheelDelta / 1200;
+                ctx.scale(num, num); //x，y均放大2倍
+
+                ctx.clearRect(0, 0, c.width, c.height);
+                createBlock(200, 200, 30);
+                r = 30 * num;
+
+                // if (ax == null || ay == null) {
+                //     createBlock(200, 200, r);
+                // } else {
+                //     if (r > 0) {
+                //         createBlock(ax, ay, r);
+                //     }
+                // }
+            };
+            //拖拽函数
+            function drag(x, y, r) {
+                // 按下鼠标判断鼠标位置是否在圆上，当画布上有多个路径时，isPointInPath只能判断最后那一个绘制的路径
+                if (ctx.isPointInPath(x, y)) {
+                    //路径正确，鼠标移动事件
+                    c.onmousemove = function (ev) {
+                        var e = ev || event;
+                        ax = e.clientX;
+                        ay = e.clientY;
+                        clearTimeout(timeOutEvent);
+                        timeOutEvent = 0;
+                        //鼠标移动每一帧都清楚画布内容，然后重新画圆
+                        ctx.clearRect(0, 0, c.width, c.height);
+                        createBlock(ax, ay, r);
+                    };
+                    //鼠标移开事件
+                    c.onmouseup = function () {
+                        c.onmousemove = null;
+                        c.onmouseup = null;
+                        clearTimeout(timeOutEvent);
+                        if (timeOutEvent != 0) {
+                            alert("你这是点击，不是拖拽");
+                        }
+                    }
+                }
+            }
+
+        })()
+    </script>
+
+</body>
+
+</html>

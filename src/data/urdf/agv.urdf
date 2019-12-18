@@ -1,0 +1,22 @@
+<?xml version='1.0'?>
+<<<<<<< HEAD
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="AGV1">
+<xacro:property name="ns" value="$(arg ns)/" />
+    <link name="${ns}base_link">
+=======
+<robot name="AGV">
+    <link name="base_link">
+>>>>>>> 4c1333cc94bbb551ae2895f88201d2a474a4f79c
+    <visual>
+      <geometry>
+        <sphere radius="1"/>
+      </geometry>
+      <material name="red">
+      <color rgba="1 0 0 1" />
+<<<<<<< HEAD
+      </material>
+=======
+>>>>>>> 4c1333cc94bbb551ae2895f88201d2a474a4f79c
+    </visual>
+  </link>
+</robot>

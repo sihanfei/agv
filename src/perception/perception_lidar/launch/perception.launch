@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="perception_lidar" type="lidar_obstacle_detection" name="lidar_obstacle_detection" output="screen">
+  </node>
+  <node pkg="perception_fusion" type="perception_fusion" name="perception_fusion" output="screen">
+  </node>
+</launch>

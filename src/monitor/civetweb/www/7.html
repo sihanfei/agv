@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>变形</title>
+    <script type="text/javascript">
+
+        window.onload = function () {
+
+            var map_canvas = document.getElementById('canvas_map');
+            var map_ctx = map_canvas.getContext('2d');
+            var num = 1;//绘制图形的参数
+
+            var img_map;
+            var map_width;
+            var map_height;
+
+            var imgData;
+
+            img_map = new Image();
+            img_map.src = "./img/map.png";
+            map_width = img_map.width;
+            map_height = img_map.height;
+
+            map_ctx.save();  //先保存下绘图状态
+
+            map_ctx.fillRect(0, 0, map_height, map_height);
+            map_ctx.drawImage(img_map, 0, 0, map_width, map_height);
+            imgData = map_ctx.getImageData(0, 0, map_canvas.width, map_canvas.height);
+
+
+
+
+            //创建图形
+            function createMap() {
+                console.log("w=" + map_width / Math.abs(num) + " h=" + map_height / Math.abs(num));
+                map_ctx.clearRect(0, 0, map_width / Math.abs(num), map_height / Math.abs(num));
+
+
+                map_ctx.putImageData(imgData, 0, 0);
+            }
+            //           map_ctx.scale(2, 2);  //将绘制元素放大2倍
+            createMap();
+            map_canvas.onmousewheel = function (ev) {
+                var e = ev || event;
+                num += e.wheelDelta / 1200;
+                console.log('num=' + num);
+                map_ctx.restore();  //恢复绘图状态
+                map_ctx.scale(num, num); //x，y均放大2倍
+
+                //createMap();
+
+                // if (ax == null || ay == null) {
+                //     createBlock(200, 200, r);
+                // } else {
+                //     if (r > 0) {
+                //         createBlock(ax, ay, r);
+                //     }
+                // }
+            };
+            //var imgData = ctx.getImageData(0, 0, mycanvas.width, mycanvas.height);
+
+            //ctx.putImageData(imgData, 0, 0);
+
+            // context.save();  //先保存下绘图状态
+            // context.translate(150, 150);  //进行位移操作
+            // context.scale(2, 2);  //将绘制元素放大2倍
+            // context.fillRect(0, 0, 100, 100);
+            // context.restore();  //恢复绘图状态
+            // context.fillRect(0, 0, 100, 100);  //此时，绘制的矩形既没位移，又没放大！
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas_map" width="500" height="500" style="border: 1px solid black;position: absolute;">
+        您的浏览器暂不支持画布！
+    </canvas>
+</body>
+
+</html>

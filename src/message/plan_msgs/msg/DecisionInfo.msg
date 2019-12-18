@@ -1,0 +1,10 @@
+Header header
+common_msgs/PathPoint[] path_data_REF
+geometry_msgs/Point relative_position
+uint8 path_plan_valid
+uint8 CMD_hand_brake
+uint8 CMD_estop
+uint8 CMD_lift
+uint8 CMD_gear
+uint8 move_permit
+uint8 path_mode

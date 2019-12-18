@@ -1,0 +1,7 @@
+<launch>
+   <rosparam command="load" file="/home/higo/work/superg_agv/src/control/config/control_params.yaml"/>
+   <node pkg="data_fusion" type="FusionCenter" name="FusionCenter"/>
+   <node pkg="control" type="control" name="control" args="3"/>
+   <node pkg="com2agv" type="com2agv" name="com2agv"/>
+   <node pkg="control" type="load_control" name="load_control" output="screen"/>
+</launch>

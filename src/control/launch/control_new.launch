@@ -1,0 +1,11 @@
+<launch>
+   <node pkg="can_wr" name="can_wr_n" type="can_wr_n" args="2 3 4 5" respawn="true" output="screen"/>
+   <rosparam command="load" file="$(find control)/config/control_params.yaml"/>
+   <node pkg="control" type="control" name="control" output="screen" args="3"/>
+   <node pkg="com2agv" type="com2agv" name="com2agv"/>
+   <node pkg="data_fusion" type="FusionCenter" name="FusionCenter"/>
+   <node pkg="perception_lidar" type="lidar_obstacle_detection" name="lidar_obstacle_detection"/>
+   <node pkg="perception_fusion" type="perception_fusion" name="perception_fusion"/>
+   <node pkg="perception_show_eryuan" type="perception_show_eryuan"  name="perception_show_eryuan"/>
+   <node pkg="perception" type="per_sender_pub" name="per_sender_pub" args="1 0"/>
+</launch>

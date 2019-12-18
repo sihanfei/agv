@@ -1,0 +1,112 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>33 | Rushing rapid in a forest by Three.js</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <canvas id="canvas_refline" width="800" height="400" style="border: 1px solid black;position: absolute;"></canvas>
+
+    <script src='scripts/three.js'></script>
+    <script>
+        var scene = new THREE.Scene();
+        var h = 1024,
+            w = 768;
+        var aspectRatio = w / h,
+            fieldOfView = 25,
+            nearPlane = .1,
+            farPlane = 1000;
+        var camera = new THREE.PerspectiveCamera(
+            fieldOfView,
+            aspectRatio,
+            nearPlane,
+            farPlane);
+        var renderer = new THREE.WebGLRenderer({ canvas: canvas_refline, alpha: true, antialias: true });
+        renderer.setSize(w, h);
+        renderer.shadowMapEnabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        document.body.appendChild(renderer.domElement);
+
+
+        camera.position.set(-5, 6, 8);
+        // camera.position.set(0,0,8); // front
+        // camera.position.set(-10,.2,0); //left
+        // camera.position.set(0,10,0); //top
+        // camera.position.y=4;
+
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+        //Ambient light
+        var light = new THREE.AmbientLight(0xffffff, .5);
+
+        var shadowLight = new THREE.DirectionalLight(0xffffff, .5);
+        shadowLight.position.set(200, 200, 200);
+        shadowLight.castShadow = true;
+
+        var backLight = new THREE.DirectionalLight(0xffffff, .2);
+        backLight.position.set(-100, 200, 50);
+        backLight.castShadow = true;
+        scene.add(backLight);
+        scene.add(light);
+        scene.add(shadowLight);
+
+        // grassland left
+        var geometry_left = new THREE.BoxGeometry(2, .2, 2);
+        var material_grass = new THREE.MeshLambertMaterial({ color: 0xABD66A });
+        var ground_left = new THREE.Mesh(geometry_left, material_grass);
+        ground_left.position.set(-1, 0.1, 0);
+        scene.add(ground_left);
+        customizeShadow(ground_left, .25) // mess, opacity
+
+        //river
+        var geometry_river = new THREE.BoxGeometry(1, .1, 2);
+        var material_river = new THREE.MeshLambertMaterial({ color: 0x70B7E3 });
+        var river = new THREE.Mesh(geometry_river, material_river);
+        river.position.set(.5, .1, 0);
+        scene.add(river);
+        customizeShadow(river, .08) // mess, opacity
+        //river bed
+        // var geometry_bed = new THREE.BoxGeometry(1, .05, 2);
+        // var bed = new THREE.Mesh(geometry_bed, material_grass);
+        // bed.position.set(.5, .025, 0);
+        // scene.add(bed);
+
+        //grassland right
+        // var geometry_right = new THREE.BoxGeometry(1, .2, 2);
+        // var ground_right = new THREE.Mesh(geometry_right, material_grass);
+        // ground_right.position.set(1.5, 0.1, 0);
+        // scene.add(ground_right);
+        // customizeShadow(ground_right, .25) // mess, opacity
+
+
+
+
+
+
+        function customizeShadow(t, a) { //opacity, target mesh
+            var material_shadow = new THREE.ShadowMaterial({ opacity: a });
+            var mesh_shadow = new THREE.Mesh(t.geometry, material_shadow);
+            mesh_shadow.position.set(t.position.x, t.position.y, t.position.z);
+            mesh_shadow.receiveShadow = true;
+            scene.add(mesh_shadow);
+        }
+
+
+        //var material_wood = new THREE.MeshLambertMaterial({ color: 0xA98F78 });
+
+
+        var count = 0;
+        var render = function () {
+            //requestAnimationFrame(render);
+            renderer.render(scene, camera);
+        }
+        render();
+    </script>
+</body>
+
+</html>

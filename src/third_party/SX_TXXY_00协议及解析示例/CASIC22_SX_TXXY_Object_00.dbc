@@ -1,0 +1,86 @@
+VERSION "HIPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY/4/%%%/4/'%**4YYY///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+
+BS_:
+
+BU_:
+
+
+BO_ 210 Object_Head: 8 Vector__XXX
+ SG_ ObjectNum : 4|5@0+ (1,0) [0|31] "-" Vector__XXX
+ SG_ TimeStamp : 15|27@0+ (1,0) [0|3599999] "ms" Vector__XXX
+
+BO_ 211 Object_Data_0: 8 Vector__XXX
+ SG_ ID : 7|8@0+ (1,0) [0|255] "-" Vector__XXX
+ SG_ Class : 15|8@0+ (1,0) [0|255] "-" Vector__XXX
+ SG_ Position_X : 47|12@0- (0.1,0) [-204.8|204.7] "m" Vector__XXX
+ SG_ Velosity : 31|10@0- (0.1,0) [-51.2|51.1] "m/s" Vector__XXX
+ SG_ Confidence : 23|8@0+ (0.01,0) [0|1] "-" Vector__XXX
+ SG_ Position_Y : 51|12@0- (0.1,0) [-204.8|204.7] "m" Vector__XXX
+
+BO_ 311 ObjectStoptWork: 1 Vector__XXX
+ SG_ StopWork : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+
+BO_ 312 ObjectWorkStatus: 1 Vector__XXX
+ SG_ WorkStatus : 1|2@0+ (1,0) [0|2] "-" Vector__XXX
+
+BO_ 124 AllStartWork: 2 Vector__XXX
+ SG_ SyncStartWork : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+ SG_ Fre : 9|2@0+ (1,0) [0|2] "-" Vector__XXX
+
+BO_ 125 AllGetStatus: 1 Vector__XXX
+ SG_ GetStatus : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+
+BO_ 310 ObjectStartWork: 1 Vector__XXX
+ SG_ StartWork : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+
+BO_ 126 AllStopAcquire: 1 Vector__XXX
+ SG_ StopAcquire : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+
+BO_ 212 Object_Data_1: 8 Vector__XXX
+ SG_ ID : 7|8@0+ (1,0) [0|255] "-" Vector__XXX
+ SG_ Width : 15|12@0+ (0.1,0) [0|409.5] "m" Vector__XXX
+ SG_ Polygon_x_max : 51|12@0+ (1,0) [0|1280] "-" Vector__XXX
+ SG_ Polygon_x_min : 47|12@0+ (1,0) [0|1280] "-" Vector__XXX
+ SG_ Polygon_y_max : 25|10@0+ (1,0) [0|720] "-" Vector__XXX
+ SG_ Polygon_y_min : 19|10@0+ (1,0) [0|720] "-" Vector__XXX
+
+
+CM_ BO_ 210 "";
+CM_ SG_ 311 StopWork "0:invalid
+1:valid";
+CM_ SG_ 312 WorkStatus "0:standby
+1:work";
+CM_ SG_ 124 SyncStartWork "0:invalid
+1:valid";
+CM_ SG_ 124 Fre "0:10hz
+1:15hz
+2:30hz";
+CM_ SG_ 125 GetStatus "0:invalid;
+1:valid";
+CM_ SG_ 310 StartWork "0:invalid
+1:valid";
+CM_ SG_ 126 StopAcquire "0:invalid
+1:valid";

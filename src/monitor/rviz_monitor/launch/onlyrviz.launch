@@ -1,0 +1,27 @@
+<launch>
+    <arg name="model" />
+    <arg name="gui" default="True" />
+    <group ns="agv1">
+        <param name="robot_description" command="$(find xacro)/xacro.py $(find data)/urdf/agv.urdf ns:=agv1"/>
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+    </group>
+    <group ns="agv">
+    <!--车辆模型文件-->
+        <param name="robot_description" command="$(find xacro)/xacro.py $(find data)/urdf/agv.1.urdf ns:=agv" />
+        
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+        <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+    </group>
+    <node name="zj_sender" pkg="gps_imu" type="zj_sender" args="0" output="screen" />
+    <node name="ref_sender" pkg="map" type="ref_sender" output="screen" />
+    <node name="control" pkg="control" type="control" />
+	<!--地图发布-->
+    <node name="map_show_pub" pkg="monitor" type="map_show_pub" output="screen" />
+<!--参考线发布-->
+	<node name="reference_line_pub" pkg="monitor" type="reference_line_pub"  output="screen" />
+    <!--rviz 选点订阅发布节点-->
+    <node name="rviz_select_point_sub" pkg="monitor" type="rviz_select_point_sub"  output="screen" />
+    <node name="multi_vehicle_control_pub" pkg="monitor" type="multi_vehicle_control_pub"  args="agv agv1"  output="screen" />
+    <node name="rviz" pkg="rviz" type="rviz" required="true" />
+</launch>

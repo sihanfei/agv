@@ -1,0 +1,30 @@
+\hypertarget{ImageProcessCallback_8h}{}\section{/home/higo/\+Desktop/adcusdk/include/\+Image\+Process\+Callback.h File Reference}
+\label{ImageProcessCallback_8h}\index{/home/higo/\+Desktop/adcusdk/include/\+Image\+Process\+Callback.\+h@{/home/higo/\+Desktop/adcusdk/include/\+Image\+Process\+Callback.\+h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \hyperlink{ImageProcessCallback_8h_a5f24cb10a415abcd292745141273bfa5}{image\+Process\+Callback}) (int dev\+Id, char $\ast$buf)
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\index{Image\+Process\+Callback.\+h@{Image\+Process\+Callback.\+h}!image\+Process\+Callback@{image\+Process\+Callback}}
+\index{image\+Process\+Callback@{image\+Process\+Callback}!Image\+Process\+Callback.\+h@{Image\+Process\+Callback.\+h}}
+\subsubsection[{\texorpdfstring{image\+Process\+Callback}{imageProcessCallback}}]{\setlength{\rightskip}{0pt plus 5cm}typedef void($\ast$ image\+Process\+Callback) (int dev\+Id, char $\ast$buf)}\hypertarget{ImageProcessCallback_8h_a5f24cb10a415abcd292745141273bfa5}{}\label{ImageProcessCallback_8h_a5f24cb10a415abcd292745141273bfa5}
+! "brief image process call back function. this function will be called immediately when a image is caputured. 
+\begin{DoxyParams}{Parameters}
+{\em dev\+Id} & is the device ID which should be in range of 0$\sim$11 \\
+\hline
+{\em buf} & is the image data captured by camera the format is R\+GB. the pix width is 4byte \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+adcu\+Attacth\+Cammera\+Callback for more information. 
+\end{DoxySeeAlso}
+
+\begin{DoxyRetVals}{Return values}
+{\em nothing} & \\
+\hline
+\end{DoxyRetVals}

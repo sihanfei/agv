@@ -1,0 +1,210 @@
+\hypertarget{adcuSDK_8h}{}\section{/home/lrj/work/adcu\+Sdk/include/adcu\+S\+DK.h File Reference}
+\label{adcuSDK_8h}\index{/home/lrj/work/adcu\+Sdk/include/adcu\+S\+D\+K.\+h@{/home/lrj/work/adcu\+Sdk/include/adcu\+S\+D\+K.\+h}}
+{\ttfamily \#include \char`\"{}device.\+h\char`\"{}}\\*
+Include dependency graph for adcu\+S\+D\+K.\+h\+:
+% FIG 0
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daee}{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+US} \{ \hyperlink{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daeea59713671234516ee52e6d28697bd5712}{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+R\+M\+AL} =0, 
+\hyperlink{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daeea4c1a9b473073d32992ea4aff2a83ac14}{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+B\+N\+O\+R\+M\+AL}
+ \}\begin{DoxyCompactList}\small\item\em device Device operating status. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{adcuSDK_8h_a41846da92360a8e128fb7e5b49a70cfe}{adcu\+S\+D\+K\+Init} ()
+\begin{DoxyCompactList}\small\item\em Init running state. \end{DoxyCompactList}\item 
+int \hyperlink{adcuSDK_8h_a114cbf90a0e5224b1e28336a79c67e6c}{adcu\+Dev\+Open} (\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07f}{adcu\+Device\+Type} Dev\+Type, int channel)
+\begin{DoxyCompactList}\small\item\em open specify device with channel,and if open successfully return a positive integer represents device id else return 0. \end{DoxyCompactList}\item 
+int \hyperlink{adcuSDK_8h_ac173802e4ba406c2c6d00ef18add7d65}{adcu\+Dev\+Read} (int Dev\+Id, uint8\+\_\+t $\ast$buf, int size)
+\begin{DoxyCompactList}\small\item\em Read \textquotesingle{}size\textquotesingle{} bytes into B\+UF from \textquotesingle{}Dev\+Id\textquotesingle{}. Return the number read, -\/1 for errors. \end{DoxyCompactList}\item 
+int \hyperlink{adcuSDK_8h_a934c84d7efbab26dad5f3c86dacc50ae}{adcu\+Dev\+Write} (int Dev\+Id, uint8\+\_\+t $\ast$buf, int size)
+\begin{DoxyCompactList}\small\item\em Write \textquotesingle{}size\textquotesingle{} bytes of B\+UF to \textquotesingle{}Dev\+Id\textquotesingle{}. Return the number written, or -\/1. \end{DoxyCompactList}\item 
+int \hyperlink{adcuSDK_8h_a5830fee204a2d892f2318e878e0c2359}{adcu\+Dev\+Status} (int Dev\+Id)
+\begin{DoxyCompactList}\small\item\em get the status of device. \end{DoxyCompactList}\item 
+int \hyperlink{adcuSDK_8h_a1731eaacf0e50d852db95415bf755029}{adcu\+Dev\+Close} (int Dev\+Id)
+\begin{DoxyCompactList}\small\item\em close device channel \end{DoxyCompactList}\item 
+void \hyperlink{adcuSDK_8h_ac10d0122387d88e905a1fb65d98b5023}{adcu\+S\+D\+K\+Deinit} ()
+\begin{DoxyCompactList}\small\item\em clear running state \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+US@{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+US}}
+\index{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+US@{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+US}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+US}{ADCU_DEV_STATUS}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+US}}\hypertarget{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daee}{}\label{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daee}
+
+
+device Device operating status. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+R\+M\+AL@{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+R\+M\+AL}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+R\+M\+AL@{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+R\+M\+AL}}\item[{\em 
+A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+R\+M\+AL\hypertarget{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daeea59713671234516ee52e6d28697bd5712}{}\label{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daeea59713671234516ee52e6d28697bd5712}
+}]Device operating status is ok \index{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+B\+N\+O\+R\+M\+AL@{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+B\+N\+O\+R\+M\+AL}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+B\+N\+O\+R\+M\+AL@{A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+B\+N\+O\+R\+M\+AL}}\item[{\em 
+A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+B\+N\+O\+R\+M\+AL\hypertarget{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daeea4c1a9b473073d32992ea4aff2a83ac14}{}\label{adcuSDK_8h_ac17b18a9af8348235809ab6b9254daeea4c1a9b473073d32992ea4aff2a83ac14}
+}]Device operating status is error \end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!adcu\+Dev\+Close@{adcu\+Dev\+Close}}
+\index{adcu\+Dev\+Close@{adcu\+Dev\+Close}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Dev\+Close(int Dev\+Id)}{adcuDevClose(int DevId)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Dev\+Close (
+\begin{DoxyParamCaption}
+\item[{int}]{Dev\+Id}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuSDK_8h_a1731eaacf0e50d852db95415bf755029}{}\label{adcuSDK_8h_a1731eaacf0e50d852db95415bf755029}
+
+
+close device channel 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Dev\+Id} & \+: function \hyperlink{adcuSDK_8h_a114cbf90a0e5224b1e28336a79c67e6c}{adcu\+Dev\+Open()} return value. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+R\+M\+AL} & \\
+\hline
+{\em A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+B\+N\+O\+R\+M\+AL} & \\
+\hline
+\end{DoxyRetVals}
+\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!adcu\+Dev\+Open@{adcu\+Dev\+Open}}
+\index{adcu\+Dev\+Open@{adcu\+Dev\+Open}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Dev\+Open(adcu\+Device\+Type Dev\+Type, int channel)}{adcuDevOpen(adcuDeviceType DevType, int channel)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Dev\+Open (
+\begin{DoxyParamCaption}
+\item[{{\bf adcu\+Device\+Type}}]{Dev\+Type, }
+\item[{int}]{channel}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuSDK_8h_a114cbf90a0e5224b1e28336a79c67e6c}{}\label{adcuSDK_8h_a114cbf90a0e5224b1e28336a79c67e6c}
+
+
+open specify device with channel,and if open successfully return a positive integer represents device id else return 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adcu\+Device\+Type} & \+: adcu support devices,eg.\+adcu\+C\+AN/adcu\+R\+S232. \\
+\hline
+{\em channel} & \+: channel num, you can use adcu\+Channel\+:A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1, A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2 , A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3, A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em $<$0} & \+: if an error occurred \\
+\hline
+{\em Dev\+Id} & \+: a positive integer \\
+\hline
+\end{DoxyRetVals}
+\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!adcu\+Dev\+Read@{adcu\+Dev\+Read}}
+\index{adcu\+Dev\+Read@{adcu\+Dev\+Read}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Dev\+Read(int Dev\+Id, uint8\+\_\+t $\ast$buf, int size)}{adcuDevRead(int DevId, uint8_t *buf, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Dev\+Read (
+\begin{DoxyParamCaption}
+\item[{int}]{Dev\+Id, }
+\item[{uint8\+\_\+t $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuSDK_8h_ac173802e4ba406c2c6d00ef18add7d65}{}\label{adcuSDK_8h_ac173802e4ba406c2c6d00ef18add7d65}
+
+
+Read \textquotesingle{}size\textquotesingle{} bytes into B\+UF from \textquotesingle{}Dev\+Id\textquotesingle{}. Return the number read, -\/1 for errors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Dev\+Id} & \+: function \hyperlink{adcuSDK_8h_a114cbf90a0e5224b1e28336a79c67e6c}{adcu\+Dev\+Open()} return value. \\
+\hline
+{\em buf} & \+: a point of buffer to receive data. \\
+\hline
+{\em size} & \+: receive data size. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em $<$=0} & \+: read error. \\
+\hline
+{\em $>$0} & \+: the actual size of read. \\
+\hline
+\end{DoxyRetVals}
+\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!adcu\+Dev\+Status@{adcu\+Dev\+Status}}
+\index{adcu\+Dev\+Status@{adcu\+Dev\+Status}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Dev\+Status(int Dev\+Id)}{adcuDevStatus(int DevId)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Dev\+Status (
+\begin{DoxyParamCaption}
+\item[{int}]{Dev\+Id}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuSDK_8h_a5830fee204a2d892f2318e878e0c2359}{}\label{adcuSDK_8h_a5830fee204a2d892f2318e878e0c2359}
+
+
+get the status of device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Dev\+Id} & \+: function \hyperlink{adcuSDK_8h_a114cbf90a0e5224b1e28336a79c67e6c}{adcu\+Dev\+Open()} return value. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+N\+O\+R\+M\+AL} & \\
+\hline
+{\em A\+D\+C\+U\+\_\+\+D\+E\+V\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+A\+B\+N\+O\+R\+M\+AL} & \\
+\hline
+\end{DoxyRetVals}
+\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!adcu\+Dev\+Write@{adcu\+Dev\+Write}}
+\index{adcu\+Dev\+Write@{adcu\+Dev\+Write}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Dev\+Write(int Dev\+Id, uint8\+\_\+t $\ast$buf, int size)}{adcuDevWrite(int DevId, uint8_t *buf, int size)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Dev\+Write (
+\begin{DoxyParamCaption}
+\item[{int}]{Dev\+Id, }
+\item[{uint8\+\_\+t $\ast$}]{buf, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuSDK_8h_a934c84d7efbab26dad5f3c86dacc50ae}{}\label{adcuSDK_8h_a934c84d7efbab26dad5f3c86dacc50ae}
+
+
+Write \textquotesingle{}size\textquotesingle{} bytes of B\+UF to \textquotesingle{}Dev\+Id\textquotesingle{}. Return the number written, or -\/1. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Dev\+Id} & \+: function \hyperlink{adcuSDK_8h_a114cbf90a0e5224b1e28336a79c67e6c}{adcu\+Dev\+Open()} return value. \\
+\hline
+{\em buf} & \+: a point of buffer to write data. \\
+\hline
+{\em size} & \+: write size. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em $<$=0} & \+: write error. \\
+\hline
+{\em $>$0} & \+: the actual size of write. \\
+\hline
+\end{DoxyRetVals}
+\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!adcu\+S\+D\+K\+Deinit@{adcu\+S\+D\+K\+Deinit}}
+\index{adcu\+S\+D\+K\+Deinit@{adcu\+S\+D\+K\+Deinit}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+S\+D\+K\+Deinit()}{adcuSDKDeinit()}}]{\setlength{\rightskip}{0pt plus 5cm}void adcu\+S\+D\+K\+Deinit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuSDK_8h_ac10d0122387d88e905a1fb65d98b5023}{}\label{adcuSDK_8h_ac10d0122387d88e905a1fb65d98b5023}
+
+
+clear running state 
+
+\index{adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}!adcu\+S\+D\+K\+Init@{adcu\+S\+D\+K\+Init}}
+\index{adcu\+S\+D\+K\+Init@{adcu\+S\+D\+K\+Init}!adcu\+S\+D\+K.\+h@{adcu\+S\+D\+K.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+S\+D\+K\+Init()}{adcuSDKInit()}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+S\+D\+K\+Init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuSDK_8h_a41846da92360a8e128fb7e5b49a70cfe}{}\label{adcuSDK_8h_a41846da92360a8e128fb7e5b49a70cfe}
+
+
+Init running state. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & \+: success \\
+\hline
+{\em -\/1} & \+: if an error occurred \\
+\hline
+\end{DoxyRetVals}

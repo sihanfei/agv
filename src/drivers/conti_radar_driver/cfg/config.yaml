@@ -1,0 +1,45 @@
+log_dir: "/work/log/"
+sensor_name: conti
+
+device_list:
+- device_name: radar1
+  device_enable: true
+  device_ip: "192.168.2.122"
+  intput_port: 8005
+  topic_name_1: "/drivers/radar1/radar_obstacle"
+  topic_name_2: "/drivers/radar1/radar_cloud"
+
+- device_name: radar2
+  device_enable: false
+  device_ip: "192.168.2.122"
+  intput_port: 8006
+  topic_name_1: "/drivers/radar2/radar_obstacle"
+  topic_name_2: "/drivers/radar2/radar_cloud"
+
+- device_name: radar3
+  device_enable: false
+  device_ip: "192.168.2.122"
+  intput_port: 8007
+  topic_name_1: "/drivers/radar3/radar_obstacle"
+  topic_name_2: "/drivers/radar3/radar_cloud"
+
+- device_name: radar4
+  device_enable: false
+  device_ip: "192.168.2.121"
+  intput_port: 8001
+  topic_name_1: "/drivers/radar4/radar_obstacle"
+  topic_name_2: "/drivers/radar4/radar_cloud"
+
+- device_name: radar5
+  device_enable: false
+  device_ip: "192.168.2.121"
+  intput_port: 8002
+  topic_name_1: "/drivers/radar5/radar_obstacle"
+  topic_name_2: "/drivers/radar5/radar_cloud"
+
+- device_name: radar6
+  device_enable: false
+  device_ip: "192.168.2.121"
+  intput_port: 8003
+  topic_name_1: "/drivers/radar6/radar_obstacle"
+  topic_name_2: "/drivers/radar6/radar_cloud"

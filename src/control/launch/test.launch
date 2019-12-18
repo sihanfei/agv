@@ -1,0 +1,5 @@
+<launch>
+   <rosparam command="load" file="$(find control)/config/control_params.yaml"/>
+   <node pkg="control" type="control" name="control" args="3"/>
+   <node pkg="control" type="load_control" name="load_control"/>
+</launch>

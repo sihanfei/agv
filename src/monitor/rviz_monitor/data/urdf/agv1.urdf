@@ -1,0 +1,122 @@
+<?xml version='1.0'?>
+<robot name="AGV">
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5709" />
+      <geometry>
+        <mesh filename="package://data/meshes/agv_base.DAE" scale="0.5 0.5 0.5" />
+      </geometry>
+      <material name="white">
+        <color rgba="1 0.29804 0.0 1" />
+      </material>
+    </visual>
+  </link>
+
+  <!--front axle-->
+  <link name="front_axle">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5709" />
+      <geometry>
+        <mesh filename="package://data/meshes/agv_axle.DAE" scale="0.5 0.5 0.5" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0.29804 0.0 1" />
+      </material> 
+    </visual>
+  </link>
+  <joint name="base_to_front_axle_steering_shaft" type="continuous">
+    <origin rpy="0  0  0" xyz="2.5  0 0.35"/>
+    <parent link="base_link"/>
+    <child link="front_axle"/>    
+    <axis xyz="0 0 1"/>
+  </joint>
+    <!--    front wheel                        -->
+    <link name="front_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5709" />
+      <geometry>
+        <mesh filename="package://data/meshes/agv_wheel.DAE" scale="0.5 0.5 0.5"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="front_axle_to_front_wheel" type="fixed">
+    <origin xyz="0 0.0 0.0" rpy="0 0 0" />
+    <parent link="front_axle" />
+    <child link="front_wheel" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+    <!--back axle-->
+  <link name="back_axle">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5709" />
+      <geometry>
+        <mesh filename="package://data/meshes/agv_axle.DAE" scale="0.5 0.5 0.5" />
+      </geometry>
+      <material name="">
+        <color rgba="1 0.29804 0.0 1" />
+      </material> 
+    </visual>
+  </link>
+  <joint name="base_to_back_axle_steering_shaft" type="fixed">
+    <origin rpy="0  0  0" xyz="-2.5  0  0.35"/>
+    <parent link="base_link"/>
+    <child link="back_axle"/>    
+    <axis xyz="0 0 1"/>
+  </joint>
+    <!--    back wheel                        -->
+    <link name="back_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 1.5709" />
+      <geometry>
+        <mesh filename="package://data/meshes/agv_wheel.DAE" scale="0.5 0.5 0.5"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+  </link>
+  <joint name="back_axle_to_back_wheel" type="fixed">
+    <origin xyz="0 0.0 0.0" rpy="0 0 0" />
+    <parent link="back_axle" />
+    <child link="back_wheel" />
+    <axis xyz="0 1 0" />
+  </joint>
+
+      <link name="logo_link">
+    <visual>
+      <geometry>
+        <box size="0.8 0.15 0.01"/>
+      </geometry>
+      <material name="">
+         <color rgba="1 1 1 .5"/>
+         <texture filename="package://data/meshes/superg-ai.jpg"/>
+    </material>
+    </visual>
+  </link>
+  <joint name="base_to_logo_link" type="fixed">
+    <origin xyz="0  0.16  0.3" rpy="-1.57075  0  0"/>
+    <parent link="base_link"/>
+    <child link="logo_link"/>
+  </joint>
+
+    <link name="logo_link2">
+    <visual>
+      <geometry>
+        <box size="0.8 0.15 0.01"/>
+      </geometry>
+      <material name="">
+         <color rgba="1 1 1 .5"/>
+         <texture filename="package://data/meshes/superg-ai.jpg"/>
+    </material>
+    </visual>
+  </link>
+  <joint name="base_to_logo_link2" type="fixed">
+    <origin xyz="0  -0.16 0.3" rpy="1.57075  3.14  0"/>
+    <parent link="base_link"/>
+    <child link="logo_link2"/>
+  </joint>
+</robot>

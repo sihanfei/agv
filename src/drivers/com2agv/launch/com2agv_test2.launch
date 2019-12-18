@@ -1,0 +1,10 @@
+<!--此次测试功能是：程序运行后车辆前轮正弦转动，
+相关参数：    Test_TurnPeriod_    ：车轮转向的周期值
+            Test_TurnAngle_     ：车轮转向最大角度
+ -->
+<launch>
+    <node pkg= "com2agv" type= "com2agv" name= "com2agv" args= "test 2" output="screen"/>
+
+    <rosparam file="$(find com2agv)/config/test_params.yaml" command="load" />
+    
+</launch>

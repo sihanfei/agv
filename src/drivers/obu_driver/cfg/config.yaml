@@ -1,0 +1,11 @@
+log_dir: "/work/log/"
+sensor_name: DSRC
+AGV_ID: 1001                        #AGV身份编码
+line_heading: 300.0                   #车道线方向角
+
+device_list:
+- device_name: obu1                 #OBU设备名称
+  device_enable: true               #是否启用该设备
+  device_ip: "192.168.2.221"         #OBU设备IP
+  intput_port: 4321                 #OBU开启的TCP服务端口
+

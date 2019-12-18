@@ -1,0 +1,6 @@
+<launch>
+
+    <include file="$(find vl_lidar_driver)/launch/velodyne_lidar1.launch"></include>
+    <include file="$(find vl_lidar_driver)/launch/velodyne_lidar2.launch"></include>
+
+</launch>

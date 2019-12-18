@@ -1,0 +1,26 @@
+log_dir: "/work/log/"
+
+node_list:
+- node_name: "/IPC_monitor_node"
+  node_enable: true
+
+- node_name: "/fixed_lidar_info_node"
+  node_enable: true
+
+- node_name: "/velodyne1/velodyne_pointcloud_201"
+  node_enable: true
+
+- node_name: "/velodyne2/velodyne_pointcloud_202"
+  node_enable: true
+
+- node_name: "/rs1/rslidar_pointcloud"
+  node_enable: true
+
+- node_name: "/rs2/rslidar_pointcloud"
+  node_enable: true
+
+- node_name: "/cannet_radar_node"
+  node_enable: true
+
+- node_name: "/lidar_fusion_node"
+  node_enable: true

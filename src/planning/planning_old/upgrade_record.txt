@@ -1,0 +1,186 @@
+2019-5-10
+add location jump judge
+增加位置跳变判断，若当前帧定位坐标与上一帧坐标距离大于5，则报错 
+
+2019-5-13
+1.按照接口协议文档修改了感知、定位、参考线、调度接收接口，下发控制接口(接收控制接口数据量不足)
+2.planning.cpp中增加executeCbWithReplan(const hmi_msgs::VMSControlAD::ConstPtr& cmd_msg)函数作为重规划版本
+3.更新参考线reference_line.cpp中ReferenceLine中按照S值获取参考点方法 ReferenceLine::getReferenceLinePointByS(double s) const 为二分查找法，效率更高
+
+2019-5-14
+1.LatticePlanner::isGoalReached()
+判断车辆是否达到目标点，横向位置和纵向位置判断大小不一样，还需要增加heading角的判断  20190510
+1.纵向位置s小于10cm；
+2.横向位置l小于5cm；
+3.heading 小于1°
+满足上诉条件，则判断为停车到位
+若纵向位置到达，横向位置l或者heading没在停车区间内，报错
+
+2.LatticePlanner::isGoalReached()
+S方向上到达目的地了，但是L方向和航向角未达到 ，也认为是到达目标点，但需要报出警告
+
+3.utils.h
+ 增加变量单位
+
+4.TrajectoryGenerator::getLonTrajectories()
+ 停车规划的触发条件，只根据stop_flag 来判断
+
+5. LatticePlanner::fastStopPlanning   LatticePlanner::slowStopPlanning
+ 开始停车规划的距离stop_s，需要增加一个缓冲量，这个值设定为10m；
+
+ utils.h
+ 将SAFE_DISTANCE的定义值修改为0.15
+
+TrajectoryGenerator::getLonTrajectories()
+ 停车规划的触发条件，只根据stop_flag 来判断
+
+2019-5-21
+1.void Planning::locationCallback(const location_msgs::FusionDataInfo::ConstPtr& location_msg)
+增加坐标合理性判断，目前认为地图原点为左下角，地图上坐标均大于零
+
+2019-5-22
+1.增加decision.cpp,decision.h,将消息回调与消息合理性判断加入决策
+2.decision.cpp , bool Decision::getPlanningStartPoint(FrenetPoint& fre_planning_start_point) const
+增加规划起始点的计算
+(1)若当前位置偏差和规划路径差别不大，则选用原轨迹上的点继续进行轨迹规划；
+(2)若当前路径偏差和轨迹路径偏差较大，则选用当前车辆位置进行轨迹规划；
+(3)若当前路径偏差和规划路径偏差很大，则触发故障，车辆急停。
+
+3.林海增加仿真调试用内容Planning构造函数及
+void Planning::Paramscallback_1(planning::params_1_Config &config, uint32_t level)
+void Planning::Paramscallback_2(planning::params_2_Config &config, uint32_t level)
+
+2019-5-23
+LatticePlanner::planning  20190522
+1.修改停车规划逻辑的判断 ：
+(1)快要到目标点: 当前速度的停车距离+10m < 目标位置和当前位置的距离之差
+(2)靠近静态障碍物：障碍物距离是静止的，当前速度的停车距离+10m < 目标位置和静止障碍物位置的距离之差
+(3)存在停车标志：当前速度的停车距离+10m < 目标位置和停止标志位置的距离之差
+2.修改停车目标点，停车目标点为目标位置  或  静态障碍物位置 - 半车长 - 安全距离  或者  停止标志的位置 - 半车长- 安全距离
+
+2019-5-27
+1.在整个curve1d系列中增加 virtual double paramMin() const 方法，用作新评分函数使用
+2.增加trajectory_scorer_new.cpp与trajectory_scorer_new.h，封装新的评分函数内容
+3.在bool TrajectoryGenerator::getBestTrajectory(Trajectory& best_trajectory)中增加标志位选择评分函数的逻辑
+
+2019-5-28
+1.增加get_boundary_by_cartesian_location.h，用来用定位计算车体包络的四个顶点
+2.decision.cpp在void Decision::locationCallback(const location_msgs::FusionDataInfo::ConstPtr& location_msg)中增加对定位坐标是否超出道路边界的判断（按车辆包络计算）
+3.trajectory_checker.cpp中增加bool TrajectoryChecker::isTrajOutOfRoad(Trajectory& trajectory)方法，判断轨迹点是否超出道路边界（按车辆包络计算）
+4.新增评价函数参数全局变量，利用仿真滑条接收，在utils.h中声明，在planning.h中定义
+5.在planning中增加对循环的时间控制，这里保证每个规划循环为100ms，若不足100ms，则等待至100ms，若超过，则按超过时间
+
+2019-5-29
+1.修改判断定位坐标是否合理的逻辑顺序
+
+2019-5-31
+1.增加原来漏掉的planning.cpp中角度，弧度的互换
+
+2019-6-3
+1.更新控制部分的相关逻辑，在bool Decision::getControl(ControlInfo& control_info)中判断，
+  if (control_info_.getFaultStatus() > 0)，车辆状态错误
+  if (control_info_.getRunningStatus() < 0)，车辆运动状态错误
+
+2.改变调度命令逻辑，将先判断命令再规划改为先规划，再按照命令决定是否发送消息
+
+2019-6-5
+1.在bool Decision::getPlanningStartPoint(FrenetPoint& fre_planning_start_point,Trajectory& last_trajectory) const函数中增加判断
+if (last_trajectory.getTrajectorySize() == 0) 的逻辑，该逻辑会导致下标溢出，段错误。
+
+
+2019-6-10开始更新新版planning，为planning2.0
+1.删除了参考速度计算
+2.规划不再由调度命令触发，而是planning_node开启后，就启动规划线程，等待定位、感知等依赖数据到位后就开始规划。调度命令call_back负责更新任务要求，当cmd置为1时则发布规划结果，否则不发布。
+3.删除了评分函数中对st图的依赖
+
+2019-6-12
+1.更新了static std::vector<FrenetPoint> getFrenetPointsBoundary(std::vector<Vect>& boundary,CartesianPoint& point,ReferenceLine& ref_line)
+函数中坐标变换失败的逻辑，因为之前变换失败后依然会push_back，外界取出该点后计算会报错
+
+2019-6-13
+1.增加了多项式中多个获取状态的函数，以及计算多项式系数的函数，方便评分函数使用
+double QuinticPolynomial::getx1() const
+double QuinticPolynomial::getdx1() const
+double QuinticPolynomial::getddx1() const
+double QuinticPolynomial::getx0() const
+double QuinticPolynomial::getdx0() const
+double QuinticPolynomial::getddx0() const
+double QuinticPolynomial::getAveCoef() const
+
+2.修改各个评分函数中的评分项
+在double TrajectoryScorer::calTrajectoryCostLonCruise(const TrajectoryPair& traj_pair)等函数中
+double jerk = fabs(calJerkIntST(traj_pair)/traj_pair.getSTPath()->getAveCoef());
+修改原因：有些轨迹多项式项会很大，这导致jerk结果很大，反之会使jerk结果很小，为了平衡两种情况，对多项式系数求平均值，作为分母；
+
+纵向
+WEIGHT_LON_KJ*jerk + WEIGHT_LON_KT*length + WEIGHT_LON_KD * (1/(dx_length * dx_length));
+修改原因：速度大小应与评分成反比
+
+横向
+WEIGHT_LAT_KJ*jerk + WEIGHT_LAT_KS*length + WEIGHT_LAT_KD*l1*l1;
+修改原因：轨迹长度应与评分成反比
+
+2019-6-14
+1.更新了double TrajectoryScorer::calTrajectoryCostLonStopingMerging(const TrajectoryPair& traj_pair)函数中为
+double s_length = traj_pair.getSTPath()->getx1() - goal_.getS();
+修改原因：该项应为轨迹点s末端与goal的s值之差
+
+2.std::vector< std::shared_ptr<Curve1d> > TrajectoryGenerator::getLatTrajectories()中
+撒点增加 s_max = std::min(s_max,fregoal_.getS() - frelocation_.getS())，撒点不应不超过goal的s值
+
+2019-6-20
+1.在判断decision中get各个输入依赖是否合理的时候，将while等待改为if单次判断，如果没有合理数据直接return false，用while等待逻辑上不合理
+bool Decision::getControl(ControlInfo& control_info) const
+bool Decision::getReferenceLine(ReferenceLine& ref_line) const
+bool Decision::getCarLocation(CartesianPoint& car_point) const
+bool Decision::getFreLocation(FrenetPoint& fre_location) const
+2.在while中增加了ros类的sleep，释放执行权给其他node，以避免CPU占用过多的情况。
+
+2019-7-2
+1.修正了根据s值获取参考点的逻辑，漏掉了s为0时的边界情况，会陷入死循环中，现在增加s为0时直接返回参考点的第一个点
+ReferenceLinePoint ReferenceLine::getReferenceLinePointByS(double s) const
+
+2019-7-3
+1.增加了决策中获取数据的返回类型，从bool类型改为uint_8类型
+0 error,quit task
+1 warn,no info,skip current circle
+2 correct
+
+uint8_t getCarLocation(CartesianPoint& car_point) const;
+uint8_t getFreLocation(FrenetPoint& fre_location) const;
+
+uint8_t getReferenceLine(ReferenceLine& ref_line) const;
+uint8_t getReferenceLineOnce(ReferenceLine& ref_line) const;
+
+uint8_t getPerception(PerceptionInfo& per_info) const;
+uint8_t getControl(ControlInfo& control_info) const;
+
+2019-7-4
+1.增加了planning向monitor发故障检测的逻辑
+
+2019-7-9
+1.增加了对目标点是否超出最大参考线范围的判断，超出则认为目标点不合理，退出本次任务
+bool Decision::setGoal(CartesianPoint& goal)
+
+2019-7-10（2019-7-15放弃该方法，打算改用在车速变化处增加中间点）
+1.增加了弯道减速的逻辑，没有更改撒点规则，因为撒点只能限制轨迹终点的速度。
+在对参考线的解析中，增加max_speed_map_键值对结构，键对应速度改变处的s值，值对应改变后的最大速度限制max_speed。
+对于下图的参考线来说，
+   max_speed=6m/s       s=10       max_speed=2m/s       s=20             max_speed=4m/s
+--------------------------|-------------------------------|-------------------------------
+map中的元素为
+(key,value)=(0,6)
+(key,value)=(10,2)
+(key,value)=(20,4)
+
+在轨迹合并后在frenet坐标系下就先进行判断，若轨迹中某一轨迹点s大于key且速度大于value，则丢弃该轨迹。
+void Decision::refLineCallback(const map_msgs::REFPointArray::ConstPtr& ref_line_msg)
+bool TrajectoryGenerator::combine(const std::vector<TrajectoryPair>& pair_vec, Trajectory& best_trajectory)
+
+2019-7-12(还未正式发布，需要调试)
+1.为了规划的平稳程度，倾向于尽可能多的沿着一条已规划出的轨迹行驶，所以增加对新轨迹的判断，如果与上一条最优轨迹偏差不大，则不发布，仍使用上一条轨迹
+增加double Trajectory::CalculateCartesianTrajectoryCoincidence(Trajectory& last_trajectory)，计算当前轨迹与上一条轨迹的相似度
+
+2019-7-16
+1.按照参考线接口，更改了参考线的数据结构，增加了std::vector<LaneRange> lane_ranges类型的存取和计算
+2.新增rtk_support功能，负责给rtk寻迹提供急停，根据启动节点时的参数来确定，1为lattice规划，2为rtk support

@@ -1,0 +1,15 @@
+[Unit]
+Description = AgvService
+After = NetworkManager-wait-online.service network.target network-online.target
+Wants = NetworkManager-wait-online.service network-online.target
+ 
+[Service]
+ExecStart=/home/higo/work/superg_agv/src/monitor/rviz_monitor/scripts/higo_agv.sh 
+User=higo
+Restart=on-failure
+RestartSec=90
+StartLimitInterval=400
+StartLimitBurst=3
+ 
+[Install]
+WantedBy = multi-user.target

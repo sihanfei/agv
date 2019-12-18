@@ -1,0 +1,12 @@
+float64 rs
+float64 rx
+float64 ry
+float64 rtheta
+float64 rkappa
+float64 rdkappa
+float64 max_speed
+int32 lane_id
+int32 line_direction
+#float64 width_left
+#float64 width_right
+common_msgs/LaneRange[] lane_ranges

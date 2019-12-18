@@ -1,0 +1,12 @@
+<launch>
+    
+    <include file="$(find velodyne)/launch/parameter.launch"/>
+    <param name="frame_id" value="velodyne"/>
+    <param name="device_ip" value="192.168.1.201"/>
+    <param name="port" value="2369"/>
+        
+    <node pkg="velodyne" name="velodyne_pointcloud" type="velodyne_pointcloud" output="screen"/>
+
+    <node pkg="velodyne" name="velodyne_driver" type="velodyne_driver" output="screen"/>
+
+</launch>

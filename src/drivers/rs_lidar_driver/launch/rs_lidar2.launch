@@ -1,0 +1,48 @@
+<launch>
+
+    <group ns="rs2">
+
+        <param name="model" value="RS16"/>
+        <param name="max_distance" value="200"/>
+        <param name="min_distance" value="0.1"/>
+        <param name="resolution_type" value="0.5cm"/>
+        <param name="intensity_mode" value="1"/>
+        <param name="curves_path" value="$(find rs_lidar_driver)/cfg/curves.csv"/>
+        <param name="angle_path" value="$(find rs_lidar_driver)/cfg/lidar2/angle.csv"/>
+        <param name="channel_path" value="$(find rs_lidar_driver)/cfg/ChannelNum.csv"/>
+
+        <!--雷达内参发布topic-->
+        <param name="output_difop_topic" value="/drivers/rs2/rslidar_packets_difop"/>
+
+        <param name="frame_id" value="odom"/>
+        <param name="npackets" value="75"/>
+        <param name="begin_cut_angle" value="0"/>
+        <param name="end_cut_angle" value="0"/>
+        <param name="raw_data_topic_" value="/rs2/rslidar_points"/>
+        <param name="data_set_topic_" value="/drivers/rs2/lidar_points"/>
+
+        <param name="xmin" value="-1.7"/>
+        <param name="xmax" value="1.7"/>
+        <param name="ymin" value="-8.3"/>
+        <param name="ymax" value="8.3"/>
+
+        <param name="log_dir" value="/work/log/"/>
+        <param name="sensor_name" value="rslidar"/>
+        <param name="device_name" value="lidar2"/>
+        <param name="packet_size" value="1248"/>
+
+        <param name="device_ip" value="192.168.2.110"/>
+        <!--110-->
+        <param name="intput_port" value="6110"/>
+        <param name="difop_port" value="7110"/>
+
+        <param name="pub_raw_data" value="1"/>
+        <param name="is_motion_compensation" value="0"/>
+
+        <param name="Matrix4f_1" value="0.000217687, 0.999935, -0.0113738, -1.07378, -0.999775, -2.36648e-05, -0.0212156,-7.56484, -0.0212145, 0.0113759, 0.99971, -0.733571, 0, 0, 0, 1"/>
+
+        <node pkg="rs_lidar_driver" name="rs_lidar_node_110" type="rs_lidar_node" />
+        <!-- <node pkg="rs_lidar_driver" name="rs_lidar_node_110" type="rs_lidar_node" output="screen" /> -->
+    </group>
+
+</launch>

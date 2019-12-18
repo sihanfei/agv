@@ -1,0 +1,12 @@
+<launch>
+    <include file="$(find roborsensor)/launch/parameter.launch"/>
+    <param name="device_ip" value="192.168.1.200"/>
+    <param name="msop_port" value="6699"/>
+    <param name="difop_port" value="7788"/>
+    <param name="curves_path" value="$(find roborsensor)/cfg/curves.csv"/>
+    <param name="angle_path" value="$(find roborsensor)/cfg/lidar1/angle.csv"/>
+    <param name="channel_path" value="$(find roborsensor)/cfg/ChannelNum.csv"/>
+
+    <node pkg="roborsensor" name="rslidar_driver" type="rslidar_driver" output="screen"/>
+    <node pkg="roborsensor" name="rslidar_pointcloud" type="rslidar_pointcloud" output="screen"/>
+</launch>

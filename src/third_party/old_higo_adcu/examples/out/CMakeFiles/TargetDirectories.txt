@@ -1,0 +1,12 @@
+/usr/local/adcusdk/examples/out/CMakeFiles/edit_cache.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/rebuild_cache.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/lin_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/can_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/dac_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/pwm_out_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/highside_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/rs232_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/adc_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/power_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/pwm_in_test.dir
+/usr/local/adcusdk/examples/out/CMakeFiles/rs485_test.dir

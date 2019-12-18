@@ -1,0 +1,10 @@
+<launch>
+   <rosparam command="load" file="$(find control)config/control_params_rtk.yaml"/>
+   <node pkg="data_fusion" type="FusionCenter" name="FusionCenter"/>
+   <node pkg="control" type="control" name="control" args="3"/>
+   <node pkg="com2agv" type="com2agv" name="com2agv"/>
+   <!-- <node pkg="control" type="load_control" name="load_control"/> -->
+   <node pkg="perception_lidar" type="lidar_obstacle_detection" name="lidar_obstacle_detection"/>
+   <node pkg="perception_fusion" type="perception_fusion" name="perception_fusion"/>
+   <node pkg="perception" type="per_obs" name="per_obs"/>
+</launch>

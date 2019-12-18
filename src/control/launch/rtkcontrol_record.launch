@@ -1,0 +1,5 @@
+<launch>
+   <rosparam command="load" file="/home/higo/work/superg_agv/src/control/config/control_params.yaml"/>
+   <node pkg="control" type="control" name="control" output="screen" args="1"/>
+   <!--<node pkg="can_wr" type="can_wr_n" name="imu_gnss"/>-->
+</launch>

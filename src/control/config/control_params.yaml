@@ -1,0 +1,84 @@
+## paramaters for control on real vehicle or prescan simulation
+# 0代表Prescan仿真,1代表实车实验
+/control/mode: 0
+
+## paramaters for path
+# 0代表闭合路径;1代表非闭合路径
+/control/pathtype: 1
+# 最大曲率半径,大于该值认为道路为直路,单位米
+/control/Rmax: 500
+
+## paramaters for vehicle
+# 传动转向比(方向盘角度与车轮转角比例),AGV为1,乘用车在15左右
+/control/turn_ratio: 1
+# 车轮(方向盘)最大转角,单位度
+/control/max_turn_angle: 40
+# 车辆中心与车辆前轴中心的距离,单位米
+/control/center2frontaxis: 5.5085
+# 车辆中心与车辆后轴中心的距离,单位米
+/control/center2rearaxis: 5.5085
+
+## paramaters for INS/GPS installation error
+# 组合导航在车辆坐标系下的x轴坐标,单位米
+/control/insgps_x: 0.0
+# 组合导航在车辆坐标系下的y轴坐标,单位米
+/control/insgps_y: 0.0 #7.4
+
+## paramaters for control model
+# 0代表左转为负数;1代表左转为正数
+/control/turnleft_ispositive: 1 #0 
+# 预瞄时间,单位秒
+/control/preview_time: 0.5
+# 最小基础预瞄距离,单位米
+/control/basic_prelength_min: 0.5
+# 最大基础预瞄距离,单位米
+/control/basic_prelength_max: 5.0
+# 预瞄模型比例
+/control/lamda_preview: 0.5
+# Stanley模型比例
+/control/lamda_stanley: 0.5
+# Stanley模型中距离偏差比例参数
+/control/k_stanley: 0.5
+# Stanley模型中防止速度为零分母过大参数
+/control/k_soft: 1
+
+# 横向控制PID参数
+/control/lateral/kp: 1.5
+/control/lateral/ki: 0
+/control/lateral/kd: 0
+
+# 纵向控制直线最大期望速度
+/control/straight/speed: 5.0
+# 速度上限限制
+/control/speed/limit: 1.0
+
+# 车轮(方向盘)转角速度限制,单位deg/s
+/control/yawrate_limit: 1000
+# 系统延迟时间,从找到最近点到执行机构执行命令,单位秒
+/control/sys_delay: 0.5 #0.5
+
+# 开始停车的距离,单位米
+/control/start2stop_dist: 10
+
+# 精准停车的车速
+/control/tp_speed: 0.1
+# 精准停车允许的最大误差距离（车辆y纵向）
+/control/park_err_tolerance: 0.05
+
+## paramaters for saveroutepoint
+# 采点间距,单位米
+/control/equal_length: 0.05
+
+
+
+## paramaters for gps2xy
+# 原点的纬度
+/control/L0: 32.2056821
+# 原点的经度
+/control/lamda0: 119.3719783
+# 原点的高度
+/control/hb: 0
+
+## Refline stop
+/control/refline_stop: 0
+

@@ -1,0 +1,6 @@
+<launch>
+
+    <include file="$(find rs_lidar_driver)/launch/rs_lidar1.launch"></include>
+    <include file="$(find rs_lidar_driver)/launch/rs_lidar2.launch"></include>
+
+</launch>

@@ -1,0 +1,83 @@
+VERSION "HIPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY/4/%%%/4/'%**4YYY///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+
+BS_:
+
+BU_:
+
+
+BO_ 220 Lane_Head: 8 Vector__XXX
+ SG_ LaneNum : 2|3@0+ (1,0) [0|7] "-" Vector__XXX
+ SG_ TimeStamp : 15|27@0+ (1,0) [0|3599999] "ms" Vector__XXX
+
+BO_ 222 Lane_Data_0: 8 Vector__XXX
+ SG_ ID : 8|3@0+ (1,0) [0|7] "-" Vector__XXX
+ SG_ StartPoint : 39|16@0- (0.1,0) [-3276.8|3276.7] "m" Vector__XXX
+ SG_ EndPoint : 55|16@0- (0.1,0) [-3276.8|3276.7] "m" Vector__XXX
+ SG_ Distance : 23|16@0- (0.1,0) [-3276.8|32767] "m" Vector__XXX
+ SG_ Slope : 15|8@0+ (1,0) [0|180] "degree" Vector__XXX
+
+BO_ 221 Lane_Data_1: 8 Vector__XXX
+ SG_ Polynomial_a : 7|16@0- (0.1,0) [-3276.8|3276.7] "-" Vector__XXX
+ SG_ Polynomial_b : 23|16@0- (0.1,0) [-3276.8|3276.7] "-" Vector__XXX
+ SG_ Polynomial_c : 39|16@0- (0.1,0) [-3276.8|3276.7] "-" Vector__XXX
+ SG_ Polynomial_d : 55|16@0- (0.1,0) [-3276.8|3276.7] "-" Vector__XXX
+
+BO_ 320 LaneStartWork: 1 Vector__XXX
+ SG_ StartWork : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+
+BO_ 1202 LaneWorkStatus: 1 Vector__XXX
+ SG_ WorkStatus : 1|2@0+ (1,0) [0|2] "-" Vector__XXX
+
+BO_ 124 AllStartWork: 2 Vector__XXX
+ SG_ SyncStartWork : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+ SG_ Fre : 9|2@0+ (1,0) [0|2] "-" Vector__XXX
+
+BO_ 125 AllGetStatus: 1 Vector__XXX
+ SG_ GetStatus : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+
+BO_ 126 AllStopAcquire: 1 Vector__XXX
+ SG_ StopAcquire : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+
+BO_ 321 LaneStopWork: 1 Vector__XXX
+ SG_ StopWork : 0|1@0+ (1,0) [0|1] "-" Vector__XXX
+
+
+CM_ SG_ 320 StartWork "0:invalid
+1:valid";
+CM_ SG_ 1202 WorkStatus "0:standby
+1:work
+2:suspend";
+CM_ SG_ 124 SyncStartWork "0:invalid
+1:valid";
+CM_ SG_ 124 Fre "0:10hz
+1:15hz
+2:30hz";
+CM_ SG_ 125 GetStatus "0:invalid
+1:valid";
+CM_ SG_ 126 StopAcquire "0:invalid
+1:valid";
+CM_ SG_ 321 StopWork "0:invalid
+1:valid";

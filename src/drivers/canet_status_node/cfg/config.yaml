@@ -1,0 +1,20 @@
+log_dir: "/work/log/"
+sensor_name: canet
+
+device_list:
+- device_name: canet1
+  device_enable: true
+  device_ip: "172.168.103.56"
+  intput_port: 6001
+
+
+- device_name: canet2
+  device_enable: false
+  device_ip: "172.168.103.56"
+  intput_port: 6002
+
+
+- device_name: canet3
+  device_enable: true
+  device_ip: "172.168.103.189"
+  intput_port: 6003

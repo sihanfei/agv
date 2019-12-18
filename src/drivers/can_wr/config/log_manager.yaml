@@ -1,0 +1,13 @@
+work_space: "/work"
+log_dir: "/log"
+sensor_type_list:
+- sensor_name: "camera"
+- sensor_name: "mobileye"
+- sensor_name: "p2"
+- sensor_name: "tw"
+- sensor_name: "ultrasonic"
+- sensor_name: "vcu"
+- sensor_name: "velodyne"
+- sensor_name: "rslidar"
+- sensor_name: "conti"
+- sensor_name: "DSRC"

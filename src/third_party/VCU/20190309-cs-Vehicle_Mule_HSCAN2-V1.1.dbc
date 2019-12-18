@@ -1,0 +1,1252 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: EVC_F TMS_R MCU_SCS_F MCU_SCS_R MCU_Lift MCU_RR MCU_RL MCU_FR DCDC2_24 CAN_WIFI EVC_R DCDC1_12 BMS MCU_FL VCU TMS_F
+VAL_TABLE_ DirVehSpeed 1 "后退" 0 "前进" ;
+VAL_TABLE_ StateofEVC 14 "故障" 3 "浮动位" 2 "A口" 1 "B口" 0 "中位" ;
+VAL_TABLE_ Cmd_flowdir 2 "举升" 1 "下降" 0 "None" ;
+VAL_TABLE_ Status_PLCCom 1 "在线" 0 "离线" ;
+VAL_TABLE_ CmdEn_VCU_toDCDC1 2 "放电" 1 "使能" 0 "禁止" ;
+VAL_TABLE_ Status_ChargePre 1 "完成（上高压完成）" 0 "未完成" ;
+VAL_TABLE_ Status_BMSIntrospect 1 " 1-完成且无故障（允许上高压）" 0 "0-未完成" ;
+VAL_TABLE_ StatusCharger 1 "已插入" 0 "未插入" ;
+VAL_TABLE_ Table_CANwifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_TABLE_ Status_DCDC2 1 "运行" 0 "停机" ;
+VAL_TABLE_ Cmd_Start 170 "关闭" 85 "启动" ;
+VAL_TABLE_ Status_DCDC1 4 "放电完成" 3 "故障" 2 "放电" 1 "工作" 0 "停机" ;
+VAL_TABLE_ ReqInfotoBMS2 127 "诊断服务？" ;
+VAL_TABLE_ ReqInfotoBMS1 2 "诊断服务？" ;
+VAL_TABLE_ TypeofBMS 1 "三元" 0 "铁锂" ;
+VAL_TABLE_ Byte2ofStatusBMStoVCU0 127 "default" ;
+VAL_TABLE_ Byte1ofStatusBMStoVCU0 2 "default" ;
+VAL_TABLE_ ReqCutoffHVMCU 170 "有请求" 85 "无请求" ;
+VAL_TABLE_ DTCSignalOfMCU 54 "Description for the value '0x36'" 53 "Description for the value '0x35'" 52 "Description for the value '0x34'" 51 "Description for the value '0x33'" 50 "Description for the value '0x32'" 49 "Description for the value '0x31'" 48 "Description for the value '0x30'" 47 "Description for the value '0x2F'" 46 "Description for the value '0x2E'" 45 "未定义" 44 "未定义" 43 "未定义" 42 "CANC接收超时" 41 "CANB接收超时" 40 "EEPROM故障" 39 "CANC发送超时" 38 "CANC初始化故障" 37 "CANB发送超时" 36 "CANB初始化故障" 35 "CANA接收超时" 34 "CANA发送超时" 33 "CANA初始化故障" 32 "未定义" 31 "未定义" 30 "未定义" 29 "未定义" 28 "快速过流" 27 "快速过压" 26 "快速欠压" 25 "未定义" 24 "未定义" 23 "电机过载" 22 "变频器过载" 21 "电机温度传感器掉线" 20 "未定义" 19 "堵转故障" 18 "初始位置辨识失败" 17 "主动放电故障" 16 "未定义" 15 "电机过温" 14 "调谐失败" 13 "转速偏差过大" 12 "电机超速度" 11 "电流检测故障" 10 "母线欠压" 9 "控制器过热" 8 "输出缺相" 7 "编码器异常故障" 6 "快速限流故障" 5 "母线过压故障" 4 "控制器欠压故障（24V欠压）" 3 "驱动欠压故障" 2 "驱动过流故障" 1 "过流故障（常规相电流过流故障）" 0 "无故障" ;
+VAL_TABLE_ StatusEdriveSys 3 "故障" 2 "报警" 1 "运行中" 0 "停止" ;
+VAL_TABLE_ Status_Key 1 "低压上电ACC" 0 "低压下电Off" ;
+VAL_TABLE_ AlarmInverterTemp 1 "报警" 0 "无报警" ;
+VAL_TABLE_ FaultSensorPower 1 "有故障" 0 "无故障" ;
+VAL_TABLE_ Status_HV 3 "无效" 2 "电池组正常接入高压" 1 "电池组开始预充电" 0 "电池组断开高压" ;
+VAL_TABLE_ Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_TABLE_ Mode_Driving_Motor 26 "倒车模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_TABLE_ Status_PRND 8 "PARK 挡" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "空挡" 3 "Description for the value '0x3'" 2 "后退挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_TABLE_ Status_Creep_Hold 1 "有效" 0 "无效" ;
+VAL_TABLE_ Status_discharge_initiative 1 "放电" 0 "不进行放电" ;
+VAL_TABLE_ Status_shifting 1 "换挡进行中" 0 "换挡已经完成或未换挡" ;
+VAL_TABLE_ Status_HVRelay 1 "闭合" 0 "断开" ;
+VAL_TABLE_ DTCofTMS 41 "ON火故障" 40 "空调开关故障" 39 "中性点故障" 38 "电源电压欠压" 37 "电源电压过压" 36 "Description for the value '0x24'" 35 "Description for the value '0x23'" 34 "Description for the value '0x22'" 33 "Description for the value '0x21'" 32 "CAN通信异常" 31 "控制器内部超温" 30 "Description for the value '0x1E'" 29 "Description for the value '0x1D'" 28 "Description for the value '0x1C'" 27 "Description for the value '0x1B'" 26 "Description for the value '0x1A'" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "传感器3超温" 19 "传感器2超温" 18 "传感器1超温" 17 "传感器0超温" 16 "风机（组）4故障" 15 "风机（组）3故障" 14 "风机（组）2故障" 13 "风机（组）1故障" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "传感器3开路" 9 "传感器2开路" 8 "传感器1开路" 7 "传感器0开路" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "传感器3短路" 3 "传感器2短路" 2 "传感器1短路" 1 "传感器0短路" 0 "系统运行正常" ;
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ Abnormal_voltage_sensor : 0|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ Rsp_Cmd_Dischg_MarinRelay : 0|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ Rsp_Cmd_Chg_MarinRelay : 0|1@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Key : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_BMSHVRelay : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateUnsaturated : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateDriveVoltageSupply : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Key : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_BMSHVRelay : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateUnsaturated : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateDriveVoltageSupply : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Key : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_BMSHVRelay : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateUnsaturated : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateDriveVoltageSupply : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Key : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_BMSHVRelay : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateUnsaturated : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateDriveVoltageSupply : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Key : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_BMSHVRelay : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateUnsaturated : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateDriveVoltageSupply : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_Key : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_BMSHVRelay : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateUnsaturated : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ FaultGateDriveVoltageSupply : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Status_FastChargeCmd : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2 New_Message_59: 1 Vector__XXX
+ SG_ Module_Loss_Alarm : 7|1@0- (1,0) [0|1] "" Vector__XXX
+
+BO_ 1 New_Message_58: 8 Vector__XXX
+ SG_ New_Signal_451 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 0 New_Message_57: 8 Vector__XXX
+ SG_ New_Signal_444 : 1|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2365460865 Rsp_EVC_F: 8 EVC_F
+ SG_ CmdofSDMCU : 55|8@0+ (0.056,-7) [0|0] ""  VCU
+ SG_ CmdofSDASIC : 47|8@0+ (0.056,-7) [0|0] ""  VCU
+ SG_ CmdofSDPWM : 39|8@0+ (0.056,-7) [0|0] ""  VCU
+ SG_ StateofEVC : 23|8@0+ (1,0) [0|0] ""  VCU
+ SG_ FlowRateofA : 15|8@0+ (1,-125) [0|0] ""  VCU
+ SG_ FlowRateofB : 7|8@0+ (1,-125) [0|0] ""  VCU
+
+BO_ 2365461122 Rsp_EVC_R: 8 EVC_R
+ SG_ CmdofSDMCU : 55|8@0+ (0.056,-7) [0|0] ""  VCU
+ SG_ CmdofSDASIC : 47|8@0+ (0.056,-7) [0|0] ""  VCU
+ SG_ CmdofSDPWM : 39|8@0+ (0.056,-7) [0|0] ""  VCU
+ SG_ StateofEVC : 23|8@0+ (1,0) [0|0] ""  VCU
+ SG_ FlowRateofA : 15|8@0+ (1,-125) [0|0] ""  VCU
+ SG_ FlowRateofB : 7|8@0+ (1,-125) [0|0] ""  VCU
+
+BO_ 2365468934 Cmd_VCU_toEVC_F: 8 VCU
+ SG_ Cmd_flowdir : 16|2@1+ (1,0) [0|0] "dir"  EVC_F
+ SG_ Cmd_flow : 0|8@1+ (0.4,0) [0|0] "L/min"  EVC_F
+
+BO_ 2365469190 Cmd_VCU_toEVC_R: 8 VCU
+ SG_ Cmd_flowdir : 16|2@1+ (1,0) [0|0] "dir"  EVC_R
+ SG_ Cmd_flow : 0|8@1+ (0.4,0) [0|0] "L/min"  VCU,EVC_R
+
+BO_ 2565945072 Status_MCU_SCSRtoVCU03: 8 MCU_SCS_R
+ SG_ DTCSignalOfMCU : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ReqCutoffHVMCU : 16|8@1+ (1,0) [0|0] ""  VCU
+ SG_ DTCNumOfMCU : 48|8@1+ (1,0) [0|0] ""  VCU
+ SG_ StatusEdriveSys : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ VerCANofMCU : 56|8@1+ (0.01,0) [0|0] ""  VCU
+ SG_ VerProgMCU : 40|8@1+ (1,0) [0|0] ""  VCU
+
+BO_ 2565944304 Status_MCU_SCSFtoVCU03: 8 MCU_SCS_F
+ SG_ DTCSignalOfMCU : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ReqCutoffHVMCU : 16|8@1+ (1,0) [0|0] ""  VCU
+ SG_ DTCNumOfMCU : 48|8@1+ (1,0) [0|0] ""  VCU
+ SG_ StatusEdriveSys : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ VerCANofMCU : 56|8@1+ (0.01,0) [0|0] ""  VCU
+ SG_ VerProgMCU : 40|8@1+ (1,0) [0|0] ""  VCU
+
+BO_ 2565943536 Status_MCU_LifttoVCU03: 8 MCU_Lift
+ SG_ DTCSignalOfMCU : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ReqCutoffHVMCU : 16|8@1+ (1,0) [0|0] ""  VCU
+ SG_ DTCNumOfMCU : 48|8@1+ (1,0) [0|0] ""  VCU
+ SG_ StatusEdriveSys : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ VerCANofMCU : 56|8@1+ (0.01,0) [0|0] ""  VCU
+ SG_ VerProgMCU : 40|8@1+ (1,0) [0|0] ""  VCU
+
+BO_ 2565942000 Status_MCU_RRtoVCU03: 8 MCU_RR
+ SG_ DTCSignalOfMCU : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ReqCutoffHVMCU : 16|8@1+ (1,0) [0|0] ""  VCU
+ SG_ DTCNumOfMCU : 48|8@1+ (1,0) [0|0] ""  VCU
+ SG_ StatusEdriveSys : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ VerCANofMCU : 56|8@1+ (0.01,0) [0|0] ""  VCU
+ SG_ VerProgMCU : 40|8@1+ (1,0) [0|0] ""  VCU
+
+BO_ 2565941232 Status_MCU_RLtoVCU03: 8 MCU_RL
+ SG_ DTCSignalOfMCU : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ReqCutoffHVMCU : 16|8@1+ (1,0) [0|0] ""  VCU
+ SG_ DTCNumOfMCU : 48|8@1+ (1,0) [0|0] ""  VCU
+ SG_ StatusEdriveSys : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ VerCANofMCU : 56|8@1+ (0.01,0) [0|0] ""  VCU
+ SG_ VerProgMCU : 40|8@1+ (1,0) [0|0] ""  VCU
+
+BO_ 2565940464 Status_MCU_FRtoVCU03: 8 MCU_FR
+ SG_ DTCSignalOfMCU : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ ReqCutoffHVMCU : 16|8@1+ (1,0) [0|0] ""  VCU
+ SG_ DTCNumOfMCU : 48|8@1+ (1,0) [0|0] ""  VCU
+ SG_ StatusEdriveSys : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ VerCANofMCU : 56|8@1+ (0.01,0) [0|0] ""  VCU
+ SG_ VerProgMCU : 40|8@1+ (1,0) [0|0] ""  VCU
+
+BO_ 2565944816 Status_MCU_SCSRtoVCU02: 8 MCU_SCS_R
+ SG_ TempOfMCU : 56|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ TempOfMotor : 48|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ SpeedMotorActual : 16|16@1+ (1,-12000) [0|0] "rpm"  VCU
+ SG_ TorqueMotorActual : 32|16@1+ (0.1,-3000) [0|0] "NM"  VCU
+ SG_ TorqueMaxAvailMotor : 0|16@1+ (0.1,-3000) [0|0] ""  VCU
+
+BO_ 2565944048 Status_MCU_SCSFtoVCU02: 8 MCU_SCS_F
+ SG_ TempOfMCU : 56|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ TempOfMotor : 48|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ SpeedMotorActual : 16|16@1+ (1,-12000) [0|0] "rpm"  VCU
+ SG_ TorqueMotorActual : 32|16@1+ (0.1,-3000) [0|0] "NM"  VCU
+ SG_ TorqueMaxAvailMotor : 0|16@1+ (0.1,-3000) [0|0] ""  VCU
+
+BO_ 2565943280 Status_MCU_LifttoVCU02: 8 MCU_Lift
+ SG_ TempOfMCU : 56|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ TempOfMotor : 48|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ SpeedMotorActual : 16|16@1+ (1,-12000) [0|0] "rpm"  VCU
+ SG_ TorqueMotorActual : 32|16@1+ (0.1,-3000) [0|0] "NM"  VCU
+ SG_ TorqueMaxAvailMotor : 0|16@1+ (0.1,-3000) [0|0] ""  VCU
+
+BO_ 2565941744 Status_MCU_RRtoVCU02: 8 MCU_RR
+ SG_ TempOfMCU : 56|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ TempOfMotor : 48|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ SpeedMotorActual : 16|16@1+ (1,-12000) [0|0] "rpm"  VCU
+ SG_ TorqueMotorActual : 32|16@1+ (0.1,-3000) [0|0] "NM"  VCU
+ SG_ TorqueMaxAvailMotor : 0|16@1+ (0.1,-3000) [0|0] ""  VCU
+
+BO_ 2565940976 Status_MCU_RLtoVCU02: 8 MCU_RL
+ SG_ TempOfMCU : 56|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ TempOfMotor : 48|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ SpeedMotorActual : 16|16@1+ (1,-12000) [0|0] "rpm"  VCU
+ SG_ TorqueMotorActual : 32|16@1+ (0.1,-3000) [0|0] "NM"  VCU
+ SG_ TorqueMaxAvailMotor : 0|16@1+ (0.1,-3000) [0|0] ""  VCU
+
+BO_ 2565940208 Status_MCU_FRtoVCU02: 8 MCU_FR
+ SG_ TempOfMCU : 56|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ TempOfMotor : 48|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ SpeedMotorActual : 16|16@1+ (1,-12000) [0|0] "rpm"  VCU
+ SG_ TorqueMotorActual : 32|16@1+ (0.1,-3000) [0|0] "NM"  VCU
+ SG_ TorqueMaxAvailMotor : 0|16@1+ (0.1,-3000) [0|0] ""  VCU
+
+BO_ 2565944560 Status_MCU_SCSRtoVCU01: 8 MCU_SCS_R
+ SG_ Status_EN_Motor : 56|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Mode_Driving_Motor : 34|5@1+ (1,0) [0|0] ""  VCU
+ SG_ CurrentBus : 16|16@1+ (0.1,-1000) [0|0] "A"  VCU
+ SG_ VoltageBusbar : 0|16@1+ (0.1,0) [0|0] "V"  VCU
+ SG_ FaultSensorPower : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultPhaseCurrent : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorPosSensor : 42|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverTemp : 45|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverspeed : 47|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCUMode : 58|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCU : 57|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverterOverTemp : 46|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverter : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultCANBusOff : 52|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusUnderVoltage : 44|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverVoltage : 43|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverCurrent : 40|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Fault24VDC : 53|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmMotorTemp : 50|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmInverterTemp : 51|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmCPhaseOverCurrent : 49|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmAPhaseOverCurrent : 48|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2565943792 Status_MCU_SCSFoVCU01: 8 MCU_SCS_F
+ SG_ Status_EN_Motor : 56|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Mode_Driving_Motor : 34|5@1+ (1,0) [0|0] ""  VCU
+ SG_ CurrentBus : 16|16@1+ (0.1,-1000) [0|0] "A"  VCU
+ SG_ VoltageBusbar : 0|16@1+ (0.1,0) [0|0] "V"  VCU
+ SG_ FaultSensorPower : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultPhaseCurrent : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorPosSensor : 42|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverTemp : 45|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverspeed : 47|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCUMode : 58|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCU : 57|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverterOverTemp : 46|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverter : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultCANBusOff : 52|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusUnderVoltage : 44|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverVoltage : 43|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverCurrent : 40|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Fault24VDC : 53|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmMotorTemp : 50|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmInverterTemp : 51|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmCPhaseOverCurrent : 49|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmAPhaseOverCurrent : 48|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2565943024 Status_MCU_LifttoVCU01: 8 MCU_Lift
+ SG_ Status_EN_Motor : 56|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Mode_Driving_Motor : 34|5@1+ (1,0) [0|0] ""  VCU
+ SG_ CurrentBus : 16|16@1+ (0.1,-1000) [0|0] "A"  VCU
+ SG_ VoltageBusbar : 0|16@1+ (0.1,0) [0|0] "V"  VCU
+ SG_ FaultSensorPower : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultPhaseCurrent : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorPosSensor : 42|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverTemp : 45|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverspeed : 47|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCUMode : 58|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCU : 57|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverterOverTemp : 46|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverter : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultCANBusOff : 52|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusUnderVoltage : 44|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverVoltage : 43|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverCurrent : 40|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Fault24VDC : 53|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmMotorTemp : 50|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmInverterTemp : 51|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmCPhaseOverCurrent : 49|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmAPhaseOverCurrent : 48|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2565941488 Status_MCU_RRtoVCU01: 8 MCU_RR
+ SG_ Status_EN_Motor : 56|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Mode_Driving_Motor : 34|5@1+ (1,0) [0|0] ""  VCU
+ SG_ CurrentBus : 16|16@1+ (0.1,-1000) [0|0] "A"  VCU
+ SG_ VoltageBusbar : 0|16@1+ (0.1,0) [0|0] "V"  VCU
+ SG_ FaultSensorPower : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultPhaseCurrent : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorPosSensor : 42|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverTemp : 45|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverspeed : 47|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCUMode : 58|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCU : 57|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverterOverTemp : 46|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverter : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultCANBusOff : 52|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusUnderVoltage : 44|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverVoltage : 43|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverCurrent : 40|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Fault24VDC : 53|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmMotorTemp : 50|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmInverterTemp : 51|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmCPhaseOverCurrent : 48|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmAPhaseOverCurrent : 49|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2565940720 Status_MCU_RLtoVCU01: 8 MCU_RL
+ SG_ Status_EN_Motor : 56|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Mode_Driving_Motor : 34|5@1+ (1,0) [0|0] ""  VCU
+ SG_ CurrentBus : 16|16@1+ (0.1,-1000) [0|0] "A"  VCU
+ SG_ VoltageBusbar : 0|16@1+ (0.1,0) [0|0] "V"  VCU
+ SG_ FaultSensorPower : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultPhaseCurrent : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorPosSensor : 42|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverTemp : 45|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverspeed : 47|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCUMode : 58|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCU : 57|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverterOverTemp : 46|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverter : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultCANBusOff : 52|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusUnderVoltage : 44|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverVoltage : 43|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverCurrent : 40|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Fault24VDC : 53|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmMotorTemp : 50|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmInverterTemp : 51|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmCPhaseOverCurrent : 48|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmAPhaseOverCurrent : 49|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2565939952 Status_MCU_FRtoVCU01: 8 MCU_FR
+ SG_ Status_EN_Motor : 56|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Mode_Driving_Motor : 34|5@1+ (1,0) [0|0] ""  VCU
+ SG_ CurrentBus : 16|16@1+ (0.1,-1000) [0|0] "A"  VCU
+ SG_ VoltageBusbar : 0|16@1+ (0.1,0) [0|6553.5] "V"  VCU
+ SG_ FaultSensorPower : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultPhaseCurrent : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorPosSensor : 42|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverTemp : 45|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverspeed : 47|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCUMode : 58|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCU : 57|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverterOverTemp : 46|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverter : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultCANBusOff : 52|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusUnderVoltage : 44|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverVoltage : 43|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverCurrent : 40|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Fault24VDC : 53|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmMotorTemp : 50|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmInverterTemp : 51|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmCPhaseOverCurrent : 49|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmAPhaseOverCurrent : 48|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2364606887 Cmd_VCUtoMCU_SCSR: 8 VCU
+ SG_ MotorTargetSpeed : 16|16@1+ (1,-12000) [0|0] "rpm"  MCU_SCS_R
+ SG_ Cmd_ActiveFastDischarge : 53|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MotorTargetTorque : 0|16@1+ (0.1,-3000) [0|0] "NM"  MCU_SCS_R
+ SG_ Mode_Driving_Motor : 32|5@1+ (1,0) [0|0] ""  MCU_SCS_R
+ SG_ Status_PRND : 42|4@1+ (1,0) [0|0] ""  MCU_SCS_R
+ SG_ Status_EN_Motor : 37|1@1+ (1,0) [0|0] ""  MCU_SCS_R
+
+BO_ 2364606631 Cmd_VCUtoMCU_SCSF: 8 VCU
+ SG_ MotorTargetSpeed : 16|16@1+ (1,-12000) [0|0] "rpm"  MCU_SCS_F
+ SG_ Cmd_ActiveFastDischarge : 53|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MotorTargetTorque : 0|16@1+ (0.1,-3000) [0|0] "NM"  MCU_SCS_F
+ SG_ Mode_Driving_Motor : 32|5@1+ (1,0) [0|0] ""  MCU_SCS_F
+ SG_ Status_PRND : 42|4@1+ (1,0) [0|0] ""  MCU_SCS_F
+ SG_ Status_EN_Motor : 37|1@1+ (1,0) [0|0] ""  MCU_SCS_F
+
+BO_ 2364606375 Cmd_VCUtoMCU_Lift: 8 VCU
+ SG_ MotorTargetSpeed : 16|16@1+ (1,-12000) [0|0] "rpm"  MCU_Lift
+ SG_ MotorTargetTorque : 0|16@1+ (0.1,-3000) [0|0] "NM"  MCU_Lift
+ SG_ Mode_Driving_Motor : 32|5@1+ (1,0) [0|0] ""  MCU_Lift
+ SG_ Status_PRND : 42|4@1+ (1,0) [0|0] ""  MCU_Lift
+ SG_ Cmd_ActiveFastDischarge : 53|1@1+ (1,0) [0|0] ""  MCU_Lift
+ SG_ Status_EN_Motor : 37|1@1+ (1,0) [0|0] ""  MCU_Lift
+
+BO_ 2364605607 Cmd_VCUtoMCU_RL: 8 VCU
+ SG_ MotorTargetTorque : 0|16@1+ (0.1,-3000) [0|0] "NM"  MCU_RL
+ SG_ Mode_Driving_Motor : 32|5@1+ (1,0) [0|0] ""  MCU_RL
+ SG_ Status_PRND : 42|4@1+ (1,0) [0|0] ""  MCU_RL
+ SG_ Cmd_ActiveFastDischarge : 53|1@1+ (1,0) [0|0] ""  MCU_RL
+ SG_ Status_EN_Motor : 37|1@1+ (1,0) [0|0] ""  MCU_RL
+
+BO_ 2364605863 Cmd_VCUtoMCU_RR: 8 VCU
+ SG_ MotorTargetTorque : 0|16@1+ (0.1,-3000) [0|0] "NM"  MCU_RR
+ SG_ Mode_Driving_Motor : 32|5@1+ (1,0) [0|0] ""  MCU_RR
+ SG_ Status_PRND : 42|4@1+ (1,0) [0|0] ""  MCU_RR
+ SG_ Cmd_ActiveFastDischarge : 53|1@1+ (1,0) [0|0] ""  MCU_RR
+ SG_ Status_EN_Motor : 37|1@1+ (1,0) [0|0] ""  MCU_RR
+
+BO_ 2364605351 Cmd_VCUtoMCU_FR: 8 VCU
+ SG_ MotorTargetTorque : 0|16@1+ (0.1,-3000) [0|0] "NM"  MCU_FR
+ SG_ Mode_Driving_Motor : 32|5@1+ (1,0) [0|0] ""  MCU_FR
+ SG_ Status_PRND : 42|4@1+ (1,0) [0|0] ""  MCU_FR
+ SG_ Cmd_ActiveFastDischarge : 53|1@1+ (1,0) [0|0] ""  MCU_FR
+ SG_ Status_EN_Motor : 37|1@1+ (1,0) [0|0] ""  MCU_FR
+
+BO_ 2351034374 Info_CANWifi: 8 CAN_WIFI
+ SG_ AliveofCANWifi : 63|8@0+ (1,0) [0|255] ""  VCU
+ SG_ UpBackup_CANWifi : 16|1@0+ (1,0) [0|0] ""  VCU
+ SG_ Start_CANWifi : 26|1@0+ (1,0) [0|0] ""  VCU
+ SG_ ShutDown_CANWifi : 27|1@0+ (1,0) [0|0] ""  VCU
+ SG_ Reserved_CANWifi : 29|1@0+ (1,0) [0|0] ""  VCU
+ SG_ RemoteEN_CANWifi : 18|1@0+ (1,0) [0|0] ""  VCU
+ SG_ LocalUp_CANWifi : 19|1@0+ (1,0) [0|0] ""  VCU
+ SG_ HVTurnOn_CANWifi : 30|1@0+ (1,0) [0|0] ""  VCU
+ SG_ HVCutOff_CANWifi : 31|1@0+ (1,0) [0|0] ""  VCU
+ SG_ EmergStop_CANWifi : 24|1@0+ (1,0) [0|0] ""  VCU
+ SG_ DownBackup_CANWifi : 17|1@0+ (1,0) [0|0] ""  VCU
+ SG_ BrkEn_CANWifi : 28|1@0+ (1,0) [0|0] ""  VCU
+ SG_ Activate_CANWifi : 25|1@0+ (1,0) [0|0] ""  VCU
+ SG_ StepBackAnalog_CANWifi : 15|8@0+ (1,0) [0|254] ""  VCU
+ SG_ StrAmpAnalog_CANWifi : 7|8@0+ (1,0) [0|254] ""  VCU
+
+BO_ 2566853368 Info_ofDCDC2: 8 DCDC2_24
+ SG_ DTCofDCDC2_ShortCircuit : 61|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTCofDCDC2_OverTemp : 58|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTCofDCDC2_OutputUnderVol : 56|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTCofDCDC2_OutputOverVol : 57|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTCofDCDC2_InputUnderVol : 59|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTCofDCDC2_InputOverVol : 60|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTCofDCDC2_CommFault : 62|1@1+ (1,0) [0|1] ""  VCU
+ SG_ Status_DCDC2 : 63|1@1+ (1,0) [0|0] ""  VCU
+ SG_ TempOfDCDC2 : 48|8@1+ (1,-40) [-40|125] "℃"  VCU
+ SG_ VolInput_DCDC2 : 32|16@1+ (1,0) [0|613] "V"  VCU
+ SG_ VoltageofDCDC2 : 0|16@1+ (0.1,0) [0|20] "V"  VCU
+ SG_ CurrentofDCDC2 : 16|16@1+ (0.1,0) [0|200] "A"  VCU
+
+BO_ 2349308583 Cmd_VCU_toDCDC2: 8 VCU
+ SG_ Cmd_Start : 7|8@0+ (1,0) [0|0] ""  DCDC2_24
+
+BO_ 2566857967 Cmd_VCU_toDCDC1: 8 VCU
+ SG_ CmdOutputVol_VCU_toDCDC1 : 15|8@0+ (0.1,0) [0|0] "V"  DCDC1_12
+ SG_ CmdEn_VCU_toDCDC1 : 1|2@0+ (1,0) [0|0] ""  DCDC1_12
+
+BO_ 2566853623 Info2_DCDC1_toVCU: 8 DCDC1_12
+ SG_ CurrentInput_DCDC1 : 39|8@0+ (0.1,0) [0|0] "A"  VCU
+ SG_ VolInput_DCDC1 : 23|16@0+ (0.1,0) [0|613] "V"  VCU
+ SG_ VerSub_DCDC1Soft : 12|4@1+ (1,0) [0|15] ""  VCU
+ SG_ VerMain_DCDC1Soft : 8|4@1+ (1,0) [0|15] ""  VCU
+ SG_ VerMain_DCDC1Hard : 0|4@1+ (1,0) [0|15] ""  VCU
+ SG_ VerSub_DCDC1Hard : 4|4@1+ (1,0) [0|15] ""  VCU
+
+BO_ 2566853367 Info1_DCDC1_toVCU: 8 DCDC1_12
+ SG_ CurrentofDCDC1 : 23|16@0+ (0.1,0) [0|200] "A"  VCU
+ SG_ AliveofDCDC1 : 63|8@0+ (1,0) [0|255] ""  VCU
+ SG_ Status_DCDC1_UnderVol : 53|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_DCDC1_VolDown : 52|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_DCDC1_TempDown : 51|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_DCDC1 : 48|3@1+ (1,0) [0|0] ""  VCU
+ SG_ TempOfDCDC1 : 47|8@0+ (1,-40) [-40|125] "℃"  VCU
+ SG_ DTC7ofDCDC1_HardFault : 39|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTC0ofDCDC1_OverTemp : 38|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTC5ofDCDC1_ShortCircuit : 37|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTC4ofDCDC1_OverCurrent : 36|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTC3ofDCDC1_OutputOverVol : 35|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTC2ofDCDC1_OutputUnderVol : 34|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTC1ofDCDC1_InputOverVol : 33|1@1+ (1,0) [0|1] ""  VCU
+ SG_ DTC0ofDCDC1_InputUnderVol : 32|1@1+ (1,0) [0|1] ""  VCU
+ SG_ VoltageofDCDC1 : 7|16@0+ (0.1,0) [0|20] "V"  VCU
+
+BO_ 2499740148 CmdFd_BMS_toVCU: 8 BMS
+ SG_ NumofBMSModuleAvl : 15|8@0+ (1,0) [0|0] ""  VCU
+ SG_ Status_BMSModuleApplied : 7|8@0+ (1,0) [0|0] ""  VCU
+ SG_ Status_BMSModuleAvl : 23|8@0+ (1,0) [0|0] ""  VCU
+
+BO_ 2432631028 CmdRqInfo_VCUtoBMS1: 8 VCU
+ SG_ VISP_VehFASteerAngleRemADDemand : 16|16@1+ (1,-450) [0|0] "" Vector__XXX
+ SG_ SteerAnglActualF : 48|16@1+ (1,-450) [0|0] "" Vector__XXX
+ SG_ SteerAnglDemandF : 32|16@1+ (1,-450) [0|0] "" Vector__XXX
+ SG_ ReqInfotoBMS1 : 7|8@0+ (1,0) [0|0] ""  BMS
+ SG_ ReqInfotoBMS2 : 15|8@0+ (1,0) [0|0] ""  BMS
+
+BO_ 2499740146 CmdRsp_BMS_toVCU: 8 BMS
+ SG_ Status_HVRelay_Neg : 2|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_HVRelay_Pos : 0|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_HVRelay_Pre : 3|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Status_PLCCom : 16|1@0+ (1,0) [0|0] ""  VCU
+ SG_ Status_MainChgRly : 1|1@0+ (1,0) [0|0] ""  VCU
+ SG_ Status_Charger : 8|1@0+ (1,0) [0|0] ""  VCU
+ SG_ Status_ChargePre : 10|1@0+ (1,0) [0|0] ""  VCU
+ SG_ Status_BMSIntrospect : 9|1@0+ (1,0) [0|0] ""  VCU
+
+BO_ 2432631026 Cmd_VCU_toBMS: 8 VCU
+ SG_ SteerAnglDemandR : 32|16@1+ (1,-450) [0|0] "" Vector__XXX
+ SG_ SteerAnglActualR : 48|16@1+ (1,-450) [0|0] "" Vector__XXX
+ SG_ Cmd_Dischg_MarinRelay : 0|1@0+ (1,0) [0|0] ""  BMS
+ SG_ Cmd_Chg_MarinRelay : 1|1@0+ (1,0) [0|0] ""  BMS
+
+BO_ 2499742195 Status_BMSAlarm_toVCU9: 8 BMS
+ SG_ Abnormal_voltage_sensor : 14|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderVol_Third_Cell : 49|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderVol_Third_Bms : 51|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderVol_Second_Cell : 33|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderVol_Second_BMS : 35|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderVol_First_Cell : 17|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderVol_First_BMS : 19|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderTemp_Third_Discharge : 55|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderTemp_Third_Charge : 53|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderTemp_Second_Discharge : 39|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderTemp_Second_Charge : 37|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderTemp_First_Discharge : 23|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderTemp_First_Charge : 21|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ UnderCap_First_BMS : 28|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverTemp_Third_Discharge : 54|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverTemp_Third_Charge : 52|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverTemp_Second_Discharge : 38|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverTemp_Second_Charge : 36|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverTemp_First_Discharge : 22|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverTemp_First_Charge : 20|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverCur_Third_Discharge : 56|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverCur_Third_Charge : 57|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverCur_First_Discharge : 24|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverCur_First_Charge : 25|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverCul_Second_Discharge : 40|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverCul_Second_Charge : 41|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ LowCap_Third_Bms : 60|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ LowCap_Second_Bms : 44|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ DiffVol_Third_Bms : 58|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ DiffVol_Second_Bms : 42|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ DiffVol_First_BMS : 26|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ DiffTemp_Third_Bms : 59|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ DiffTemp_Second_Bms : 43|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ DiffTemp_First_BMS : 27|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverVol_Third_Cell : 48|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverVol_Third_BMS : 50|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverVol_Second_Cell : 32|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverVol_Second_BMS : 34|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverVol_First_Cell : 16|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ OverVol_First_BMS : 18|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ Temperature_sensor_abnormality : 13|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ Module_Loss_Alarm : 12|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ insulation_third_BMS : 10|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ insulation_second_BMS : 9|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ insulation_first_BMS : 8|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ Alarm_third_BMU : 6|1@0- (1,0) [0|1] "" Vector__XXX
+ SG_ Alarm_second_BMU : 5|1@0+ (1,0) [0|1] ""  VCU
+ SG_ Alarm_First_BMU : 4|1@0+ (1,0) [0|1] ""  VCU
+ SG_ Flag_BMS_DischargeAllow : 1|1@0+ (1,0) [0|1] ""  VCU
+ SG_ Flag_BMS_Charge_RevAllow : 0|1@0+ (1,0) [0|1] ""  VCU
+
+BO_ 2499741939 Status_BMS_toVCU8: 8 BMS
+ SG_ StatusofSlvBMUCharRelay1 : 23|16@0+ (1,0) [0|0] ""  VCU
+ SG_ StatusofSlvBMUCharRelay2 : 39|16@0+ (1,0) [0|0] ""  VCU
+ SG_ StatusofSlvBMUDischarRelay2 : 7|16@0+ (1,0) [0|0] ""  VCU
+
+BO_ 2499741683 Status_BMS_toVCU7: 8 BMS
+ SG_ NumofSlvBMUOn : 55|16@0+ (1,0) [0|0] ""  VCU
+ SG_ StatusofSlvBMUDischarRelay1 : 39|16@0+ (1,0) [0|0] ""  VCU
+ SG_ StatusofSlvBMUOn1 : 23|16@0+ (1,0) [0|0] ""  VCU
+ SG_ StatusofSlvBMUOn2 : 7|16@0+ (1,0) [0|0] ""  VCU
+
+BO_ 2499741427 Status_BMS_toVCU6: 8 BMS
+ SG_ Status_BMUDI : 55|8@0+ (1,0) [0|0] ""  VCU
+ SG_ Status_BMUDO : 63|8@0+ (1,0) [0|0] ""  VCU
+ SG_ ResistInsulation : 7|16@0+ (1,0) [0|0] "kΩ"  VCU
+ SG_ RevHardofBMS : 23|16@0+ (1,0) [0|0] ""  VCU
+ SG_ RevSoftofBMS : 39|16@0+ (1,0) [0|0] ""  VCU
+
+BO_ 2499741171 Status_BMS_toVCU5: 8 BMS
+ SG_ CurrAllowMaxforCharge : 39|16@0+ (0.1,0) [0|0] "A"  VCU
+ SG_ CurrAllowMaxforDischarge : 55|16@0+ (0.1,0) [0|0] "A"  VCU
+ SG_ NumCycleofBMS : 7|16@0+ (1,0) [0|0] ""  VCU
+ SG_ VolReqforCharge : 23|16@0+ (0.1,0) [0|0] "V"  VCU
+
+BO_ 2499740915 Status_BMS_toVCU4: 8 BMS
+ SG_ TempDiffofBMS : 23|8@0- (1,0) [0|0] "℃"  VCU
+ SG_ TypeofBMS : 55|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SOHofBMS : 47|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMinTempCell : 15|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMinTempCell_BSU : 7|8@0+ (1,0) [0|0] ""  VCU
+ SG_ CapRatedofBMS : 31|16@0+ (1,0) [0|0] "AH"  VCU
+
+BO_ 2499740659 Status_BMS_toVCU3: 8 BMS
+ SG_ VoltageDiffofBMS : 7|16@0+ (0.1,0) [0|0] "mv"  VCU
+ SG_ TempMaxofCell : 23|8@0- (1,0) [0|0] "℃"  VCU
+ SG_ SerialNumofMinTempCell_BMU : 63|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMaxTempCell_BSU : 39|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMaxTempCell_BMU : 31|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMaxTempCell : 47|8@0+ (1,0) [0|0] ""  VCU
+
+BO_ 2499740403 Status_BMS_toVCU2: 8 BMS
+ SG_ VoltageMinofCell : 31|16@0+ (1,0) [0|0] "mv"  VCU
+ SG_ SerialNumofMinVolCell_BSU : 55|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMinVolCell_BMU : 47|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMinVolCell : 63|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMaxVolCell_BSU : 15|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMaxVolCell_BMU : 7|8@0+ (1,0) [0|0] ""  VCU
+ SG_ SerialNumofMaxVolCell : 23|8@0+ (1,0) [0|0] ""  VCU
+
+BO_ 2499740147 Status_BMS_toVCU1: 8 BMS
+ SG_ SOCofBMS : 39|8@0+ (0.4,0) [0|0] ""  VCU
+ SG_ CurrentofBMS : 23|16@0- (0.1,0) [0|0] "A"  VCU
+ SG_ VoltageMaxofCell : 47|16@0+ (1,0) [0|0] "mv"  VCU
+ SG_ VoltageofBMS : 7|16@0+ (0.1,0) [0|0] "V"  VCU
+
+BO_ 2432631027 CmdRqInfo_VCUtoBMS0: 8 VCU
+ SG_ DirVehSpeed : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ TorqueRawCmd : 32|16@1+ (1,-2000) [0|0] "NM" Vector__XXX
+ SG_ SpeedVehicleActual : 48|16@1+ (0.01,0) [0|0] "Km/h" Vector__XXX
+ SG_ ReqInfotoBMS1 : 7|8@0+ (1,0) [0|0] ""  BMS
+ SG_ ReqInfotoBMS2 : 15|8@0+ (1,0) [0|0] ""  BMS
+
+BO_ 2565939696 Status_MCU_FLtoVCU03: 8 MCU_FL
+ SG_ ReqCutoffHVMCU : 16|8@1+ (1,0) [0|0] ""  VCU
+ SG_ DTCNumOfMCU : 48|8@1+ (1,0) [0|0] ""  VCU
+ SG_ DTCSignalOfMCU : 8|8@1+ (1,0) [0|0] ""  VCU
+ SG_ StatusEdriveSys : 0|8@1+ (1,0) [0|0] ""  VCU
+ SG_ VerCANofMCU : 56|8@1+ (0.01,0) [0|0] ""  VCU
+ SG_ VerProgMCU : 40|8@1+ (1,0) [0|0] ""  VCU
+
+BO_ 2565939440 Status_MCU_FLtoVCU02: 8 MCU_FL
+ SG_ TempOfMCU : 56|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ TempOfMotor : 48|8@1+ (1,-40) [0|0] "℃"  VCU
+ SG_ SpeedMotorActual : 16|16@1+ (1,-12000) [0|0] "rpm"  VCU
+ SG_ TorqueMotorActual : 32|16@1+ (0.1,-3000) [0|0] "NM"  VCU
+ SG_ TorqueMaxAvailMotor : 0|16@1+ (0.1,-3000) [0|0] "NM"  VCU
+
+BO_ 2565939184 Status_MCU_FLtoVCU01: 8 MCU_FL
+ SG_ Status_EN_Motor : 56|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Mode_Driving_Motor : 34|5@1+ (1,0) [0|0] ""  VCU
+ SG_ CurrentBus : 16|16@1+ (0.1,-1000) [0|0] "A"  VCU
+ SG_ VoltageBusbar : 0|16@1+ (0.1,0) [0|0] "V"  VCU
+ SG_ FaultSensorPower : 39|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultPhaseCurrent : 32|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorPosSensor : 42|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverTemp : 45|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMotorOverspeed : 47|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCUMode : 58|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultMCU : 57|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverterOverTemp : 46|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultInverter : 33|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultCANBusOff : 52|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusUnderVoltage : 44|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverVoltage : 43|1@1+ (1,0) [0|0] ""  VCU
+ SG_ FaultBusOverCurrent : 40|1@1+ (1,0) [0|0] ""  VCU
+ SG_ Fault24VDC : 53|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmMotorTemp : 50|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmInverterTemp : 51|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmCPhaseOverCurrent : 49|1@1+ (1,0) [0|0] ""  VCU
+ SG_ AlarmAPhaseOverCurrent : 48|1@1+ (1,0) [0|1] ""  VCU
+
+BO_ 2364605095 Cmd_VCUtoMCU_FL: 8 VCU
+ SG_ MotorTargetTorque : 0|16@1+ (0.1,-3000) [0|0] "NM"  MCU_FL
+ SG_ Mode_Driving_Motor : 32|5@1+ (1,0) [0|0] ""  MCU_FL
+ SG_ Status_PRND : 42|4@1+ (1,0) [0|0] ""  MCU_FL
+ SG_ Cmd_ActiveFastDischarge : 53|1@1+ (1,0) [0|0] ""  MCU_FL
+ SG_ Status_EN_Motor : 37|1@1+ (1,0) [0|0] ""  MCU_FL
+
+BO_ 2677603844 DTCofTMS: 8 TMS_F
+ SG_ DTCSignalOfTMS : 7|8@0+ (1,0) [0|0] ""  VCU
+
+BO_ 2677603843 FanSpeed: 8 TMS_F
+ SG_ FanSpeed4 : 31|8@0+ (1,0) [0|0] "rpm"  VCU
+ SG_ FanSpeed3 : 23|8@0+ (1,0) [0|0] "rpm"  VCU
+ SG_ FanSpeed2 : 15|8@0+ (1,0) [0|0] "rpm"  VCU
+ SG_ FanSpeed1 : 7|8@0+ (1,0) [0|0] "rpm"  VCU
+
+BO_ 2677603842 TempOfTMS: 8 TMS_F
+ SG_ TempOfTMS : 32|16@1+ (1,0) [0|0] "℃"  VCU
+
+BO_ 2677603841 TempOfSenor: 8 TMS_F
+ SG_ TempOfSensor3 : 48|16@1+ (0.1,0) [0|0] "℃"  VCU
+ SG_ TempOfSensor2 : 32|16@1+ (0.1,0) [0|0] "℃"  VCU
+ SG_ TempOfSensor1 : 16|16@1+ (0.1,0) [0|0] "℃"  VCU
+ SG_ TempOfSensor0 : 0|16@1+ (0.1,0) [0|0] "℃"  VCU
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 2565944560 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2565943792 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2565943024 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2565941488 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2565940720 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2565939952 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2364606887 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2364606631 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2364606375 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2364605607 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2364605863 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2364605351 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2351034374 StrAmpAnalog_CANWifi "左转右转模拟量 0～127～254（0x00～0x7F～0xFE）";
+CM_ SG_ 2499740148 Status_BMSModuleApplied "0 为未投入，1 为投入
+BIT0 对应电池柜 1
+BIT3 对应电池柜 4";
+CM_ SG_ 2499740148 Status_BMSModuleAvl "0 为未投入，1 为投入
+BIT0 对应电池柜 1
+BIT3 对应电池柜 4";
+CM_ BO_ 2432631028 "VCU获取应用信息";
+CM_ SG_ 2499742195 Alarm_second_BMU "0 单体过压三级报警
+1 单体欠压三级报警
+2 总电压过压三级报警
+3 总电压欠压三级报警
+4 充电高温三级报警
+5 充电低温三级报警
+6 放电高温三级报警
+7 放电低温三级报警
+8 放电过流三级报警
+9 充电过流三级报警
+10 压差三级报警
+11 温差三级报警
+12 低容量三级报警
+13 保留
+14 保留
+15 保留";
+CM_ SG_ 2499742195 Alarm_First_BMU "0 单体过压二级报警
+1 单体欠压二级报警
+2 总电压过压二级报警
+3 总电压欠压二级报警
+4 充电高温二级报警
+5 充电低温二级报警
+6 放电高温二级报警
+7 放电低温二级报警
+8 放电过流二级报警
+9 充电过流二级报警
+10 压差二级报警
+11 温差二级报警
+12 低容量二级报警
+13 保留
+14 保留
+15 保留";
+CM_ SG_ 2499742195 Flag_BMS_DischargeAllow "0 单体过压一级报警
+1 单体欠压一级报警
+2 总电压过压一级报警
+3 总电压欠压一级报警
+4 充电高温一级报警
+5 充电低温一级报警
+6 放电高温一级报警
+7 放电低温一级报警
+8 放电过流一级报警BMS 通讯协议（CAN 接口） 广东松湖动力技术有限公司
+9 充电过流一级报警
+10 压差一级报警
+11 温差一级报警
+12 低容量一级报警
+13 保留
+14 保留
+15 保留";
+CM_ SG_ 2499742195 Flag_BMS_Charge_RevAllow "0 充电允许状态位
+1 放电允许状态位
+2 保留
+3 保留
+4 BMU 一级报警
+5 BMU 二级报警
+6 BMU 三级报警
+7 保留
+8 绝缘一级报警
+9 绝缘二级报警
+10 绝缘三级报警
+11 保留
+12 模块丢失报警
+13 温度传感器异常
+14 电压传感器异常
+15 保留";
+CM_ SG_ 2499741939 StatusofSlvBMUCharRelay1 "0 未吸合，1 吸合;
+BIT0 对应 BMU1
+BIT15 对应 BMU16";
+CM_ SG_ 2499741939 StatusofSlvBMUCharRelay2 "0 未吸合，1 吸合;
+BIT0 对应 BMU17
+BIT3 对应 BMU20
+其他位保留";
+CM_ SG_ 2499741939 StatusofSlvBMUDischarRelay2 "0 未吸合，1 吸合;
+BIT0 对应 BMU17
+BIT3 对应 BMU20
+其他位保留";
+CM_ SG_ 2499741683 StatusofSlvBMUDischarRelay1 "0 未吸合，1 吸合;
+BIT0 对应 BMU1
+BIT15 对应 BMU16";
+CM_ SG_ 2499741683 StatusofSlvBMUOn1 "0 未通讯上，1 通讯上；
+BIT0 对应 BMU1
+BIT15 对应 BMU16";
+CM_ SG_ 2499741683 StatusofSlvBMUOn2 "0 未通讯上，1 通讯上；
+BIT0 对应 BMU17
+BIT3 对应 BMU20
+其他位保留";
+CM_ SG_ 2499740147 CurrentofBMS "充电为负 放电为正";
+CM_ SG_ 2565939184 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ SG_ 2364605095 Status_EN_Motor "1.整车控制器使能信号给出条件： (主继电器吸合&&挂前进挡)||(主继电器吸合&&挂倒挡)
+
+2.当 BMS 请求断开电机高压回路的时候，整车控制器及时发送电机系统禁止命令，并清除力矩命令(在高压回路断开之前，停止电机系统)";
+CM_ BO_ 2677603844 "故障码";
+CM_ BO_ 2677603843 "风机转速状态";
+CM_ BO_ 2677603842 "控制器内部温度";
+CM_ BO_ 2677603841 "4路传感器温度";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","not_used","not_used","not_used","not_used","Cyclic","not_used","IfActive","NoMsgSendType";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "DBName" "_________csVehicle_Mule_HSCAN2";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_ "DBName" "_________csVehicle_Mule_HSCAN2";
+BA_ "GenMsgCycleTime" BO_ 2365468934 100;
+BA_ "GenMsgCycleTime" BO_ 2365469190 100;
+BA_ "GenMsgCycleTime" BO_ 2565945072 100;
+BA_ "GenMsgCycleTime" BO_ 2565944304 100;
+BA_ "GenMsgCycleTime" BO_ 2565943536 100;
+BA_ "GenMsgCycleTime" BO_ 2565942000 100;
+BA_ "GenMsgCycleTime" BO_ 2565941232 100;
+BA_ "GenMsgCycleTime" BO_ 2565940464 100;
+BA_ "GenMsgCycleTime" BO_ 2565944816 100;
+BA_ "GenMsgCycleTime" BO_ 2565944048 100;
+BA_ "GenMsgCycleTime" BO_ 2565943280 100;
+BA_ "GenMsgCycleTime" BO_ 2565941744 100;
+BA_ "GenMsgCycleTime" BO_ 2565940976 100;
+BA_ "GenMsgCycleTime" BO_ 2565940208 100;
+BA_ "GenMsgCycleTime" BO_ 2565944560 100;
+BA_ "GenMsgCycleTime" BO_ 2565943792 100;
+BA_ "GenMsgCycleTime" BO_ 2565943024 100;
+BA_ "GenMsgCycleTime" BO_ 2565941488 100;
+BA_ "GenMsgCycleTime" BO_ 2565940720 100;
+BA_ "GenMsgCycleTime" BO_ 2565939952 100;
+BA_ "GenMsgCycleTime" BO_ 2364606887 10;
+BA_ "GenMsgCycleTime" BO_ 2364606631 10;
+BA_ "GenMsgCycleTime" BO_ 2364606375 10;
+BA_ "GenMsgCycleTime" BO_ 2364605607 10;
+BA_ "GenMsgCycleTime" BO_ 2364605863 10;
+BA_ "GenMsgCycleTime" BO_ 2364605351 10;
+BA_ "GenMsgCycleTime" BO_ 2566853368 500;
+BA_ "GenMsgCycleTime" BO_ 2349308583 100;
+BA_ "GenMsgCycleTime" BO_ 2566857967 500;
+BA_ "GenMsgCycleTime" BO_ 2566853623 500;
+BA_ "GenMsgCycleTime" BO_ 2566853367 500;
+BA_ "GenMsgCycleTime" BO_ 2499740148 100;
+BA_ "GenMsgCycleTime" BO_ 2432631028 100;
+BA_ "GenMsgCycleTime" BO_ 2499740146 100;
+BA_ "GenMsgCycleTime" BO_ 2432631026 100;
+BA_ "GenMsgCycleTime" BO_ 2499742195 100;
+BA_ "GenMsgCycleTime" BO_ 2499741939 100;
+BA_ "GenMsgCycleTime" BO_ 2499741683 100;
+BA_ "GenMsgCycleTime" BO_ 2499741427 100;
+BA_ "GenMsgCycleTime" BO_ 2499741171 100;
+BA_ "GenMsgCycleTime" BO_ 2499740915 100;
+BA_ "GenMsgCycleTime" BO_ 2499740659 100;
+BA_ "GenMsgCycleTime" BO_ 2499740403 100;
+BA_ "GenMsgCycleTime" BO_ 2499740147 100;
+BA_ "GenMsgCycleTime" BO_ 2432631027 100;
+BA_ "GenMsgCycleTime" BO_ 2565939696 100;
+BA_ "GenMsgCycleTime" BO_ 2565939440 100;
+BA_ "GenMsgCycleTime" BO_ 2565939184 100;
+BA_ "GenMsgCycleTime" BO_ 2364605095 10;
+BA_ "GenMsgCycleTime" BO_ 2677603844 500;
+BA_ "GenMsgCycleTime" BO_ 2677603843 500;
+BA_ "GenMsgCycleTime" BO_ 2677603842 500;
+BA_ "GenMsgCycleTime" BO_ 2677603841 500;
+VAL_ 3221225472 Rsp_Cmd_Dischg_MarinRelay 1 "闭合" 0 "断开" ;
+VAL_ 3221225472 Rsp_Cmd_Chg_MarinRelay 1 "闭合" 0 "断开" ;
+VAL_ 3221225472 Status_Key 1 "低压上电ACC" 0 "低压下电Off" ;
+VAL_ 3221225472 Status_BMSHVRelay 1 "闭合" 0 "断开" ;
+VAL_ 3221225472 FaultGateUnsaturated 1 "有故障" 0 "无故障" ;
+VAL_ 3221225472 FaultGateDriveVoltageSupply 1 "有故障" 0 "无故障" ;
+VAL_ 3221225472 Status_FastChargeCmd 1 "换挡进行中" 0 "换挡已经完成或未换挡" ;
+VAL_ 2365460865 StateofEVC 14 "故障" 3 "浮动位" 2 "A口" 1 "B口" 0 "中位" ;
+VAL_ 2365461122 StateofEVC 14 "故障" 3 "浮动位" 2 "A口" 1 "B口" 0 "中位" ;
+VAL_ 2365468934 Cmd_flowdir 2 "举升" 1 "下降" 0 "None" ;
+VAL_ 2365469190 Cmd_flowdir 2 "举升" 1 "下降" 0 "None" ;
+VAL_ 2565945072 DTCSignalOfMCU 54 "Description for the value '0x36'" 53 "Description for the value '0x35'" 52 "Description for the value '0x34'" 51 "Description for the value '0x33'" 50 "Description for the value '0x32'" 49 "Description for the value '0x31'" 48 "Description for the value '0x30'" 47 "Description for the value '0x2F'" 46 "Description for the value '0x2E'" 45 "未定义" 44 "未定义" 43 "未定义" 42 "CANC接收超时" 41 "CANB接收超时" 40 "EEPROM故障" 39 "CANC发送超时" 38 "CANC初始化故障" 37 "CANB发送超时" 36 "CANB初始化故障" 35 "CANA接收超时" 34 "CANA发送超时" 33 "CANA初始化故障" 32 "未定义" 31 "未定义" 30 "未定义" 29 "未定义" 28 "快速过流" 27 "快速过压" 26 "快速欠压" 25 "未定义" 24 "未定义" 23 "电机过载" 22 "变频器过载" 21 "电机温度传感器掉线" 20 "未定义" 19 "堵转故障" 18 "初始位置辨识失败" 17 "主动放电故障" 16 "未定义" 15 "电机过温" 14 "调谐失败" 13 "转速偏差过大" 12 "电机超速度" 11 "电流检测故障" 10 "母线欠压" 9 "控制器过热" 8 "输出缺相" 7 "编码器异常故障" 6 "快速限流故障" 5 "母线过压故障" 4 "控制器欠压故障（24V欠压）" 3 "驱动欠压故障" 2 "驱动过流故障" 1 "过流故障（常规相电流过流故障）" 0 "无故障" ;
+VAL_ 2565945072 ReqCutoffHVMCU 170 "有请求" 85 "无请求" ;
+VAL_ 2565945072 StatusEdriveSys 3 "故障" 2 "报警" 1 "运行中" 0 "停止" ;
+VAL_ 2565944304 DTCSignalOfMCU 54 "Description for the value '0x36'" 53 "Description for the value '0x35'" 52 "Description for the value '0x34'" 51 "Description for the value '0x33'" 50 "Description for the value '0x32'" 49 "Description for the value '0x31'" 48 "Description for the value '0x30'" 47 "Description for the value '0x2F'" 46 "Description for the value '0x2E'" 45 "未定义" 44 "未定义" 43 "未定义" 42 "CANC接收超时" 41 "CANB接收超时" 40 "EEPROM故障" 39 "CANC发送超时" 38 "CANC初始化故障" 37 "CANB发送超时" 36 "CANB初始化故障" 35 "CANA接收超时" 34 "CANA发送超时" 33 "CANA初始化故障" 32 "未定义" 31 "未定义" 30 "未定义" 29 "未定义" 28 "快速过流" 27 "快速过压" 26 "快速欠压" 25 "未定义" 24 "未定义" 23 "电机过载" 22 "变频器过载" 21 "电机温度传感器掉线" 20 "未定义" 19 "堵转故障" 18 "初始位置辨识失败" 17 "主动放电故障" 16 "未定义" 15 "电机过温" 14 "调谐失败" 13 "转速偏差过大" 12 "电机超速度" 11 "电流检测故障" 10 "母线欠压" 9 "控制器过热" 8 "输出缺相" 7 "编码器异常故障" 6 "快速限流故障" 5 "母线过压故障" 4 "控制器欠压故障（24V欠压）" 3 "驱动欠压故障" 2 "驱动过流故障" 1 "过流故障（常规相电流过流故障）" 0 "无故障" ;
+VAL_ 2565944304 ReqCutoffHVMCU 170 "有请求" 85 "无请求" ;
+VAL_ 2565944304 StatusEdriveSys 3 "故障" 2 "报警" 1 "运行中" 0 "停止" ;
+VAL_ 2565943536 DTCSignalOfMCU 54 "Description for the value '0x36'" 53 "Description for the value '0x35'" 52 "Description for the value '0x34'" 51 "Description for the value '0x33'" 50 "Description for the value '0x32'" 49 "Description for the value '0x31'" 48 "Description for the value '0x30'" 47 "Description for the value '0x2F'" 46 "Description for the value '0x2E'" 45 "未定义" 44 "未定义" 43 "未定义" 42 "CANC接收超时" 41 "CANB接收超时" 40 "EEPROM故障" 39 "CANC发送超时" 38 "CANC初始化故障" 37 "CANB发送超时" 36 "CANB初始化故障" 35 "CANA接收超时" 34 "CANA发送超时" 33 "CANA初始化故障" 32 "未定义" 31 "未定义" 30 "未定义" 29 "未定义" 28 "快速过流" 27 "快速过压" 26 "快速欠压" 25 "未定义" 24 "未定义" 23 "电机过载" 22 "变频器过载" 21 "电机温度传感器掉线" 20 "未定义" 19 "堵转故障" 18 "初始位置辨识失败" 17 "主动放电故障" 16 "未定义" 15 "电机过温" 14 "调谐失败" 13 "转速偏差过大" 12 "电机超速度" 11 "电流检测故障" 10 "母线欠压" 9 "控制器过热" 8 "输出缺相" 7 "编码器异常故障" 6 "快速限流故障" 5 "母线过压故障" 4 "控制器欠压故障（24V欠压）" 3 "驱动欠压故障" 2 "驱动过流故障" 1 "过流故障（常规相电流过流故障）" 0 "无故障" ;
+VAL_ 2565943536 ReqCutoffHVMCU 170 "有请求" 85 "无请求" ;
+VAL_ 2565943536 StatusEdriveSys 3 "故障" 2 "报警" 1 "运行中" 0 "停止" ;
+VAL_ 2565942000 DTCSignalOfMCU 54 "Description for the value '0x36'" 53 "Description for the value '0x35'" 52 "Description for the value '0x34'" 51 "Description for the value '0x33'" 50 "Description for the value '0x32'" 49 "Description for the value '0x31'" 48 "Description for the value '0x30'" 47 "Description for the value '0x2F'" 46 "Description for the value '0x2E'" 45 "未定义" 44 "未定义" 43 "未定义" 42 "CANC接收超时" 41 "CANB接收超时" 40 "EEPROM故障" 39 "CANC发送超时" 38 "CANC初始化故障" 37 "CANB发送超时" 36 "CANB初始化故障" 35 "CANA接收超时" 34 "CANA发送超时" 33 "CANA初始化故障" 32 "未定义" 31 "未定义" 30 "未定义" 29 "未定义" 28 "快速过流" 27 "快速过压" 26 "快速欠压" 25 "未定义" 24 "未定义" 23 "电机过载" 22 "变频器过载" 21 "电机温度传感器掉线" 20 "未定义" 19 "堵转故障" 18 "初始位置辨识失败" 17 "主动放电故障" 16 "未定义" 15 "电机过温" 14 "调谐失败" 13 "转速偏差过大" 12 "电机超速度" 11 "电流检测故障" 10 "母线欠压" 9 "控制器过热" 8 "输出缺相" 7 "编码器异常故障" 6 "快速限流故障" 5 "母线过压故障" 4 "控制器欠压故障（24V欠压）" 3 "驱动欠压故障" 2 "驱动过流故障" 1 "过流故障（常规相电流过流故障）" 0 "无故障" ;
+VAL_ 2565942000 ReqCutoffHVMCU 170 "有请求" 85 "无请求" ;
+VAL_ 2565942000 StatusEdriveSys 3 "故障" 2 "报警" 1 "运行中" 0 "停止" ;
+VAL_ 2565941232 DTCSignalOfMCU 54 "Description for the value '0x36'" 53 "Description for the value '0x35'" 52 "Description for the value '0x34'" 51 "Description for the value '0x33'" 50 "Description for the value '0x32'" 49 "Description for the value '0x31'" 48 "Description for the value '0x30'" 47 "Description for the value '0x2F'" 46 "Description for the value '0x2E'" 45 "未定义" 44 "未定义" 43 "未定义" 42 "CANC接收超时" 41 "CANB接收超时" 40 "EEPROM故障" 39 "CANC发送超时" 38 "CANC初始化故障" 37 "CANB发送超时" 36 "CANB初始化故障" 35 "CANA接收超时" 34 "CANA发送超时" 33 "CANA初始化故障" 32 "未定义" 31 "未定义" 30 "未定义" 29 "未定义" 28 "快速过流" 27 "快速过压" 26 "快速欠压" 25 "未定义" 24 "未定义" 23 "电机过载" 22 "变频器过载" 21 "电机温度传感器掉线" 20 "未定义" 19 "堵转故障" 18 "初始位置辨识失败" 17 "主动放电故障" 16 "未定义" 15 "电机过温" 14 "调谐失败" 13 "转速偏差过大" 12 "电机超速度" 11 "电流检测故障" 10 "母线欠压" 9 "控制器过热" 8 "输出缺相" 7 "编码器异常故障" 6 "快速限流故障" 5 "母线过压故障" 4 "控制器欠压故障（24V欠压）" 3 "驱动欠压故障" 2 "驱动过流故障" 1 "过流故障（常规相电流过流故障）" 0 "无故障" ;
+VAL_ 2565941232 ReqCutoffHVMCU 170 "有请求" 85 "无请求" ;
+VAL_ 2565941232 StatusEdriveSys 3 "故障" 2 "报警" 1 "运行中" 0 "停止" ;
+VAL_ 2565940464 DTCSignalOfMCU 54 "Description for the value '0x36'" 53 "Description for the value '0x35'" 52 "Description for the value '0x34'" 51 "Description for the value '0x33'" 50 "Description for the value '0x32'" 49 "Description for the value '0x31'" 48 "Description for the value '0x30'" 47 "Description for the value '0x2F'" 46 "Description for the value '0x2E'" 45 "未定义" 44 "未定义" 43 "未定义" 42 "CANC接收超时" 41 "CANB接收超时" 40 "EEPROM故障" 39 "CANC发送超时" 38 "CANC初始化故障" 37 "CANB发送超时" 36 "CANB初始化故障" 35 "CANA接收超时" 34 "CANA发送超时" 33 "CANA初始化故障" 32 "未定义" 31 "未定义" 30 "未定义" 29 "未定义" 28 "快速过流" 27 "快速过压" 26 "快速欠压" 25 "未定义" 24 "未定义" 23 "电机过载" 22 "变频器过载" 21 "电机温度传感器掉线" 20 "未定义" 19 "堵转故障" 18 "初始位置辨识失败" 17 "主动放电故障" 16 "未定义" 15 "电机过温" 14 "调谐失败" 13 "转速偏差过大" 12 "电机超速度" 11 "电流检测故障" 10 "母线欠压" 9 "控制器过热" 8 "输出缺相" 7 "编码器异常故障" 6 "快速限流故障" 5 "母线过压故障" 4 "控制器欠压故障（24V欠压）" 3 "驱动欠压故障" 2 "驱动过流故障" 1 "过流故障（常规相电流过流故障）" 0 "无故障" ;
+VAL_ 2565940464 ReqCutoffHVMCU 170 "有请求" 85 "无请求" ;
+VAL_ 2565940464 StatusEdriveSys 3 "故障" 2 "报警" 1 "运行中" 0 "停止" ;
+VAL_ 2565944560 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2565944560 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2565944560 FaultSensorPower 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultPhaseCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultMotorPosSensor 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultMotorOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultMotorOverspeed 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultMCUMode 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultMCU 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultInverterOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultInverter 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultCANBusOff 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultBusUnderVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultBusOverVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 FaultBusOverCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 Fault24VDC 1 "有故障" 0 "无故障" ;
+VAL_ 2565944560 AlarmMotorTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565944560 AlarmInverterTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565944560 AlarmCPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565944560 AlarmAPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565943792 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2565943792 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2565943792 FaultSensorPower 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultPhaseCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultMotorPosSensor 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultMotorOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultMotorOverspeed 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultMCUMode 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultMCU 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultInverterOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultInverter 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultCANBusOff 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultBusUnderVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultBusOverVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 FaultBusOverCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 Fault24VDC 1 "有故障" 0 "无故障" ;
+VAL_ 2565943792 AlarmMotorTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565943792 AlarmInverterTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565943792 AlarmCPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565943792 AlarmAPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565943024 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2565943024 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2565943024 FaultSensorPower 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultPhaseCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultMotorPosSensor 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultMotorOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultMotorOverspeed 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultMCUMode 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultMCU 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultInverterOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultInverter 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultCANBusOff 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultBusUnderVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultBusOverVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 FaultBusOverCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 Fault24VDC 1 "有故障" 0 "无故障" ;
+VAL_ 2565943024 AlarmMotorTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565943024 AlarmInverterTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565943024 AlarmCPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565943024 AlarmAPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565941488 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2565941488 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2565941488 FaultSensorPower 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultPhaseCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultMotorPosSensor 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultMotorOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultMotorOverspeed 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultMCUMode 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultMCU 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultInverterOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultInverter 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultCANBusOff 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultBusUnderVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultBusOverVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 FaultBusOverCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 Fault24VDC 1 "有故障" 0 "无故障" ;
+VAL_ 2565941488 AlarmMotorTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565941488 AlarmInverterTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565941488 AlarmCPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565941488 AlarmAPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565940720 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2565940720 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2565940720 FaultSensorPower 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultPhaseCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultMotorPosSensor 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultMotorOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultMotorOverspeed 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultMCUMode 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultMCU 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultInverterOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultInverter 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultCANBusOff 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultBusUnderVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultBusOverVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 FaultBusOverCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 Fault24VDC 1 "有故障" 0 "无故障" ;
+VAL_ 2565940720 AlarmMotorTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565940720 AlarmInverterTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565940720 AlarmCPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565940720 AlarmAPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565939952 Status_EN_Motor 1 "电机系统运行使能" 0 "电机系统运行禁止" ;
+VAL_ 2565939952 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2565939952 FaultSensorPower 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultPhaseCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultMotorPosSensor 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultMotorOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultMotorOverspeed 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultMCUMode 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultInverterOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultInverter 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultCANBusOff 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultBusUnderVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultBusOverVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 FaultBusOverCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 Fault24VDC 1 "有故障" 0 "无故障" ;
+VAL_ 2565939952 AlarmMotorTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565939952 AlarmInverterTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565939952 AlarmCPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565939952 AlarmAPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2364606887 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2364606887 Status_PRND 8 "PARK 挡" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "空挡" 3 "Description for the value '0x3'" 2 "右转_后退挡_顺时针" 1 "左转_前进挡_逆时针" 0 "Description for the value '0x0'" ;
+VAL_ 2364606887 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2364606631 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2364606631 Status_PRND 8 "PARK 挡" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "空挡" 3 "Description for the value '0x3'" 2 "右转_后退挡_顺时针" 1 "左转_前进挡_逆时针" 0 "Description for the value '0x0'" ;
+VAL_ 2364606631 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2364606375 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2364606375 Status_PRND 8 "PARK 挡" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "空挡" 3 "Description for the value '0x3'" 2 "后退挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_ 2364606375 Cmd_ActiveFastDischarge 1 "放电" 0 "不进行放电" ;
+VAL_ 2364606375 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2364605607 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2364605607 Status_PRND 8 "PARK 挡" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "空挡" 3 "Description for the value '0x3'" 2 "后退挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_ 2364605607 Cmd_ActiveFastDischarge 1 "放电" 0 "不进行放电" ;
+VAL_ 2364605607 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2364605863 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2364605863 Status_PRND 8 "PARK 挡" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "空挡" 3 "Description for the value '0x3'" 2 "后退挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_ 2364605863 Cmd_ActiveFastDischarge 1 "放电" 0 "不进行放电" ;
+VAL_ 2364605863 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2364605351 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2364605351 Status_PRND 8 "PARK 挡" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "空挡" 3 "Description for the value '0x3'" 2 "后退挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_ 2364605351 Cmd_ActiveFastDischarge 1 "放电" 0 "不进行放电" ;
+VAL_ 2364605351 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2351034374 UpBackup_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 Start_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 ShutDown_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 Reserved_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 RemoteEN_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 LocalUp_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 HVTurnOn_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 HVCutOff_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 EmergStop_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 DownBackup_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2351034374 BrkEn_CANWifi 1 "有动作或有效" 0 "无动作或无效" ;
+VAL_ 2566853368 DTCofDCDC2_ShortCircuit 1 "有故障" 0 "无故障" ;
+VAL_ 2566853368 DTCofDCDC2_OverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2566853368 DTCofDCDC2_OutputUnderVol 1 "有故障" 0 "无故障" ;
+VAL_ 2566853368 DTCofDCDC2_OutputOverVol 1 "有故障" 0 "无故障" ;
+VAL_ 2566853368 DTCofDCDC2_InputUnderVol 1 "有故障" 0 "无故障" ;
+VAL_ 2566853368 DTCofDCDC2_InputOverVol 1 "有故障" 0 "无故障" ;
+VAL_ 2566853368 DTCofDCDC2_CommFault 1 "有故障" 0 "无故障" ;
+VAL_ 2566853368 Status_DCDC2 1 "运行" 0 "停机" ;
+VAL_ 2349308583 Cmd_Start 170 "关闭" 85 "启动" ;
+VAL_ 2566857967 CmdEn_VCU_toDCDC1 2 "放电" 1 "使能" 0 "禁止" ;
+VAL_ 2566853367 Status_DCDC1 4 "放电完成" 3 "故障" 2 "放电" 1 "工作" 0 "停机" ;
+VAL_ 2566853367 DTC7ofDCDC1_HardFault 1 "有故障" 0 "无故障" ;
+VAL_ 2566853367 DTC0ofDCDC1_OverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2566853367 DTC5ofDCDC1_ShortCircuit 1 "有故障" 0 "无故障" ;
+VAL_ 2566853367 DTC4ofDCDC1_OverCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2566853367 DTC3ofDCDC1_OutputOverVol 1 "有故障" 0 "无故障" ;
+VAL_ 2566853367 DTC2ofDCDC1_OutputUnderVol 1 "有故障" 0 "无故障" ;
+VAL_ 2566853367 DTC1ofDCDC1_InputOverVol 1 "有故障" 0 "无故障" ;
+VAL_ 2566853367 DTC0ofDCDC1_InputUnderVol 1 "有故障" 0 "无故障" ;
+VAL_ 2432631028 ReqInfotoBMS1 2 "诊断服务？" ;
+VAL_ 2432631028 ReqInfotoBMS2 127 "诊断服务？" ;
+VAL_ 2499740146 Status_HVRelay_Neg 1 "闭合" 0 "断开" ;
+VAL_ 2499740146 Status_HVRelay_Pos 1 "闭合" 0 "断开" ;
+VAL_ 2499740146 Status_HVRelay_Pre 1 "闭合" 0 "断开" ;
+VAL_ 2499740146 Status_PLCCom 1 "在线" 0 "离线" ;
+VAL_ 2499740146 Status_MainChgRly 1 "闭合" 0 "断开" ;
+VAL_ 2499740146 Status_Charger 1 "已插入" 0 "未插入" ;
+VAL_ 2499740146 Status_ChargePre 1 "完成（上高压完成）" 0 "未完成" ;
+VAL_ 2499740146 Status_BMSIntrospect 1 " 1-完成且无故障（允许上高压）" 0 "0-未完成" ;
+VAL_ 2432631026 Cmd_Dischg_MarinRelay 1 "闭合" 0 "断开" ;
+VAL_ 2432631026 Cmd_Chg_MarinRelay 1 "闭合" 0 "断开" ;
+VAL_ 2499741939 StatusofSlvBMUCharRelay1 1 "闭合" 0 "断开" ;
+VAL_ 2499741939 StatusofSlvBMUCharRelay2 1 "闭合" 0 "断开" ;
+VAL_ 2499741939 StatusofSlvBMUDischarRelay2 1 "闭合" 0 "断开" ;
+VAL_ 2499740915 TypeofBMS 1 "三元" 0 "铁锂" ;
+VAL_ 2432631027 DirVehSpeed 1 "后退" 0 "前进" ;
+VAL_ 2432631027 ReqInfotoBMS1 2 "诊断服务？" ;
+VAL_ 2432631027 ReqInfotoBMS2 127 "诊断服务？" ;
+VAL_ 2565939696 ReqCutoffHVMCU 170 "有请求" 85 "无请求" ;
+VAL_ 2565939696 DTCSignalOfMCU 54 "Description for the value '0x36'" 53 "Description for the value '0x35'" 52 "Description for the value '0x34'" 51 "Description for the value '0x33'" 50 "Description for the value '0x32'" 49 "Description for the value '0x31'" 48 "Description for the value '0x30'" 47 "Description for the value '0x2F'" 46 "Description for the value '0x2E'" 45 "未定义" 44 "未定义" 43 "未定义" 42 "CANC接收超时" 41 "CANB接收超时" 40 "EEPROM故障" 39 "CANC发送超时" 38 "CANC初始化故障" 37 "CANB发送超时" 36 "CANB初始化故障" 35 "CANA接收超时" 34 "CANA发送超时" 33 "CANA初始化故障" 32 "未定义" 31 "未定义" 30 "未定义" 29 "未定义" 28 "快速过流" 27 "快速过压" 26 "快速欠压" 25 "未定义" 24 "未定义" 23 "电机过载" 22 "变频器过载" 21 "电机温度传感器掉线" 20 "未定义" 19 "堵转故障" 18 "初始位置辨识失败" 17 "主动放电故障" 16 "未定义" 15 "电机过温" 14 "调谐失败" 13 "转速偏差过大" 12 "电机超速度" 11 "电流检测故障" 10 "母线欠压" 9 "控制器过热" 8 "输出缺相" 7 "编码器异常故障" 6 "快速限流故障" 5 "母线过压故障" 4 "控制器欠压故障（24V欠压）" 3 "驱动欠压故障" 2 "驱动过流故障" 1 "过流故障（常规相电流过流故障）" 0 "无故障" ;
+VAL_ 2565939696 StatusEdriveSys 3 "故障" 2 "报警" 1 "运行中" 0 "停止" ;
+VAL_ 2565939184 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2565939184 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2565939184 FaultSensorPower 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultPhaseCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultMotorPosSensor 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultMotorOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultMotorOverspeed 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultMCUMode 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultMCU 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultInverterOverTemp 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultInverter 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultCANBusOff 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultBusUnderVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultBusOverVoltage 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 FaultBusOverCurrent 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 Fault24VDC 1 "有故障" 0 "无故障" ;
+VAL_ 2565939184 AlarmMotorTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565939184 AlarmInverterTemp 1 "报警" 0 "无报警" ;
+VAL_ 2565939184 AlarmCPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2565939184 AlarmAPhaseOverCurrent 1 "报警" 0 "无报警" ;
+VAL_ 2364605095 Mode_Driving_Motor 26 "转矩模式" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "Description for the value '0x14'" 19 "Description for the value '0x13'" 18 "Description for the value '0x12'" 17 "前进模式" 16 "Description for the value '0x10'" 15 "Description for the value '0xF'" 14 "Description for the value '0xE'" 13 "Description for the value '0xD'" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "Description for the value '0xA'" 9 "制动模式" 8 "Description for the value '0x8'" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "Description for the value '0x4'" 3 "转速模式" 2 "零转矩模式" 1 "错误模式" 0 "关闭" ;
+VAL_ 2364605095 Status_PRND 8 "PARK 挡" 7 "Description for the value '0x7'" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "空挡" 3 "Description for the value '0x3'" 2 "后退挡" 1 "前进挡" 0 "Description for the value '0x0'" ;
+VAL_ 2364605095 Status_EN_Motor 1 "电机
+
+系统运
+
+行使能" 0 "电机
+
+系统运
+
+行禁止" ;
+VAL_ 2677603844 DTCSignalOfTMS 41 "ON火故障" 40 "空调开关故障" 39 "中性点故障" 38 "电源电压欠压" 37 "电源电压过压" 36 "Description for the value '0x24'" 35 "Description for the value '0x23'" 34 "Description for the value '0x22'" 33 "Description for the value '0x21'" 32 "CAN通信异常" 31 "控制器内部超温" 30 "Description for the value '0x1E'" 29 "Description for the value '0x1D'" 28 "Description for the value '0x1C'" 27 "Description for the value '0x1B'" 26 "Description for the value '0x1A'" 25 "Description for the value '0x19'" 24 "Description for the value '0x18'" 23 "Description for the value '0x17'" 22 "Description for the value '0x16'" 21 "Description for the value '0x15'" 20 "传感器3超温" 19 "传感器2超温" 18 "传感器1超温" 17 "传感器0超温" 16 "风机（组）4故障" 15 "风机（组）3故障" 14 "风机（组）2故障" 13 "风机（组）1故障" 12 "Description for the value '0xC'" 11 "Description for the value '0xB'" 10 "传感器3开路" 9 "传感器2开路" 8 "传感器1开路" 7 "传感器0开路" 6 "Description for the value '0x6'" 5 "Description for the value '0x5'" 4 "传感器3短路" 3 "传感器2短路" 2 "传感器1短路" 1 "传感器0短路" 0 "系统运行正常" ;
+

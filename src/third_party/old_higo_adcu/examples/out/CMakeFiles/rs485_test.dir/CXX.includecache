@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../include/adcuSDK.h
+device.h
+../../include/device.h
+
+../../include/device.h
+stdint.h
+-
+
+/usr/local/adcusdk/examples/rs485_test.cpp
+stdio.h
+-
+stdlib.h
+-
+sys/socket.h
+-
+unistd.h
+-
+stdlib.h
+-
+time.h
+-
+vector
+-
+string.h
+-
+pthread.h
+-
+string
+-
+semaphore.h
+-
+errno.h
+-
+adcuSDK.h
+/usr/local/adcusdk/examples/adcuSDK.h
+

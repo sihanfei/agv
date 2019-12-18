@@ -1,0 +1,884 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Superg.AGV</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="./scripts/jquery-ui.css">
+
+
+    <script type="text/javascript" src="./scripts/jquery.min.js"></script>
+
+    <script type="text/javascript" src="./scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./scripts/three.js"></script>
+    <script type="text/javascript" src="./scripts/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="./scripts/roslib.js"></script>
+    <script type="text/javascript" src="./scripts/ros3d.js"></script>
+            
+    <script type="text/javascript" src="./scripts/jquery-ui.min.js"></script>
+     
+    <script type="text/javascript" src="./scripts/bootbox.min.js"></script>
+    <script type="text/javascript" src="./js/dat.gui.js"></script>
+    <script type="text/javascript" src="./scripts/map-moveLine.js"></script>
+    <style type="text/css">
+        canvas.can_ {
+            border: 1px solid black;
+            position: absolute;
+            left: 0px;
+            top: 0px
+        }
+    </style>
+</head>
+
+<body>
+    <canvas class='can_' id="canvas_map"></canvas>
+    <canvas class='can_' id="canvas_refline"></canvas>
+    <canvas class='can_' id="canvas_planning"></canvas>
+    <canvas class='can_' id="canvas_refline_move"></canvas>
+    <canvas class='can_' id="canvas_agv"></canvas>
+
+    <canvas class='can_' id="canvas_obstacle_lidar"></canvas>
+    <canvas class='can_' id="canvas_obstacle_camera"></canvas>
+    <canvas class='can_' id="canvas_three"></canvas>
+    <canvas class='can_' id="canvas_selectpoint"></canvas>
+
+    <script type="text/javascript">
+
+        var ros;
+        var connected = false;
+        var websocketurl = 'ws://192.168.2.46:9090';
+
+        var options = {
+            //marker点半径
+            markerRadius: 5,
+            //marker点颜色,为空或null则默认取线条颜色
+            markerColor: null,
+            //线条类型 solid、dashed、dotted
+            lineType: 'solid',
+            //线条宽度
+            lineWidth: 2,
+            //线条颜色
+            colors: ['#F9815C', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+            //移动点半径
+            moveRadius: 3,
+            //移动点颜色
+            fillColor: '#ff0000',
+            //移动点阴影颜色
+            shadowColor: '#00ffff',
+            //移动点阴影大小
+            shadowBlur: 5,
+        };
+
+        var img_map;
+        img_map = new Image();
+        img_map.src = "./img/ningbo.png";
+        var moveLine;//动态planning
+        var planning_data;
+        moveLine = new MoveLine({
+            //marker点半径
+            markerRadius: 5,
+            //marker点颜色,为空或null则默认取线条颜色
+            markerColor: null,
+            //线条类型 solid、dashed、dotted
+            lineType: 'solid',
+            //线条宽度
+            lineWidth: 2,
+            //线条颜色
+            colors: ['#c1f990', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+            //移动点半径
+            moveRadius: 3,
+            //移动点颜色
+            fillColor: 'f4eec2',
+            //移动点阴影颜色
+            shadowColor: '#00ffff',
+            //移动点阴影大小
+            shadowBlur: 5,
+
+            mapWidth: img_map.width,
+            mapHeight: img_map.height,
+
+            data: planning_data
+        });
+
+        var scale = 1;//图像缩放比例
+        var scale_max = 1;
+        var scale_min = 0;
+
+        var origin_x = -2143;//2143,33
+        var origin_y = 33;
+        var origin_Scaling = 0.07657;
+
+        var x_offset = origin_x * scale;
+        var y_offset = origin_y * scale;
+        var Scaling = origin_Scaling / scale;
+
+        var jq = $.noConflict();
+
+        jq(document).ready(function () {
+
+
+            var map_width = 0;//地图图片宽
+            var map_height = 0;//地图图片高
+
+            var draw_w = 0;//绘制区域宽
+            var draw_h = 0;//绘制区域高
+            var draw_x = 0;//绘制区域起点x
+            var draw_y = 0;//绘制区域起点y
+
+            var mousePos_x = 0;//鼠标在can区域内的坐标 x
+            var mousePos_y = 0;//鼠标在can区域内的坐标 y
+
+
+
+
+            //设置CANVAS和浏览器窗口一样大
+            //加载地图
+            //显示全部地图，至少填满窗口的高或者宽
+            //根据地图比例算出画布大小
+            //如果画布无法占满窗口，那么容器就和画布一样大，并设置居中显示
+
+            var routing_points = [];
+
+
+            //
+            var can_map = document.getElementById('canvas_map');
+            var ctx_map = can_map.getContext('2d');
+
+            var can_refline = document.getElementById('canvas_refline');
+            var ctx_refline = can_refline.getContext('2d');
+
+            var can_planning = document.getElementById('canvas_planning');
+            var ctx_planning = can_planning.getContext('2d');
+
+            var can_refline_move = document.getElementById('canvas_refline_move');
+            var ctx_refline_move = can_refline_move.getContext('2d');
+
+            var can_agv = document.getElementById('canvas_agv');
+            var ctx_agv = can_agv.getContext('2d');
+
+            var can_three = document.getElementById('canvas_three');
+            var ctx_three = can_three.getContext('2d');
+
+            var can_obstacle_lidar = document.getElementById('canvas_obstacle_lidar');
+            var ctx_obstacle_lidar = can_obstacle_lidar.getContext('2d');
+
+            var can_obstacle_camera = document.getElementById('canvas_obstacle_camera');
+            var ctx_obstacle_camera = can_obstacle_camera.getContext('2d');
+
+            var can_selectpoint = document.getElementById('canvas_selectpoint');
+            var ctx_selectpoint = can_selectpoint.getContext('2d');
+            /////////////
+
+            var can_w = ctx_w = window.innerWidth;
+            var can_h = ctx_h = window.innerHeight;
+
+            // var ctx_w = map_width * scale;
+            // var ctx_h = map_height * scale; // 计算等比缩小后图片
+
+            console.log('ready canvas w = ' + can_w + ' h = ' + can_h);
+            console.log('ready ctx w = ' + ctx_w + ' h = ' + ctx_h);
+
+            var num = 1;//绘制图形的参数
+
+            var isWorH = 1;
+            var tt = 0; // 可以根据具体的要求去设定
+
+            /*
+          *函数功能：从href获得参数
+          *sHref:   http://www.artfh.com/arg.htm?arg1=d&arg2=re
+          *sArgName:arg1, arg2
+          *return:    the value of arg. d, re
+          */
+            function GetArgsFromHref(sHref, sArgName) {
+                var args = sHref.split("?");
+                var retval = "";
+
+                if (args[0] == sHref) /*参数为空*/ {
+                    return retval; /*无需做任何处理*/
+                }
+                var str = args[1];
+                args = str.split("&");
+                for (var i = 0; i < args.length; i++) {
+                    str = args[i];
+                    var arg = str.split("=");
+                    if (arg.length <= 1) continue;
+                    if (arg[0] == sArgName) {
+                        websocketurl = arg[1];
+                        retval = arg[1];
+                    }
+                }
+                return retval;
+            };
+            GetArgsFromHref(window.location.href, 'url');
+
+
+
+            img_map.onload = function () {
+
+                map_width = this.width;
+                map_height = this.height;
+
+                if ((can_w / can_h) > (map_width / map_height)) {
+                    tt = can_h;
+                    isWorH = 0;
+                } else {
+                    tt = can_w;
+                    isWorH = 1;
+                }
+                if (map_width > tt || map_height > tt) {
+                    if (isWorH == 1) {
+                        scale = tt / map_width;
+                    } else {
+                        scale = tt / map_height;
+                    }
+                }
+
+
+
+                can_w = ctx_w = window.innerWidth;
+                can_h = ctx_h = window.innerHeight;
+
+                scale_min = scale;
+                draw_w = map_width * scale;
+                draw_h = map_height * scale; // 计算等比缩小后图片
+                draw_x = (can_w - draw_w) / 2;
+                draw_y = (can_h - draw_h) / 2;
+
+                x_offset = origin_x * scale - draw_x;
+                y_offset = draw_y + origin_y * scale;
+                Scaling = origin_Scaling / scale;
+
+
+
+
+                var m1 = (window.innerHeight - can_h) / 2;
+                var m2 = (window.innerWidth - can_w) / 2;
+
+                console.log('img_map.onload canvas w = ' + can_w + ' h = ' + can_h);
+                console.log('img_map.onload draw_x = ' + draw_x + ' y = ' + draw_y);
+                console.log('img_map.onload draw_w = ' + draw_w + ' draw_h = ' + draw_h + ' Scaling = ' + Scaling);
+
+                //
+                can_map.width = ctx_map.width = can_w;
+                can_map.height = ctx_map.height = can_h;
+                document.getElementById("canvas_map").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_refline.width = ctx_refline.width = can_w;
+                can_refline.height = ctx_refline.height = can_h;
+                document.getElementById("canvas_refline").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_planning.width = ctx_planning.width = can_w;
+                can_planning.height = ctx_planning.height = can_h;
+                document.getElementById("canvas_planning").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_refline_move.width = ctx_refline_move.width = can_w;
+                can_refline_move.height = ctx_refline_move.height = can_h;
+                document.getElementById("canvas_refline_move").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_agv.width = ctx_agv.width = can_w;
+                can_agv.height = ctx_agv.height = can_h;
+                document.getElementById("canvas_agv").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_three.width = ctx_three.width = can_w;
+                can_three.height = ctx_three.height = can_h;
+                document.getElementById("canvas_three").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_obstacle_lidar.width = ctx_obstacle_lidar.width = can_w;
+                can_obstacle_lidar.height = ctx_obstacle_lidar.height = can_h;
+                document.getElementById("canvas_obstacle_lidar").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_obstacle_camera.width = ctx_obstacle_camera.width = can_w;
+                can_obstacle_camera.height = ctx_obstacle_camera.height = can_h;
+                document.getElementById("canvas_obstacle_camera").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_selectpoint.width = ctx_selectpoint.width = can_w;
+                can_selectpoint.height = ctx_selectpoint.height = can_h;
+                document.getElementById("canvas_selectpoint").style.margin = m1 + 'px ' + m2 + 'px';
+                //
+                //绘制所有ctx
+                draw_map(draw_x, draw_y, draw_w, draw_h);
+                draw_planning(planning_data);
+                draw_routing(routing_points);
+                ////////////////
+
+            };
+
+
+            var draw_map = function (a, b, w, h) {
+
+                // console.log('ctx w = ' + ctx_w + ' h = ' + ctx_h);
+
+                //ctx_map.fillStyle = 'hsla(277, 95%, 55%, 1)';
+                ctx_map.fillStyle = '#1182ff';
+                ctx_map.fillRect(0, 0, ctx_w, ctx_h);
+                ctx_map.drawImage(img_map, a, b, w, h);  // 加载图片
+            }
+            var t = 0;
+
+            window.addEventListener('resize', function () {
+                console.log('resize canvas w = ' + can_w + ' h = ' + can_h);
+                console.log('resize ctx w = ' + ctx_w + ' h = ' + ctx_h);
+
+                //clear all ctx
+                ctx_map.clearRect(0, 0, ctx_w + 1, ctx_h + 1);
+                ctx_refline.clearRect(0, 0, ctx_w + 1, ctx_h + 1);
+                ctx_planning.clearRect(0, 0, ctx_w + 1, ctx_h + 1);
+                ctx_refline_move.clearRect(0, 0, ctx_w + 1, ctx_h + 1);
+                ctx_agv.clearRect(0, 0, ctx_w + 1, ctx_h + 1);
+                ctx_three.clearRect(0, 0, ctx_w + 1, ctx_h + 1);
+                ctx_obstacle_lidar.clearRect(0, 0, ctx_w + 1, ctx_h + 1);
+                ctx_obstacle_camera.clearRect(0, 0, ctx_w + 1, ctx_h + 1);
+                ///////////
+                if ((window.innerWidth / window.innerHeight) > (map_width / map_height)) {
+                    tt = window.innerHeight * num;
+                    isWorH = 0;
+                } else {
+                    tt = window.innerWidth * num;
+                    isWorH = 1;
+                }
+                if (map_width > tt || map_height > tt) {
+                    if (isWorH == 1) {
+                        scale = tt / map_width;
+                    } else {
+                        scale = tt / map_height;
+                    }
+                }
+
+
+                console.log('resize x_offset = ' + x_offset + ' y_offset = ' + y_offset + ' Scaling = ' + Scaling);
+                //设置所有ctx大小
+
+                can_w = ctx_w = window.innerWidth;
+                can_h = ctx_h = window.innerHeight;
+
+                scale_min = scale;
+                draw_w = map_width * scale;
+                draw_h = map_height * scale; // 计算等比缩小后图片
+                draw_x = (can_w - draw_w) / 2;
+                draw_y = (can_h - draw_h) / 2;
+
+                x_offset = origin_x * scale - draw_x;
+                y_offset = draw_y + origin_y * scale;
+                Scaling = origin_Scaling / scale;
+
+
+
+                var m1 = (window.innerHeight - can_h) / 2;
+                var m2 = (window.innerWidth - can_w) / 2;
+
+
+                can_map.width = ctx_map.width = can_w;
+                can_map.height = ctx_map.height = can_h;
+                document.getElementById("canvas_map").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_refline.width = ctx_refline.width = can_w;
+                can_refline.height = ctx_refline.height = can_h;
+                document.getElementById("canvas_refline").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_planning.width = ctx_planning.width = can_w;
+                can_planning.height = ctx_planning.height = can_h;
+                document.getElementById("canvas_planning").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_refline_move.width = ctx_refline_move.width = can_w;
+                can_refline_move.height = ctx_refline_move.height = can_h;
+                document.getElementById("canvas_refline_move").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_agv.width = ctx_agv.width = can_w;
+                can_agv.height = ctx_agv.height = can_h;
+                document.getElementById("canvas_agv").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_three.width = ctx_three.width = can_w;
+                can_three.height = ctx_three.height = can_h;
+                document.getElementById("canvas_three").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_obstacle_lidar.width = ctx_obstacle_lidar.width = can_w;
+                can_obstacle_lidar.height = ctx_obstacle_lidar.height = can_h;
+                document.getElementById("canvas_obstacle_lidar").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_obstacle_camera.width = ctx_obstacle_camera.width = can_w;
+                can_obstacle_camera.height = ctx_obstacle_camera.height = can_h;
+                document.getElementById("canvas_obstacle_camera").style.margin = m1 + 'px ' + m2 + 'px';
+
+                can_selectpoint.width = ctx_selectpoint.width = can_w;
+                can_selectpoint.height = ctx_selectpoint.height = can_h;
+                document.getElementById("canvas_selectpoint").style.margin = m1 + 'px ' + m2 + 'px';
+                /////////
+
+                //绘制所有ctx
+                draw_map(draw_x, draw_y, draw_w, draw_h);
+                draw_planning(planning_data);
+                draw_routing(routing_points);
+
+                ////////////////
+            }, false);
+
+            function longPress() {
+                timeOutEvent = 0;
+            };
+            var timeOutEvent = 0;//区分拖拽和点击的参数
+            //鼠标拖拽
+            can_selectpoint.onmousedown = function (ev) {
+                var e = ev || event;
+                var x = e.clientX;
+                var y = e.clientY;
+
+                timeOutEvent = 1;
+                //timeOutEvent = setTimeout('longPress()', 500);
+                console.log('onmousedown x = ' + x + ' y = ' + y + ' timeOutEvent = ' + timeOutEvent);
+                e.preventDefault();
+                drag(x, y);
+            };
+            //拖拽函数
+            function drag(x, y) {
+
+                //路径正确，鼠标移动事件
+                can_selectpoint.onmousemove = function (ev) {
+                    var e = ev || event;
+                    ax = e.clientX;
+                    ay = e.clientY;
+                    //clearTimeout(timeOutEvent);
+                    timeOutEvent = 0;
+                    //鼠标移动每一帧都清楚画布内容，然后重新画
+                    //console.log('onmousemove ax = ' + ax + ' ay = ' + ay);
+                    draw_x = draw_x + (ax - x);
+                    draw_y = draw_y + (ay - y);
+                    x = ax;
+                    y = ay;
+                    x_offset = origin_x * scale - draw_x;
+                    y_offset = draw_y + origin_y * scale;
+                    Scaling = origin_Scaling / scale;
+                    draw_map(draw_x, draw_y, draw_w, draw_h);
+                    draw_planning(planning_data);
+                    draw_routing(routing_points);
+
+                };
+                //鼠标移开事件
+                can_selectpoint.onmouseup = function () {
+                    can_selectpoint.onmousemove = null;
+                    can_selectpoint.onmouseup = null;
+                    console.log(' timeOutEvent = ' + timeOutEvent);
+                    //clearTimeout(timeOutEvent);
+                    //console.log(' timeOutEvent = ' + timeOutEvent);
+                    if (timeOutEvent != 0) {
+                        alert("你这是点击，不是拖拽");
+                    } else {
+
+                    }
+                }
+
+            };
+
+            can_selectpoint.onmousewheel = function (ev) {
+
+                var e = ev || event;
+                scale = scale + e.wheelDelta / 1200;
+                if (scale > scale_max) {
+                    scale = scale_max;
+                }
+                if (scale < scale_min) {
+                    scale = scale_min;
+                }
+                var tmp_w = draw_w;
+                var tmp_h = draw_h;
+                var tmp_x = draw_x;
+                var tmp_y = draw_y;
+
+                draw_w = map_width * scale;
+                draw_h = map_height * scale; // 计算等比缩小后图片
+                // draw_x = tmp_x - (draw_w - tmp_w) * (mousePos_x / can_w);
+                // draw_y = tmp_y - (draw_h - tmp_h) * (mousePos_y / can_h);
+
+                draw_x = (can_w - draw_w) * mousePos_x / can_w;
+                draw_y = (can_h - draw_h) * mousePos_y / can_h;
+                // draw_x = (can_w - draw_w) * (can_w - mousePos_x) / can_w;
+                // draw_y = (can_h - draw_h) * (can_h - mousePos_y) / can_h;
+
+                x_offset = origin_x * scale - draw_x;
+                y_offset = draw_y + origin_y * scale;
+                Scaling = origin_Scaling / scale;
+
+                //console.log('resize x_offset = ' + x_offset + ' y_offset = ' + y_offset + ' Scaling = ' + Scaling);
+
+                // console.log('onmousewheel canvas w = ' + can_w + ' h = ' + can_h);
+                // console.log('onmousewheel draw_x = ' + draw_x + ' y = ' + draw_y);
+                // console.log('onmousewheel draw_w = ' + draw_w + ' draw_h = ' + draw_h + ' scale = ' + scale);
+                draw_map(draw_x, draw_y, draw_w, draw_h);
+                draw_planning(planning_data);
+                draw_routing(routing_points);
+
+
+
+            };
+            function mouseCoords(ev) {
+                var e = event || window.event;
+                var x = e.offsetX || e.layerX;
+                var y = e.offsetY || e.layerY;
+                return { x, y };
+            };
+            var oPos = { x: 0, y: 0 };
+            can_selectpoint.addEventListener("mousemove", function (ev) {
+                var oEvent = ev || event, x, y;
+                var mousePos = mouseCoords(ev);
+
+                oPos.x = mousePos.x;
+                oPos.y = mousePos.y;
+
+                mousePos_x = oPos.x;
+                mousePos_y = oPos.y;
+
+                //console.log('鼠标的当前坐标是:(' + oPos.x + ',' + oPos.y + ')');
+            }, false);
+
+            var run = function () {
+                window.requestAnimationFrame(run);
+                t += 1;
+                draw(33, 52 * Math.sin(t / 2400), t);
+            };
+            //RosConnect();
+            function RosConnect() {
+                ros = new ROSLIB.Ros({
+                    url: websocketurl
+                });
+
+                ros.on('connection', function () {
+                    connected = true;
+                    console.log('Connected to websocket server.');
+                    //*************订阅全局规划路径
+                    var listener_route = new ROSLIB.Topic({
+                        ros: ros,
+                        name: '/monitor/route_msg',///monitor/route_msg /monitor/reference_line_point
+                        messageType: 'visualization_msgs/MarkerArray'
+                    });
+
+                    listener_route.subscribe(function (message) {
+                        //console.log('Received message on ' + listener1.name + ': ' + message.header.seq);
+
+                        //refline_point /route_plan_point
+                        var temp_points = [];
+                        for (var i = 0; i < message.markers.length; i++) {
+                            if (message.markers[i].ns == '/route_plan_point') {
+
+                                //console.log(i);
+                                //console.log(message.markers[i].points);
+                                var arr = Object.values(message.markers[i].points);
+                                //temp_points.push.apply(temp_points, arr);
+                                routing_points.push.apply(routing_points, arr);
+                            }
+
+                        }
+                        // for (var key in temp_points) {
+
+                        //     //routing_points.push([temp_points[key]['x'] / Scaling - x_offset, y_offset - temp_points[key]['y'] / Scaling]);
+                        //     routing_points.push([temp_points[key]['x'] / Scaling - x_offset, y_offset - temp_points[key]['y'] / Scaling]);
+                        // }
+                        if (routing_points.length > 1) {
+                            draw_routing(routing_points);
+                        }
+                        //console.log(temp_points);
+                    });
+                    //**************订阅融合数据，车辆位置也在这里
+                    // var listener_fusion_msg = new ROSLIB.Topic({
+                    //     ros: ros,
+                    //     name: '/localization/fusion_msg',
+                    //     messageType: 'location_msgs/FusionDataInfo'
+                    // });
+
+                    // listener_fusion_msg.subscribe(function (message) {
+                    //     //var timestamp = parseInt(message.header.stamp.secs + '' + message.header.stamp.nsecs.toString().substring(0, 3));
+                    //     var timestamp = (message.header.stamp.secs * 1000) + parseInt(message.header.stamp.nsecs / 1000000);
+
+                    //     chart1_count++;
+                    //     if (chart1_count > 9) {
+                    //         chart1_count = 0;
+
+                    //         //agv
+                    //         g_agv_x_ = message.pose.x;
+                    //         g_agv_y_ = message.pose.y;
+
+                    //         draw_agv_pose(g_agv_x_, g_agv_y_, (message.yaw * Math.PI / 180));
+
+                    //     }
+
+                    // });
+                    //**************订阅车辆位置
+                    var listener_rviz_obstacle_msg = new ROSLIB.Topic({
+                        ros: ros,
+                        name: '/perception/rviz_obstacle_msg',
+                        messageType: 'visualization_msgs/MarkerArray'
+                    });
+
+                    listener_rviz_obstacle_msg.subscribe(function (message) {
+
+                        var tmp_agv_points = [];
+                        for (var i = 0; i < message.markers.length; i++) {
+
+                            tmp_agv_points.push(message.markers[i].points);
+                        }
+                        if (tmp_agv_points.length > 0) {
+                            draw_agv_tmp(tmp_agv_points);
+                        }
+
+                    });
+                });
+
+                //*********订阅雷达探测目标
+                var listener_obs_lidar = new ROSLIB.Topic({
+                    ros: ros,
+                    name: '/perception/rviz_obstacle_cam_lidar_msg',
+                    messageType: 'visualization_msgs/MarkerArray'
+                });
+
+                listener_obs_lidar.subscribe(function (message) {
+                    obs_count++;
+                    if (obs_count > 0) {
+                        obs_count = 0;
+                        var arr_obs = [];
+                        for (var i = 0; i < message.markers.length; i++) {
+                            if (message.markers[i].ns == '/per/new_lidar_obstacle_show') {
+
+                                //   var arr = Object.values(message.markers[i].points);
+                                // temp_points.push.apply(temp_points, arr);
+
+                                //arr_obs.push(Object.values(message.markers[i].points));
+                                arr_obs.push(message.markers[i].points);
+                            }
+                        }
+                        if (arr_obs.length > 1)
+                            draw_obs_lidar(arr_obs);
+                    }
+
+                });
+                //***************订阅 选点信息
+                var listener_select_point_msg = new ROSLIB.Topic({
+                    ros: ros,
+                    name: '/monitor/select_point_info',
+                    messageType: 'visualization_msgs/MarkerArray'
+                });
+
+                listener_select_point_msg.subscribe(function (message) {
+                    clearScene();
+
+                    for (var i = 0; i < message.markers.length; i++) {
+                        if (message.markers[i].ns == 'ref_point Mark') {
+
+                            add_target_point(message.markers[i].pose.position.x / Scaling - x_offset, y_offset - message.markers[i].pose.position.y / Scaling);
+                        }
+
+                    }
+
+                });
+                //订阅 lcl planning 路线
+                var listener_route = new ROSLIB.Topic({
+                    ros: ros,
+                    name: '/map/decision_info',
+                    messageType: 'plan_msgs/DecisionInfo'
+                });
+
+                listener_route.subscribe(function (message) {
+                    var lcl_planning_points = [];
+
+                    var arr = Object.values(message.path_data_REF);
+
+                    lcl_planning_points.push.apply(lcl_planning_points, arr);
+
+
+                    if (lcl_planning_points.length > 0) {
+                        planning_data = [{
+                            from: '起点',
+                            to: '终点',
+                            ref_points: lcl_planning_points
+                        }];
+                        draw_planning(planning_data);
+                    } else {
+                        planning_data = [];
+                        draw_planning(planning_data);
+
+                        clearScene();
+                    }
+                });
+
+                ////////////////////////////
+                ros.on('error', function (error) {
+                    connected = false;
+                    console.log('Error connecting to websocket server: ', error);
+                });
+
+                ros.on('close', function () {
+                    connected = false;
+                    console.log('Connection to websocket server closed.');
+                });
+            };
+            //绘制全局路线
+            function draw_routing(routing_points) {
+
+                ctx_refline.clearRect(0, 0, ctx_w, ctx_h);
+                var pointList = [];
+                if (routing_points.length <= 0)
+                    return;
+                for (var key in routing_points) {
+
+
+                    pointList.push([routing_points[key]['x'] / Scaling - x_offset, y_offset - routing_points[key]['y'] / Scaling]);
+                }
+                //var pointList = routing_points;
+
+                var len = pointList.length;
+                ctx_refline.save();
+                ctx_refline.beginPath();
+                ctx_refline.lineWidth = 2;
+                ctx_refline.strokeStyle = 'blue';;
+
+                if (!options.lineType || options.lineType == 'solid') {
+                    ctx_refline.moveTo(pointList[0][0], pointList[0][1]);
+                    for (var i = 0; i < len; i++) {
+                        ctx_refline.lineTo(pointList[i][0], pointList[i][1]);
+                    }
+                } else if (options.lineType == 'dashed' || options.lineType == 'dotted') {
+                    for (var i = 1; i < len; i += 2) {
+                        ctx_refline.moveTo(pointList[i - 1][0], pointList[i - 1][1]);
+                        ctx_refline.lineTo(pointList[i][0], pointList[i][1]);
+                    }
+                }
+                ctx_refline.stroke();
+                ctx_refline.restore();
+                //this.step = 0; //缩放地图时重新绘制动画
+            };
+            //画AGV
+            var chart1_count = 0;
+            function draw_agv_pose(agv_x, agv_y, agv_yaw) {
+
+                ctx_agv.clearRect(0, 0, ctx_w, ctx_h);
+
+                var agv_w = 3.0;
+                var agv_l = 16.0;
+
+                var agv_pose_x = agv_x + agv_l / 2 * Math.sin(agv_yaw) - agv_w / 2 * Math.cos(agv_yaw);
+                var agv_pose_y = agv_y + agv_l / 2 * Math.cos(agv_yaw) + agv_w / 2 * Math.sin(agv_yaw);
+
+                ctx_agv.beginPath();
+                ctx_agv.lineWidth = 3;
+                ctx_agv.moveTo(agv_pose_x / Scaling - x_offset, y_offset - agv_pose_y / Scaling);
+
+                agv_pose_x = agv_x + agv_l / 2 * Math.sin(agv_yaw) + agv_w / 2 * Math.cos(agv_yaw);
+                agv_pose_y = agv_y + agv_l / 2 * Math.cos(agv_yaw) - agv_w / 2 * Math.sin(agv_yaw);
+                ctx_agv.lineTo(agv_pose_x / Scaling - x_offset, y_offset - agv_pose_y / Scaling);
+
+                agv_pose_x = agv_x - agv_l / 2 * Math.sin(agv_yaw) + agv_w / 2 * Math.cos(agv_yaw);
+                agv_pose_y = agv_y - agv_l / 2 * Math.cos(agv_yaw) - agv_w / 2 * Math.sin(agv_yaw);
+                ctx_agv.lineTo(agv_pose_x / Scaling - x_offset, y_offset - agv_pose_y / Scaling);
+
+                agv_pose_x = agv_x - agv_l / 2 * Math.sin(agv_yaw) - agv_w / 2 * Math.cos(agv_yaw);
+                agv_pose_y = agv_y - agv_l / 2 * Math.cos(agv_yaw) + agv_w / 2 * Math.sin(agv_yaw);
+                ctx_agv.lineTo(agv_pose_x / Scaling - x_offset, y_offset - agv_pose_y / Scaling);
+                ctx_agv.closePath();//闭合路径
+                ctx_agv.strokeStyle = 'red';
+                ctx_agv.stroke();
+
+            };
+            //画AGV
+
+            function draw_agv_tmp(tmp_agv_points) {
+                if (tmp_agv_points.length <= 0)
+                    return;
+
+                ctx_agv.clearRect(0, 0, ctx_w, ctx_h);
+
+                for (var i = 0; i < tmp_agv_points.length; i++) {
+                    ctx_agv.beginPath();
+                    ctx_agv.lineWidth = 2;
+                    ctx_agv.moveTo(tmp_agv_points[i][0].x / Scaling - x_offset, y_offset - tmp_agv_points[i][0].y / Scaling);
+                    ctx_agv.lineTo(tmp_agv_points[i][1].x / Scaling - x_offset, y_offset - tmp_agv_points[i][1].y / Scaling);
+                    ctx_agv.lineTo(tmp_agv_points[i][2].x / Scaling - x_offset, y_offset - tmp_agv_points[i][2].y / Scaling);
+                    ctx_agv.lineTo(tmp_agv_points[i][3].x / Scaling - x_offset, y_offset - tmp_agv_points[i][3].y / Scaling);
+                    ctx_agv.closePath();//闭合路径
+                    ctx_agv.strokeStyle = 'red';
+                    ctx_agv.stroke();
+                }
+
+            };
+            //画lidar障碍物
+            var obs_count = 0;
+            function draw_obs_lidar(obs_points) {
+
+                ctx_obstacle_lidar.clearRect(0, 0, ctx_w, ctx_h);
+
+                for (var i = 0; i < obs_points.length; i++) {
+                    ctx_obstacle_lidar.beginPath();
+                    ctx_obstacle_lidar.lineWidth = 2;
+                    // var t1 = obs_points[i][0].x * Scaling - x_offset;
+                    // var t2 = y_offset - obs_points[i][0].y * Scaling
+                    // console.log('moveTo = ' + t1 + ' y = ' + t2);
+                    // ctx_obstacle_lidar.moveTo(obs_points[i][0].x * Scaling - x_offset, y_offset - obs_points[i][0].y * Scaling);
+                    // ctx_obstacle_lidar.lineTo(obs_points[i][1].x * Scaling - x_offset, y_offset - obs_points[i][1].y * Scaling);
+                    // ctx_obstacle_lidar.lineTo(obs_points[i][2].x * Scaling - x_offset, y_offset - obs_points[i][2].y * Scaling);
+                    // ctx_obstacle_lidar.lineTo(obs_points[i][3].x * Scaling - x_offset, y_offset - obs_points[i][3].y * Scaling);
+
+                    ctx_obstacle_lidar.moveTo(obs_points[i][0].x / Scaling - x_offset, y_offset - obs_points[i][0].y / Scaling);
+                    ctx_obstacle_lidar.lineTo(obs_points[i][1].x / Scaling - x_offset, y_offset - obs_points[i][1].y / Scaling);
+                    ctx_obstacle_lidar.lineTo(obs_points[i][2].x / Scaling - x_offset, y_offset - obs_points[i][2].y / Scaling);
+                    ctx_obstacle_lidar.lineTo(obs_points[i][3].x / Scaling - x_offset, y_offset - obs_points[i][3].y / Scaling);
+                    ctx_obstacle_lidar.closePath();//闭合路径
+                    ctx_obstacle_lidar.strokeStyle = 'orange';
+                    ctx_obstacle_lidar.stroke();
+                }
+            };
+
+            //画camera障碍物
+            var camera_obs_count = 0;
+            function draw_obs_camera(camera_obs_points) {
+                ctx_obstacle_camera.clearRect(0, 0, ctx_w, ctx_h);
+
+                for (var i = 0; i < camera_obs_points.length; i++) {
+                    ctx_obstacle_camera.beginPath();
+                    ctx_obstacle_camera.lineWidth = 2;
+                    ctx_obstacle_camera.moveTo((g_agv_x_ + camera_obs_points[i][0].x) / Scaling - x_offset, y_offset - (g_agv_y_ + camera_obs_points[i][0].y) / Scaling);
+                    ctx_obstacle_camera.lineTo((g_agv_x_ + camera_obs_points[i][1].x) / Scaling - x_offset, y_offset - (g_agv_y_ + camera_obs_points[i][1].y) / Scaling);
+                    ctx_obstacle_camera.lineTo((g_agv_x_ + camera_obs_points[i][2].x) / Scaling - x_offset, y_offset - (g_agv_y_ + camera_obs_points[i][2].y) / Scaling);
+                    ctx_obstacle_camera.lineTo((g_agv_x_ + camera_obs_points[i][3].x) / Scaling - x_offset, y_offset - (g_agv_y_ + camera_obs_points[i][3].y) / Scaling);
+                    ctx_obstacle_camera.closePath();//闭合路径
+                    ctx_obstacle_camera.strokeStyle = 'magenta';
+                    ctx_obstacle_camera.stroke();
+                }
+            };
+            function draw_planning(planning_data) {
+                moveLine.update({
+                    //marker点半径
+                    markerRadius: 5,
+                    //marker点颜色,为空或null则默认取线条颜色
+                    markerColor: '#ff0808',
+                    //线条类型 solid、dashed、dotted
+                    lineType: 'solid',
+                    //线条宽度
+                    lineWidth: 3,
+                    //线条颜色
+                    colors: ['#c1f990', '#F8AB60', '#EDCC72', '#E2F194', '#94E08A', '#4ECDA5'],
+                    //移动点半径
+                    moveRadius: 4,
+                    //移动点颜色
+                    fillColor: '#f4eec2',
+                    //移动点阴影颜色
+                    shadowColor: '#00ffff',
+                    //移动点阴影大小
+                    shadowBlur: 5,
+
+                    mapWidth: img_map.width,
+                    mapHeight: img_map.height,
+
+                    data: planning_data
+                });
+            };
+
+            setInterval(function () {
+
+                if (connected == false) {
+                    console.log(websocketurl);
+                    RosConnect();
+                }
+            }, 3000);
+
+        });
+    </script>
+</body>
+
+</html>

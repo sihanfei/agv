@@ -1,0 +1,148 @@
+VERSION "V0.1_20190328"
+
+1、数据格式
+例：\
+
+BO_ 0x801（消息ID） VehicleSpeed: 2（数据长度bytes） IMU
+ SG_ vehiclespeed : 0（偏移bits）|16（长度bits）@1-（“-”有符号；“+”无符号） (0.01,0)（转换比例系数，转换偏移量） [-327.68|327.67]（有效范围） "m/s"（单位） Vector__XXX
+
+
+BO_ 0x800 Time: 6 IMU    
+ SG_ GpsWeek : 0|16@1+ (1,0) [0|65535] "w" Vector__XXX
+ SG_ GpsTime : 16|32@1+ (0.001,0) [0|2147483.647] "s" Vector__XXX
+
+BO_ 0x801 Ang_Rate_Raw_IMU: 6 IMU    
+ SG_ AngRateRawX : 0|16@1- (0.01,0) [-327.68|327.67] "deg/s" Vector__XXX
+ SG_ AngRateRawY : 16|16@1- (0.01,0) [-327.68|327.67] "deg/s" Vector__XXX
+ SG_ AngRateRawZ : 32|16@1- (0.01,0) [-327.68|327.67] "deg/s" Vector__XXX
+
+BO_ 0x802 Accel_IMU_Raw: 8 IMU  
+ SG_ AccelRawX : 0|20@1- (0.0001,0) [-8.0000|8.0000] "g" Vector__XXX
+ SG_ AccelRawY : 20|20@1- (0.0001,0) [-8.0000|8.0000] "g" Vector__XXX
+ SG_ AccelRawZ : 40|20@1- (0.0001,0) [-8.0000|8.0000] "g" Vector__XXX
+
+
+BO_ 0x803  InsStatus: 3 IMU    
+ SG_ system_state : 0|8@1+ (1,0) [0|9] "" Vector__XXX
+ SG_ GpsNumSats : 8|8@1+ (1,0) [0|255] "" Vector__XXX        
+ SG_ satellite_status : 16|8@1+ (1,0) [0|9] "" Vector__XXX        
+
+BO_ 0x804   LatitudeLongitude: 8 IMU  
+ SG_ PosLat : 0|32@1- (1E-007,0) [-214.7483648|214.7483647] "deg" Vector__XXX
+ SG_ PosLon : 32|32@1- (1E-007,0) [-214.7483648|214.7483647] "deg" Vector__XXX
+
+BO_ 0x805   Altitude: 4 IMU
+ SG_ PosAlt : 0|32@1- (0.001,0) [-2147483.648|2147483.647] "m" Vector__XXX
+
+BO_ 0x806   PosSigma: 6 IMU
+ SG_PosESigma : 0|16@1+ (1,0) [0|1000] "m" Vector__XXX
+ SG_PosNsigma : 16|16@1+ (1,0) [0|1000] "m" Vector__XXX
+ SG_PosUsigma : 32|16@1+ (1,0) [0|1000] "m" Vector__XXX
+
+
+BO_ 0x807   VelocityLevel: 8 IMU
+ SG_ VelE : 0|16@1- (0.01,0) [-327.68|327.67] "m/s" Vector__XXX
+ SG_ VelN : 16|16@1- (0.01,0) [-327.68|327.67] "m/s" Vector__XXX
+ SG_ VelU : 32|16@1- (0.01,0) [-327.68|327.67] "m/s" Vector__XXX
+ SG_ Vel : 48|16@1- (0.01,0) [-327.68|327.67] "m/s" Vector__XXX
+
+BO_ 0x808   VelocityLevelSigma: 8 IMU
+ SG_ VelESigma : 0|16@1+ (0.01,0)  [-327.68|327.67] "m/s" Vector__XXX
+ SG_ VelNSigma : 16|16@1+ (0.01,0) [-327.68|327.67] "m/s" Vector__XXX
+ SG_ VelUSigma : 32|16@1+ (0.01,0) [-327.68|327.67] "m/s" Vector__XXX
+ SG_ VelSigma : 48|16@1+ (0.01,0) [-327.68|327.67] "m/s" Vector__XXX
+
+
+BO_ 0x809   Accel_Vehicle: 6 IMU
+ SG_ AccelX : 0|20@1- (0.0001,0) [-8.0000|8.0000] "g" Vector__XXX
+ SG_ AccelY : 20|20@1- (0.0001,0) [-8.0000|8.0000] "g" Vector__XXX
+ SG_ AccelZ : 40|20@1- (0.0001,0) [-8.0000|8.0000] "g" Vector__XXX
+
+BO_ 0x810   HeadingPitchRoll: 6 IMU
+ SG_ AngleHeading : 0|16@1+ (0.01,0) [0|360] "deg" Vector__XXX
+ SG_ AnglePitch : 16|16@1- (0.01,0) [-90|90] "deg" Vector__XXX
+ SG_ AngleRoll : 32|16@1- (0.01,0) [-180|180] "deg" Vector__XXX
+
+BO_ 0x811   HeadingPitchRollSigma: 6 IMU
+ SG_ AngleHeadingSigma : 0|16@1+ (0.01,0) [0|360] "deg" Vector__XXX
+ SG_ AnglePitchSigma : 16|16@1+ (0.01,0) [0|360] "deg" Vector__XXX
+ SG_ AngleRollSigma : 32|16@1+ (0.01,0) [0|360] "deg" Vector__XXX
+
+
+BO_ 0x812   AngRateVehicle: 6 IMU
+ SG_ AngRateX : 0|16@1- (0.01,0) [-327.68|327.67] "deg/s" Vector__XXX
+ SG_ AngRateY : 16|16@1- (0.01,0) [-327.68|327.67] "deg/s" Vector__XXX
+ SG_ AngRateZ : 32|16@1- (0.01,0) [-327.68|327.67] "deg/s" Vector__XXX
+
+
+
+2、数据内容描述
+CM_ BO_ 0x800 "时间";（ok）
+CM_ SG_ 0x800 GpsWeek "自1980-1-6至当前的星期数（格林尼治时间）";
+CM_ SG_ 0x800 GpsTime "自本周日0:00:00至当前的秒数（格林尼治时间）";
+CM_ BO_ 0x801 "IMU角速度原始值";（ok）
+CM_ SG_ 0x801 AngRateRawX "IMU原始X轴角速度";
+CM_ SG_ 0x801 AngRateRawY "IMU原始Y轴角速度";
+CM_ SG_ 0x801 AngRateRawZ "IMU原始Z轴角速度";
+CM_ BO_ 0x802 "IMU加速度原始值";（ok）
+CM_ SG_ 0x802 AccelRawX "IMU原始X轴加速度";
+CM_ SG_ 0x802 AccelRawY "IMU原始Y轴加速度";
+CM_ SG_ 0x802 AccelRawZ "IMU原始Z轴加速度";
+CM_ BO_ 0x803 "INS定位状态";（ok）
+CM_ SG_ 0x803 satellite_status "0：不定位不定向；
+	1: 单点定位定向；
+	2：伪距差分定位定向；
+	3：组合推算；
+	4：RTK 稳定解定位定向；
+	5：RTK 浮点解定位定向；
+	6：单点定位不定向；
+	7：伪距差分定位不定向；
+	8：RTK 稳定解定位不定向；
+	9: RTK 浮点解定位不定向;";
+CM_ SG_ 0x803 GpsNumSats "卫星数目";（ok）
+CM_ SG_ 0x803 system_state "系统状态（ok）
+	0 初始化
+	1 卫导模式
+	2 组合导航模式
+	3 纯惯导模式";
+CM_ BO_ 0x804 "定位经纬度";（ok）
+CM_ SG_ 0x804  PosLat "位置纬度";
+CM_ SG_ 0x804  PosLon "位置经度";
+CM_ BO_ 0x805 "定位高度";（ok）
+CM_ SG_ 0x805 PosAlt "位置高度（海拔高度）";
+CM_ BO_ 0x806 "定位西格玛";（ok）           
+CM_ SG_ 0x806  PosESigma  "东向位置西格玛";
+CM_ SG_ 0x806  PosnSigma  "北向位置西格玛";
+CM_ SG_ 0x806  PosESigma  "天向位置西格玛";
+CM_ BO_ 0x807  "大地坐标系速度";（ok）
+CM_ SG_ 0x807   VelE "东向速度";
+CM_ SG_ 0x807   VelN "北向速度";
+CM_ SG_ 0x807   VelU "天向速度";
+CM_ SG_ 0x807   Vel "车辆行驶速度";
+CM_ BO_ 0x808  "大地坐标系速度西格玛";（ok）
+CM_ SG_ 0x808   AngRateESigma "东向速度西格玛";
+CM_ SG_ 0x808   AngRateNSigma  "北向速度西格玛";
+CM_ SG_ 0x808   AngRateUSigma  "天向速度西格玛";
+CM_ SG_ 0x808   AngRateSigma "车辆行驶速度西格玛";
+CM_ BO_ 0x809 "车辆坐标系加速度";（ok）
+CM_ SG_ 0x809  AccelX "X轴加速度";
+CM_ SG_ 0x809  AccelY "Y轴加速度";
+CM_ SG_ 0x809  AccelZ "Z轴加速度";
+CM_ BO_ 0x810   "姿态角";（ok）
+CM_ SG_ 0x810    AngleHeading "航向角";
+CM_ SG_ 0x810    AnglePitch "俯仰角";
+CM_ SG_ 0x810    AngleRoll "横滚角";
+CM_ BO_ 0x811   "姿态角西格玛";（ok）
+CM_ SG_ 0x811    AngleHeadingSigma  "航向角西格玛";
+CM_ SG_ 0x811    AngRateNSigma  "俯仰角西格玛";
+CM_ SG_ 0x811    AngleRollSigma "横滚角西格玛";
+CM_ BO_ 0x812 "车辆坐标系角速度";（ok）
+CM_ SG_ 0x812  AngRateX "X轴角速度";
+CM_ SG_ 0x812  AngRateY "Y轴角速度";
+CM_ SG_ 0x812  AngRateZ "Z轴角速度";
+
+
+3、其他
+CAN波特率：500K
+CAN帧格式：标准帧
+

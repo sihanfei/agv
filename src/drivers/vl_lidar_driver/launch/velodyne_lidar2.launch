@@ -1,0 +1,44 @@
+<launch>
+
+    <group ns="vl2">
+
+        <param name="calibration" value="$(find vl_lidar_driver)/cfg/VLP16db.yaml"/>
+        <param name="max_range" value="100.0"/>
+        <param name="min_range" value="0.3"/>
+        <param name="view_direction" value="0.0"/>
+        <param name="view_width" value="0.0"/>
+        <param name="model" value="VLP16"/>
+        <param name="read_fast" value="false"/>
+        <param name="read_once" value="false"/>
+        <param name="repeat_delay" value="0.0"/>
+        <param name="rpm" value="600.0"/>
+        <param name="cut_angle" value="-0.01"/>
+
+        <param name="frame_id" value="odom"/>
+        <param name="npackets" value="76"/>
+        <param name="begin_cut_angle" value="0"/>
+        <param name="end_cut_angle" value="0"/>
+        <param name="raw_data_topic_" value="/velodyne2/velodyne_points"/>
+        <param name="data_set_topic_" value="/drivers/velodyne2/lidar_points"/>
+
+        <param name="xmin" value="-1.6"/>
+        <param name="xmax" value="1.6"/>
+        <param name="ymin" value="-7.6"/>
+        <param name="ymax" value="7.6"/>
+
+        <param name="log_dir" value="/work/log/"/>
+        <param name="sensor_name" value="velodyne"/>
+        <param name="device_name" value="lidar2"/>
+        <param name="packet_size" value="1206"/>
+	    
+        <param name="device_ip" value="192.168.2.202"/><!--192.168.2.202-->
+        <param name="intput_port" value="2370"/>
+
+        <param name="pub_raw_data" value="1"/>
+
+        <param name="Matrix4f_1" value="-0.0244497, -0.999682, 0.00613892, -1.10708, 0.999657, -0.0243903, 0.0095587, 7.28946, -0.00940593, 0.00637046,0.999936, -0.928643, 0, 0, 0, 1"/>
+ 
+        <node pkg="vl_lidar_driver" name="vl_lidar_node_202" type="vl_lidar_node" />
+    </group>
+
+</launch>

@@ -1,0 +1,14 @@
+<launch>
+  <node pkg="perception_fusion" type="perception_fusion" name="perception_fusion" output="screen" >
+    <param name="global_rviz" type="int" value="0" />
+    <param name="is_draw" type="int" value="1" />
+    <param name="range_xmax" type="double" value="5.0"/>
+    <param name="range_xmin" type="double" value="-5.0"/>
+    <param name="range_ymax" type="double" value="15.0"/>
+    <param name="range_ymin" type="double" value="-15.0"/>
+    <param name="agv_xmax" type="double" value="1.8"/>
+    <param name="agv_xmin" type="double" value="-1.8"/>
+    <param name="agv_ymax" type="double" value="8.0"/>
+    <param name="agv_ymin" type="double" value="-8.0"/>
+  </node>
+</launch>

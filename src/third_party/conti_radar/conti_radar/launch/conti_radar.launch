@@ -1,0 +1,6 @@
+<launch>
+    <node name="conti_radar" pkg="conti_radar" type = "conti_radar" output="screen">
+	<param name="config_file"  type="string" value="$(find conti_radar)/config/conti_radar_config.ini" />
+	<param name="frame_id"     type="string" value="conti_radar" />
+    </node>
+</launch>

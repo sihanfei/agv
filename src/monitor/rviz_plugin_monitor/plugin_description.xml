@@ -1,0 +1,9 @@
+<library path="lib/librviz_plugin_monitor">
+  <class name="rviz_plugin_monitor/Monitor Panel"
+         type="rviz_plugin_monitor::MonitorPanel"
+         base_class_type="rviz::Panel">
+    <description>
+      A panel widget which shows the clicked point coordinates.
+    </description>
+  </class>
+</library>

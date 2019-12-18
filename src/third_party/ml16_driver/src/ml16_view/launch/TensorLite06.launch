@@ -1,0 +1,48 @@
+<launch>
+   //TensorLite06
+  <node pkg="ml16_view" name="ml16_node" type="ml16_node" output="screen">
+    <param name="frame_id"  type="string" value="TanwayML16" />
+    <param name="topic"  type="string" value="/ml16_cloud" />
+
+    <param name="host"  type="string" value="192.168.111.204" />
+    <param name="port"  type="int" value="5600" />
+    <param name="LiDARhost"  type="string" value="192.168.111.30" />
+    <param name="LiDARport"  type="int" value="5050" />
+
+    <param name="Color"  type="string" value="Indoor" />
+    <param name="VerticleAngle"  type="int" value="11" />
+
+    <param name="StartAngle"  type="double" value="98.0" />
+    <param name="EndAngle"  type="double" value="156.0" />
+
+    <param name="StaticQuantityFirst_1"  type="double" value="8.843" />
+    <param name="StaticQuantityFirst_2"  type="double" value="8.775" />
+    <param name="StaticQuantityFirst_3"  type="double" value="8.745" />
+    <param name="StaticQuantityFirst_4"  type="double" value="8.755" />
+    <param name="StaticQuantityFirst_5"  type="double" value="8.747" />
+    <param name="StaticQuantityFirst_6"  type="double" value="8.755" />
+    <param name="StaticQuantityFirst_7"  type="double" value="8.77" />
+    <param name="StaticQuantityFirst_8"  type="double" value="8.705" />
+    <param name="StaticQuantityFirst_9"  type="double" value="8.71" />
+    <param name="StaticQuantityFirst_10"  type="double" value="8.78" />
+    <param name="StaticQuantityFirst_11"  type="double" value="8.74" />
+    <param name="StaticQuantityFirst_12"  type="double" value="8.76" />
+    <param name="StaticQuantityFirst_13"  type="double" value="8.762" />
+    <param name="StaticQuantityFirst_14"  type="double" value="8.79" />
+    <param name="StaticQuantityFirst_15"  type="double" value="8.875" />
+    <param name="StaticQuantityFirst_16"  type="double" value="8.99" />
+
+    <param name="transformCloud_Status"  type="bool" value="false" />
+    <param name="trans_x"  type="double" value="0"  />
+    <param name="trans_y"  type="double" value="0"  />
+    <param name="trans_z"  type="double" value="0"  />
+    <param name="rotate_theta_xy"  type="double" value="3.14"  />
+    <param name="rotate_theta_xz"  type="double" value="3.14"  />
+    <param name="rotate_theta_yz"  type="double" value="3.14"  />
+
+    <param name="GPS_Status"  type="bool" value="false" />
+   </node>
+
+ 　 <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ml16_view)/rviz/ml16.rviz" />
+
+</launch>

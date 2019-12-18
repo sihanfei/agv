@@ -1,0 +1,57 @@
+log_dir: "/work/log/"
+sensor_name: TanWay
+
+device_list:
+- device_name: lidar1
+  device_enable: true
+  device_ip: "192.168.2.101"
+  intput_port: 5052
+  topic_name_1: "/drivers/tw_lidar1/ml16_cloud"
+  StartAngle: 170.0
+  EndAngle: 230.0
+  StaticQuantityFirst: [9.33,9.25,9.21,9.14,9.175,9.09,9.2,9.0,9.03,9.22,9.12,9.2,9.17,9.2,9.24,9.245]
+
+- device_name: lidar2
+  device_enable: true
+  device_ip: "192.168.2.101"
+  intput_port: 5051
+  topic_name_1: "/drivers/tw_lidar2/ml16_cloud"
+  StartAngle: 42.0
+  EndAngle: 102.0
+  StaticQuantityFirst: [9.33,9.25,9.21,9.14,9.175,9.09,9.2,9.0,9.03,9.22,9.12,9.2,9.17,9.2,9.24,9.245]
+
+- device_name: lidar5
+  device_enable: true
+  device_ip: "192.168.2.101"
+  intput_port: 5056
+  topic_name_1: "/drivers/tw_lidar5/ml16_cloud"
+  StartAngle: 56.0
+  EndAngle: 116.0
+  StaticQuantityFirst: [9.33,9.25,9.21,9.14,9.175,9.09,9.2,9.0,9.03,9.22,9.12,9.2,9.17,9.2,9.24,9.245]
+
+- device_name: lidar6
+  device_enable: true
+  device_ip: "192.168.2.101"
+  intput_port: 5055
+  topic_name_1: "/drivers/tw_lidar6/ml16_cloud"
+  StartAngle: 98.0
+  EndAngle: 156.0
+  StaticQuantityFirst: [9.33,9.25,9.21,9.14,9.175,9.09,9.2,9.0,9.03,9.22,9.12,9.2,9.17,9.2,9.24,9.245]
+
+- device_name: lidar8
+  device_enable: true
+  device_ip: "192.168.2.101"
+  intput_port: 5053
+  topic_name_1: "/drivers/tw_lidar8/ml16_cloud"
+  StartAngle: 170.0
+  EndAngle: 230.0
+  StaticQuantityFirst: [9.33,9.25,9.21,9.14,9.175,9.09,9.2,9.0,9.03,9.22,9.12,9.2,9.17,9.2,9.24,9.245]
+
+- device_name: lidar9
+  device_enable: true
+  device_ip: "192.168.2.101"
+  intput_port: 5054
+  topic_name_1: "/drivers/tw_lidar9/ml16_cloud"
+  StartAngle: 130.0
+  EndAngle: 187.0
+  StaticQuantityFirst: [9.33,9.25,9.21,9.14,9.175,9.09,9.2,9.0,9.03,9.22,9.12,9.2,9.17,9.2,9.24,9.245]

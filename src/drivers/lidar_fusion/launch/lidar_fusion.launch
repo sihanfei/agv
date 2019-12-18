@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="lidar_fusion" name="lidar_fusion" type="lidar_fusion_node" output="screen"/>
+</launch>

@@ -1,0 +1,8 @@
+<launch>
+    <node 
+    pkg= "com2agv"
+    type= "com2agv"
+    name= "com2agv"
+    output= "screen"
+    />
+</launch>

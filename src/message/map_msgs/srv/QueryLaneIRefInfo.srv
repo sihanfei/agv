@@ -1,0 +1,4 @@
+uint16 laneID
+---
+uint64 ref_point_num
+common_msgs/REFPoint[] ref_point

@@ -1,0 +1,24 @@
+<launch>
+
+    <group ns="velodyne1">
+        <include file="$(find velodyne)/launch/parameter.launch"/>
+	    <param name="frame_id" value="odom"/>
+        <param name="device_ip" value="192.168.2.201"/>
+        <param name="port" value="2369"/>
+
+	    <node pkg="velodyne" name="velodyne_pointcloud_201" type="velodyne_pointcloud" />
+        <node pkg="velodyne" name="velodyne_driver_201" type="velodyne_driver" />
+    </group>
+
+
+    <group ns="velodyne2">
+        <include file="$(find velodyne)/launch/parameter.launch"/>
+        <param name="frame_id" value="odom"/>
+        <param name="device_ip" value="192.168.2.202"/>
+        <param name="port" value="2370"/>
+        
+        <node pkg="velodyne" name="velodyne_pointcloud_202" type="velodyne_pointcloud" />
+        <node pkg="velodyne" name="velodyne_driver_202" type="velodyne_driver" />
+    </group>
+
+</launch>

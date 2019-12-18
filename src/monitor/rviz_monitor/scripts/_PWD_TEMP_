@@ -1,0 +1,3 @@
+#! /bin/bash
+# add your ownpassword
+echo  123456

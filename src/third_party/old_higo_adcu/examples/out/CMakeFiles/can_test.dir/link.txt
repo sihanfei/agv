@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/can_test.dir/can_test.cpp.o  -o can_test  -L/usr/local/adcusdk/examples/../lib -lWiseADCUSdk -lpthread -Wl,-rpath,/usr/local/adcusdk/examples/../lib 

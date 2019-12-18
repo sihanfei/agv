@@ -1,0 +1,116 @@
+\hypertarget{adcuCamera_8h}{}\section{/home/lrj/work/adcu\+Sdk/include/adcu\+Camera.h File Reference}
+\label{adcuCamera_8h}\index{/home/lrj/work/adcu\+Sdk/include/adcu\+Camera.\+h@{/home/lrj/work/adcu\+Sdk/include/adcu\+Camera.\+h}}
+{\ttfamily \#include \char`\"{}Image\+Process\+Callback.\+h\char`\"{}}\\*
+Include dependency graph for adcu\+Camera.\+h\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{adcuCamera_8h_a170a88d81761856ebe6f2852778b5ccf}{adcu\+Camera\+Init} (char $\ast$camera\+Mask)
+\item 
+void \hyperlink{adcuCamera_8h_af0604dac4c09d614057ffb93cf656151}{adcu\+Camera\+Deinit} ()
+\item 
+int \hyperlink{adcuCamera_8h_a90fd03c3a482ad465c7039bc4f13581e}{adcu\+Get\+Camera\+Image\+Prop} (int index, int $\ast$width, int $\ast$height, int $\ast$pix\+Width)
+\item 
+int \hyperlink{adcuCamera_8h_a58dcdf37eb154a408a0ad47899fcf358}{adcu\+Get\+Camera\+Status} (int index)
+\item 
+int \hyperlink{adcuCamera_8h_ae0fcbe44557b67fb407d3be7fba91874}{adcu\+Attacth\+Cammer\+Callback} (int index, \hyperlink{ImageProcessCallback_8h_a5f24cb10a415abcd292745141273bfa5}{image\+Process\+Callback} callback)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{adcu\+Camera.\+h@{adcu\+Camera.\+h}!adcu\+Attacth\+Cammer\+Callback@{adcu\+Attacth\+Cammer\+Callback}}
+\index{adcu\+Attacth\+Cammer\+Callback@{adcu\+Attacth\+Cammer\+Callback}!adcu\+Camera.\+h@{adcu\+Camera.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Attacth\+Cammer\+Callback(int index, image\+Process\+Callback callback)}{adcuAttacthCammerCallback(int index, imageProcessCallback callback)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Attacth\+Cammer\+Callback (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{{\bf image\+Process\+Callback}}]{callback}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuCamera_8h_ae0fcbe44557b67fb407d3be7fba91874}{}\label{adcuCamera_8h_ae0fcbe44557b67fb407d3be7fba91874}
+! "brief attach the callback function for a specific camera . 
+\begin{DoxyParams}{Parameters}
+{\em index} & is the device id \\
+\hline
+{\em callback} & is the way that camera return image to app. this callback should process simple work. if you want to do some complicate works,please use another thread. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & success \\
+\hline
+{\em -\/1} & something wrong happend. \\
+\hline
+\end{DoxyRetVals}
+\index{adcu\+Camera.\+h@{adcu\+Camera.\+h}!adcu\+Camera\+Deinit@{adcu\+Camera\+Deinit}}
+\index{adcu\+Camera\+Deinit@{adcu\+Camera\+Deinit}!adcu\+Camera.\+h@{adcu\+Camera.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Camera\+Deinit()}{adcuCameraDeinit()}}]{\setlength{\rightskip}{0pt plus 5cm}void adcu\+Camera\+Deinit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuCamera_8h_af0604dac4c09d614057ffb93cf656151}{}\label{adcuCamera_8h_af0604dac4c09d614057ffb93cf656151}
+! "brief recycle the resource of the runtime enviorenment \index{adcu\+Camera.\+h@{adcu\+Camera.\+h}!adcu\+Camera\+Init@{adcu\+Camera\+Init}}
+\index{adcu\+Camera\+Init@{adcu\+Camera\+Init}!adcu\+Camera.\+h@{adcu\+Camera.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Camera\+Init(char $\ast$camera\+Mask)}{adcuCameraInit(char *cameraMask)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Camera\+Init (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{camera\+Mask}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuCamera_8h_a170a88d81761856ebe6f2852778b5ccf}{}\label{adcuCamera_8h_a170a88d81761856ebe6f2852778b5ccf}
+! "brief this function is to initialize the runtime enviorenment if the sdk. ! 
+\begin{DoxyParams}{Parameters}
+{\em camera\+Mask} & is the bit map of camera. this mask should like this\+:\char`\"{}001100110011\char`\"{} which means the device which id is 2,3,6,7,10,11 will open for operation . plsease make sure all the required camaras are connected to the hardware correctly. the cameras are divided into 3 group, one camera group containe 4 cameras,if one camera of the required cameras in a group is not connected correctly, all the camera in the group will fail to capure images. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em -\/1} & means failed \\
+\hline
+{\em 0} & means success. \\
+\hline
+\end{DoxyRetVals}
+\index{adcu\+Camera.\+h@{adcu\+Camera.\+h}!adcu\+Get\+Camera\+Image\+Prop@{adcu\+Get\+Camera\+Image\+Prop}}
+\index{adcu\+Get\+Camera\+Image\+Prop@{adcu\+Get\+Camera\+Image\+Prop}!adcu\+Camera.\+h@{adcu\+Camera.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Get\+Camera\+Image\+Prop(int index, int $\ast$width, int $\ast$height, int $\ast$pix\+Width)}{adcuGetCameraImageProp(int index, int *width, int *height, int *pixWidth)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Get\+Camera\+Image\+Prop (
+\begin{DoxyParamCaption}
+\item[{int}]{index, }
+\item[{int $\ast$}]{width, }
+\item[{int $\ast$}]{height, }
+\item[{int $\ast$}]{pix\+Width}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuCamera_8h_a90fd03c3a482ad465c7039bc4f13581e}{}\label{adcuCamera_8h_a90fd03c3a482ad465c7039bc4f13581e}
+! "brief get a specific camera basic infomation. 
+\begin{DoxyParams}{Parameters}
+{\em index} & is the device id \\
+\hline
+{\em width} & is the width of the image captured by this camera. \\
+\hline
+{\em height} & is the height of the image captured by this camera. \\
+\hline
+{\em pixlwidth} & is the width of a pixel. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & success \\
+\hline
+{\em -\/1} & something wrong happend. \\
+\hline
+\end{DoxyRetVals}
+\index{adcu\+Camera.\+h@{adcu\+Camera.\+h}!adcu\+Get\+Camera\+Status@{adcu\+Get\+Camera\+Status}}
+\index{adcu\+Get\+Camera\+Status@{adcu\+Get\+Camera\+Status}!adcu\+Camera.\+h@{adcu\+Camera.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Get\+Camera\+Status(int index)}{adcuGetCameraStatus(int index)}}]{\setlength{\rightskip}{0pt plus 5cm}int adcu\+Get\+Camera\+Status (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\hypertarget{adcuCamera_8h_a58dcdf37eb154a408a0ad47899fcf358}{}\label{adcuCamera_8h_a58dcdf37eb154a408a0ad47899fcf358}
+! "brief query the status of a specific camera . 
+\begin{DoxyParams}{Parameters}
+{\em index} & is the device id \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & work normal \\
+\hline
+{\em } & \\
+\hline
+\end{DoxyRetVals}

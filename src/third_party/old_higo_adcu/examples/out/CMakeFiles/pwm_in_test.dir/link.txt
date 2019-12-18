@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/pwm_in_test.dir/pwm_in_test.cpp.o  -o pwm_in_test  -L/usr/local/adcusdk/examples/../lib -lWiseADCUSdk -lpthread -Wl,-rpath,/usr/local/adcusdk/examples/../lib 

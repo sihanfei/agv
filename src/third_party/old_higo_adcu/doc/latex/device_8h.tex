@@ -1,0 +1,200 @@
+\hypertarget{device_8h}{}\section{/home/lrj/work/adcu\+Sdk/include/device.h File Reference}
+\label{device_8h}\index{/home/lrj/work/adcu\+Sdk/include/device.\+h@{/home/lrj/work/adcu\+Sdk/include/device.\+h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for device.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structp__adcuCanData}{p\+\_\+adcu\+Can\+Data}
+\begin{DoxyCompactList}\small\item\em adcu can data struct. \end{DoxyCompactList}\item 
+struct \hyperlink{structp__adcuRS232Data}{p\+\_\+adcu\+R\+S232\+Data}
+\begin{DoxyCompactList}\small\item\em adcu rs232 data struct. \end{DoxyCompactList}\item 
+struct \hyperlink{structp__adcuPwmData}{p\+\_\+adcu\+Pwm\+Data}
+\begin{DoxyCompactList}\small\item\em adcu pwm data struct. \end{DoxyCompactList}\item 
+struct \hyperlink{structp__adcuDacData}{p\+\_\+adcu\+Dac\+Data}
+\begin{DoxyCompactList}\small\item\em adcu D\+AC data struct. \end{DoxyCompactList}\item 
+struct \hyperlink{structp__adcuLinData}{p\+\_\+adcu\+Lin\+Data}
+\begin{DoxyCompactList}\small\item\em adcu Lin data struct. \end{DoxyCompactList}\item 
+struct \hyperlink{structp__adcuHSData}{p\+\_\+adcu\+H\+S\+Data}
+\begin{DoxyCompactList}\small\item\em adcu High\+Side data struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{device_8h_acf897332482a87a49a6f253f42b3456d}{C\+A\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~8
+\begin{DoxyCompactList}\small\item\em can data max size. \end{DoxyCompactList}\item 
+\#define \hyperlink{device_8h_ab7cc37e6a1411fb4e307828c19533c77}{R\+S232\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~16
+\begin{DoxyCompactList}\small\item\em rs232 data max size. \end{DoxyCompactList}\item 
+\#define \hyperlink{device_8h_a23fcb14d9120ed87b44498eee448a375}{L\+I\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}~8
+\begin{DoxyCompactList}\small\item\em Lin data max size. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structp__adcuCanData}{p\+\_\+adcu\+Can\+Data} \hyperlink{device_8h_a3f2f5fd58c84091f4fb176f9319c1a72}{adcu\+Can\+Data}
+\item 
+typedef struct \hyperlink{structp__adcuRS232Data}{p\+\_\+adcu\+R\+S232\+Data} \hyperlink{device_8h_abd83f54f68f0494706d6bd4839b62417}{adcu\+R\+S232\+Data}
+\item 
+typedef struct \hyperlink{structp__adcuPwmData}{p\+\_\+adcu\+Pwm\+Data} \hyperlink{device_8h_ac5302288dbdc0b92bd1e70b626e5c126}{adcu\+Pwm\+Data}
+\item 
+typedef struct \hyperlink{structp__adcuDacData}{p\+\_\+adcu\+Dac\+Data} \hyperlink{device_8h_a62c0052a95aefe37ab765380841cbedd}{adcu\+Dac\+Data}
+\item 
+typedef struct \hyperlink{structp__adcuLinData}{p\+\_\+adcu\+Lin\+Data} \hyperlink{device_8h_a2d8869e0ad46185b593fabdefceaf64b}{adcu\+Lin\+Data}
+\item 
+typedef struct \hyperlink{structp__adcuHSData}{p\+\_\+adcu\+H\+S\+Data} \hyperlink{device_8h_a0ae0feec2f0892d6180a23766a0e74c6}{adcu\+H\+S\+Data}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07f}{adcu\+Device\+Type} \{ \\*
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fae10daccb77ad89f68e9ba6d764fe5884}{adcu\+C\+AN} = 0x80, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fa4c5dac3c2a920f5881208b59a5a5c6b5}{adcu\+R\+S232}, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fa5d807f655ce4f39e50ae54a88dc181e2}{adcu\+R\+S485}, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07faf06a907cc3086d182d8fd81bc8c122ef}{adcu\+L\+IN}, 
+\\*
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fa1490bc520c8aa8e39d54aca79b9e2d6d}{adcu\+A\+DC}, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07faf721ea593b99caa058b0b681cbf2a633}{adcu\+D\+AC}, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07faaac7b9cb2ec32e9efa626ee62d26dcda}{adcu\+H\+I\+G\+H\+S\+I\+DE}, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fa400285eac661b89334245547575d785f}{adcu\+F\+L\+E\+X\+R\+AY}, 
+\\*
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fa2064518ab3d6e92c8bea2bd8b3f62518}{adcu\+P\+W\+M\+\_\+\+O\+UT}, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fa89d3599192dff245cb6d9bde215e4077}{adcu\+P\+W\+M\+\_\+\+IN}, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fa33bd0a9269d19491a126b6a8f9c16969}{adcu\+S\+E\+R\+V\+ER}, 
+\hyperlink{device_8h_afb17ec392c76861e7a30a117a434a07fa9c58b0939a05dc6481dabac11754e72f}{adcu\+P\+O\+W\+ER}
+ \}\begin{DoxyCompactList}\small\item\em adcu support devices. \end{DoxyCompactList}
+\item 
+enum \hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47}{adcu\+Device\+Channel} \{ \\*
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a004f8d1b20cf3dcc5dc804824b255321}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1} = 1, 
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a6a70a727b666c3a0aac22e2e607a804b}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2}, 
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47ae51292134499baa1704d2eda47aa1081}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3}, 
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a578be635c8a79e2d47952458e07f1313}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4}, 
+\\*
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a42d4c5ebec03a34d08afe6547a3a04a1}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5}, 
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a1482876e0a261105cfb933eb0ec390ca}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6}, 
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47acac3c0725c6f2237b02c4628e8cc9a1d}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+7}, 
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a35fa41cffc5606043833d8d04b8b4be8}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+8}, 
+\\*
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47aa2c862021e05b7401109b1f35a762e59}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+9}, 
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a62491552adddee1356d817730e779886}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+10}, 
+\hyperlink{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47af35d07986ef7ebe8706f8e9c50b282e7}{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+AX}
+ \}\begin{DoxyCompactList}\small\item\em adcu device channels. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{device.\+h@{device.\+h}!C\+A\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{C\+A\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}}
+\index{C\+A\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{C\+A\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{C\+A\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}{CAN_DATA_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+A\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE~8}\hypertarget{device_8h_acf897332482a87a49a6f253f42b3456d}{}\label{device_8h_acf897332482a87a49a6f253f42b3456d}
+
+
+can data max size. 
+
+\index{device.\+h@{device.\+h}!L\+I\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{L\+I\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}}
+\index{L\+I\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{L\+I\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{L\+I\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}{LIN_DATA_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+I\+N\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE~8}\hypertarget{device_8h_a23fcb14d9120ed87b44498eee448a375}{}\label{device_8h_a23fcb14d9120ed87b44498eee448a375}
+
+
+Lin data max size. 
+
+\index{device.\+h@{device.\+h}!R\+S232\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{R\+S232\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}}
+\index{R\+S232\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE@{R\+S232\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{R\+S232\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE}{RS232_DATA_SIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+S232\+\_\+\+D\+A\+T\+A\+\_\+\+S\+I\+ZE~16}\hypertarget{device_8h_ab7cc37e6a1411fb4e307828c19533c77}{}\label{device_8h_ab7cc37e6a1411fb4e307828c19533c77}
+
+
+rs232 data max size. 
+
+
+
+\subsection{Typedef Documentation}
+\index{device.\+h@{device.\+h}!adcu\+Can\+Data@{adcu\+Can\+Data}}
+\index{adcu\+Can\+Data@{adcu\+Can\+Data}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Can\+Data}{adcuCanData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef  struct {\bf p\+\_\+adcu\+Can\+Data}  {\bf adcu\+Can\+Data}}\hypertarget{device_8h_a3f2f5fd58c84091f4fb176f9319c1a72}{}\label{device_8h_a3f2f5fd58c84091f4fb176f9319c1a72}
+\index{device.\+h@{device.\+h}!adcu\+Dac\+Data@{adcu\+Dac\+Data}}
+\index{adcu\+Dac\+Data@{adcu\+Dac\+Data}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Dac\+Data}{adcuDacData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef  struct {\bf p\+\_\+adcu\+Dac\+Data}  {\bf adcu\+Dac\+Data}}\hypertarget{device_8h_a62c0052a95aefe37ab765380841cbedd}{}\label{device_8h_a62c0052a95aefe37ab765380841cbedd}
+\index{device.\+h@{device.\+h}!adcu\+H\+S\+Data@{adcu\+H\+S\+Data}}
+\index{adcu\+H\+S\+Data@{adcu\+H\+S\+Data}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+H\+S\+Data}{adcuHSData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef  struct {\bf p\+\_\+adcu\+H\+S\+Data}  {\bf adcu\+H\+S\+Data}}\hypertarget{device_8h_a0ae0feec2f0892d6180a23766a0e74c6}{}\label{device_8h_a0ae0feec2f0892d6180a23766a0e74c6}
+\index{device.\+h@{device.\+h}!adcu\+Lin\+Data@{adcu\+Lin\+Data}}
+\index{adcu\+Lin\+Data@{adcu\+Lin\+Data}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Lin\+Data}{adcuLinData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef  struct {\bf p\+\_\+adcu\+Lin\+Data}  {\bf adcu\+Lin\+Data}}\hypertarget{device_8h_a2d8869e0ad46185b593fabdefceaf64b}{}\label{device_8h_a2d8869e0ad46185b593fabdefceaf64b}
+\index{device.\+h@{device.\+h}!adcu\+Pwm\+Data@{adcu\+Pwm\+Data}}
+\index{adcu\+Pwm\+Data@{adcu\+Pwm\+Data}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Pwm\+Data}{adcuPwmData}}]{\setlength{\rightskip}{0pt plus 5cm}typedef  struct {\bf p\+\_\+adcu\+Pwm\+Data}  {\bf adcu\+Pwm\+Data}}\hypertarget{device_8h_ac5302288dbdc0b92bd1e70b626e5c126}{}\label{device_8h_ac5302288dbdc0b92bd1e70b626e5c126}
+\index{device.\+h@{device.\+h}!adcu\+R\+S232\+Data@{adcu\+R\+S232\+Data}}
+\index{adcu\+R\+S232\+Data@{adcu\+R\+S232\+Data}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+R\+S232\+Data}{adcuRS232Data}}]{\setlength{\rightskip}{0pt plus 5cm}typedef  struct {\bf p\+\_\+adcu\+R\+S232\+Data}  {\bf adcu\+R\+S232\+Data}}\hypertarget{device_8h_abd83f54f68f0494706d6bd4839b62417}{}\label{device_8h_abd83f54f68f0494706d6bd4839b62417}
+
+
+\subsection{Enumeration Type Documentation}
+\index{device.\+h@{device.\+h}!adcu\+Device\+Channel@{adcu\+Device\+Channel}}
+\index{adcu\+Device\+Channel@{adcu\+Device\+Channel}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Device\+Channel}{adcuDeviceChannel}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf adcu\+Device\+Channel}}\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47}
+
+
+adcu device channels. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+1\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a004f8d1b20cf3dcc5dc804824b255321}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a004f8d1b20cf3dcc5dc804824b255321}
+}]adcu channel 1 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+2\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a6a70a727b666c3a0aac22e2e607a804b}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a6a70a727b666c3a0aac22e2e607a804b}
+}]adcu channel 2 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+3\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47ae51292134499baa1704d2eda47aa1081}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47ae51292134499baa1704d2eda47aa1081}
+}]adcu channel 3 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+4\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a578be635c8a79e2d47952458e07f1313}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a578be635c8a79e2d47952458e07f1313}
+}]adcu channel 4 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+5\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a42d4c5ebec03a34d08afe6547a3a04a1}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a42d4c5ebec03a34d08afe6547a3a04a1}
+}]adcu channel 5 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+6\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a1482876e0a261105cfb933eb0ec390ca}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a1482876e0a261105cfb933eb0ec390ca}
+}]adcu channel 6 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+7@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+7}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+7@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+7}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+7\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47acac3c0725c6f2237b02c4628e8cc9a1d}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47acac3c0725c6f2237b02c4628e8cc9a1d}
+}]adcu channel 7 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+8@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+8}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+8@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+8}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+8\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a35fa41cffc5606043833d8d04b8b4be8}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a35fa41cffc5606043833d8d04b8b4be8}
+}]adcu channel 8 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+9@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+9}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+9@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+9}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+9\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47aa2c862021e05b7401109b1f35a762e59}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47aa2c862021e05b7401109b1f35a762e59}
+}]adcu channel 9 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+10@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+10}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+10@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+10}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+10\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a62491552adddee1356d817730e779886}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47a62491552adddee1356d817730e779886}
+}]adcu channel 10 \index{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+AX@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+AX}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+AX@{A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+AX}}\item[{\em 
+A\+D\+C\+U\+\_\+\+C\+H\+A\+N\+N\+E\+L\+\_\+\+M\+AX\hypertarget{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47af35d07986ef7ebe8706f8e9c50b282e7}{}\label{device_8h_a7350345e7afc7ed49977f8b4d5bd1b47af35d07986ef7ebe8706f8e9c50b282e7}
+}]\end{description}
+\end{Desc}
+\index{device.\+h@{device.\+h}!adcu\+Device\+Type@{adcu\+Device\+Type}}
+\index{adcu\+Device\+Type@{adcu\+Device\+Type}!device.\+h@{device.\+h}}
+\subsubsection[{\texorpdfstring{adcu\+Device\+Type}{adcuDeviceType}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf adcu\+Device\+Type}}\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07f}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07f}
+
+
+adcu support devices. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{adcu\+C\+AN@{adcu\+C\+AN}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+C\+AN@{adcu\+C\+AN}}\item[{\em 
+adcu\+C\+AN\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fae10daccb77ad89f68e9ba6d764fe5884}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fae10daccb77ad89f68e9ba6d764fe5884}
+}]adcu can device \index{adcu\+R\+S232@{adcu\+R\+S232}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+R\+S232@{adcu\+R\+S232}}\item[{\em 
+adcu\+R\+S232\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fa4c5dac3c2a920f5881208b59a5a5c6b5}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fa4c5dac3c2a920f5881208b59a5a5c6b5}
+}]adcu rs232 device \index{adcu\+R\+S485@{adcu\+R\+S485}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+R\+S485@{adcu\+R\+S485}}\item[{\em 
+adcu\+R\+S485\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fa5d807f655ce4f39e50ae54a88dc181e2}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fa5d807f655ce4f39e50ae54a88dc181e2}
+}]adcu rs485 device \index{adcu\+L\+IN@{adcu\+L\+IN}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+L\+IN@{adcu\+L\+IN}}\item[{\em 
+adcu\+L\+IN\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07faf06a907cc3086d182d8fd81bc8c122ef}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07faf06a907cc3086d182d8fd81bc8c122ef}
+}]adcu L\+IN device \index{adcu\+A\+DC@{adcu\+A\+DC}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+A\+DC@{adcu\+A\+DC}}\item[{\em 
+adcu\+A\+DC\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fa1490bc520c8aa8e39d54aca79b9e2d6d}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fa1490bc520c8aa8e39d54aca79b9e2d6d}
+}]adcu A\+DC device \index{adcu\+D\+AC@{adcu\+D\+AC}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+D\+AC@{adcu\+D\+AC}}\item[{\em 
+adcu\+D\+AC\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07faf721ea593b99caa058b0b681cbf2a633}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07faf721ea593b99caa058b0b681cbf2a633}
+}]adcu D\+AC device \index{adcu\+H\+I\+G\+H\+S\+I\+DE@{adcu\+H\+I\+G\+H\+S\+I\+DE}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+H\+I\+G\+H\+S\+I\+DE@{adcu\+H\+I\+G\+H\+S\+I\+DE}}\item[{\em 
+adcu\+H\+I\+G\+H\+S\+I\+DE\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07faaac7b9cb2ec32e9efa626ee62d26dcda}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07faaac7b9cb2ec32e9efa626ee62d26dcda}
+}]adcu High\+Side device \index{adcu\+F\+L\+E\+X\+R\+AY@{adcu\+F\+L\+E\+X\+R\+AY}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+F\+L\+E\+X\+R\+AY@{adcu\+F\+L\+E\+X\+R\+AY}}\item[{\em 
+adcu\+F\+L\+E\+X\+R\+AY\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fa400285eac661b89334245547575d785f}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fa400285eac661b89334245547575d785f}
+}]adcu F\+L\+E\+X\+R\+AY device \index{adcu\+P\+W\+M\+\_\+\+O\+UT@{adcu\+P\+W\+M\+\_\+\+O\+UT}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+P\+W\+M\+\_\+\+O\+UT@{adcu\+P\+W\+M\+\_\+\+O\+UT}}\item[{\em 
+adcu\+P\+W\+M\+\_\+\+O\+UT\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fa2064518ab3d6e92c8bea2bd8b3f62518}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fa2064518ab3d6e92c8bea2bd8b3f62518}
+}]adcu P\+W\+M\+\_\+\+O\+UT device \index{adcu\+P\+W\+M\+\_\+\+IN@{adcu\+P\+W\+M\+\_\+\+IN}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+P\+W\+M\+\_\+\+IN@{adcu\+P\+W\+M\+\_\+\+IN}}\item[{\em 
+adcu\+P\+W\+M\+\_\+\+IN\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fa89d3599192dff245cb6d9bde215e4077}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fa89d3599192dff245cb6d9bde215e4077}
+}]adcu P\+W\+M\+\_\+\+IN device \index{adcu\+S\+E\+R\+V\+ER@{adcu\+S\+E\+R\+V\+ER}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+S\+E\+R\+V\+ER@{adcu\+S\+E\+R\+V\+ER}}\item[{\em 
+adcu\+S\+E\+R\+V\+ER\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fa33bd0a9269d19491a126b6a8f9c16969}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fa33bd0a9269d19491a126b6a8f9c16969}
+}]\index{adcu\+P\+O\+W\+ER@{adcu\+P\+O\+W\+ER}!device.\+h@{device.\+h}}\index{device.\+h@{device.\+h}!adcu\+P\+O\+W\+ER@{adcu\+P\+O\+W\+ER}}\item[{\em 
+adcu\+P\+O\+W\+ER\hypertarget{device_8h_afb17ec392c76861e7a30a117a434a07fa9c58b0939a05dc6481dabac11754e72f}{}\label{device_8h_afb17ec392c76861e7a30a117a434a07fa9c58b0939a05dc6481dabac11754e72f}
+}]\end{description}
+\end{Desc}

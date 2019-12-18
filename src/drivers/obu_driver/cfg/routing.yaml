@@ -1,0 +1,9 @@
+log_dir: "/work/log/"
+sensor_name: routing
+
+device_list:
+- device_name: map1                 #OBU设备名称
+  device_enable: true               #是否启用该设备
+  device_ip: "192.168.2.200"         #OBU设备IP
+  intput_port: 19001                 #OBU开启的TCP服务端口
+

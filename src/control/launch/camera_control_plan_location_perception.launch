@@ -1,0 +1,9 @@
+<launch>
+   <!-- <rosparam command="load" file="/home/higo/work/superg_agv/src/control/config/control_params.yaml"/> -->
+   <!-- <node pkg="can_wr" type="can_wr_n" name="imu_gnss" args="2 3" /> -->
+   <!-- <node pkg="data_fusion" type="FusionCenter" name="FusionCenter"/> -->
+   <node pkg="perception_lidar" type="lidar_obstacle_detection" name="lidar_obstacle_detection"/>
+   <node pkg="perception_fusion" type="perception_fusion" name="perception_fusion"/>
+   <!-- <include file= "$(find velodyne)/launch/multiple_VLP16_points.launch" /> -->
+   <!-- <include file= "$(find lidar_fusion)/launch/lidar_fusion.launch"/> -->
+</launch>

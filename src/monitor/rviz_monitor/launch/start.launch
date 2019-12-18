@@ -1,0 +1,30 @@
+<launch>
+
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+  <!--<include file="$(find velodyne)/launch/multiple_VLP16_points.launch" />
+
+  <include file="$(find roborsensor)/launch/multiple_roborsensor.launch" />-->
+
+  <include file="$(find vl_lidar_driver)/launch/velodyne_1_2.launch" />
+  <include file="$(find rs_lidar_driver)/launch/rs_1_2.launch" />
+
+  <node pkg="obu_driver" type="fixed_lidar_info_node" name="fixed_lidar_info_node"/>
+
+  <node pkg="conti_radar_driver" type="cannet_radar_node" name="cannet_radar_node"/>
+
+  <!--<node pkg="lidar_fusion" name="lidar_fusion_node" type="lidar_fusion_node"/>-->
+
+  <!--<node pkg="can_wr" name="power_control" type="power_control" />-->
+  <node pkg="can_wr" name="can_wr" type="can_wr_n" />
+  <node pkg="can_wr" name="log_manager" type="log_manager" />
+
+  <node pkg="map" name="planning_sender_pub" type="planning_sender_pub" />
+  <node pkg="map" name="ref_sender" type="ref_sender" />
+
+  <node pkg="rviz_monitor" name="rviz_visualization_pub" type="rviz_visualization_pub" />
+
+  <node pkg="rviz_monitor" name="IPC_monitor_node" type="IPC_monitor_node" />
+  <node pkg="rviz_monitor" name="node_monitor_node" type="node_monitor_node" />
+
+</launch>

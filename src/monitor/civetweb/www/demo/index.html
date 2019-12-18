@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hello</title>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body>
+	<div id="box" style="width: 500px;height: 500px;margin: 0 auto;">
+		<canvas id="can" width="500px" height="500px" style="border: 1px solid black;">
+			
+		</canvas>
+	</div>
+</body>
+<script type="text/javascript">
+	function GetRandomNum(Min,Max)
+		{ 
+			var Range = Max - Min; 
+			var Rand = Math.random(); 
+			return(Min + Math.round(Rand * Range)); 
+		} 
+		
+		function mouseCoords(ev){
+			var e = event || window.event;
+			var x = e.offsetX || e.layerX;
+			var y = e.offsetY || e.layerY;
+            return {x,y};
+		}
+		
+		var globl_w = 500;
+		var globl_h = 500;
+		makerect(0,0,globl_w,globl_w);
+		
+		//鼠标点击生成圆
+		$("#can").click(function(e){
+			var ev = ev || window.event; 
+			var mousePos = mouseCoords(ev); 
+			mousePosX = mousePos.x;
+			mousePosY = mousePos.y;
+			console.log(mousePosX);
+			console.log(mousePosY);
+			makearc(mousePosX,mousePosY,GetRandomNum(4,4),0,180,'red');
+		})
+		
+		function myAnimation(){
+			ctx.clearRect(0, 0, globl_w, globl_h);
+		}
+		
+		//生成圆
+		function makearc(x,y,r,s,e,color){
+			var can = document.getElementById('can');
+			var ctx = can.getContext("2d");
+			ctx.clearRect(0,0,500,500);
+			ctx.beginPath();
+			ctx.fillStyle=color;
+			ctx.arc(x,y,r,s,e);
+			ctx.fill();
+		}
+		
+		function makerect(x,y,w,h){
+			var can = document.getElementById('can');
+			var ctx = can.getContext("2d");
+			ctx.strokeRect(x,y,w,h);
+		}
+		
+</script>
+</html>

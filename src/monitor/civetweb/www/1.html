@@ -1,0 +1,185 @@
+<head>
+    <meta charset='utf-8' />
+
+</head>
+
+<body>
+    <canvas id="canvas" width="900" height="900" style="border: 1px solid black;position: absolute;"></canvas>
+    <canvas id="can1" width="900" height="900" style="border: 1px solid black;position: absolute;"></canvas>
+    <script>
+
+
+        // var point = [{ x: 0, y: 380 }, { x: 100, y: 430 }, { x: 200, y: 280 }, { x: 300, y: 160 }, { x: 400, y: 340 }, { x: 500, y: 100 }, { x: 600, y: 300 },
+        // { x: 700, y: 240 }, { x: 700, y: 300 }, { x: 700, y: 300 }, { x: 700, y: 350 }, { x: 700, y: 500 }, { x: 700, y: 800 }];
+        var point = [{ x: 0, y: 380 }, { x: 100, y: 430 }, { x: 200, y: 280 }, { x: 300, y: 160 }, { x: 400, y: 340 }, { x: 500, y: 100 }, { x: 600, y: 300 },
+        { x: 700, y: 240 }];
+
+        function getCtrlPoint(ps, i, a, b) {
+            if (!a || !b) {
+                a = 0.25;
+                b = 0.25;
+            }
+            //处理两种极端情形
+            if (i < 1) {
+                var pAx = ps[0].x + (ps[1].x - ps[0].x) * a;
+                var pAy = ps[0].y + (ps[1].y - ps[0].y) * a;
+            } else {
+                var pAx = ps[i].x + (ps[i + 1].x - ps[i - 1].x) * a;
+                var pAy = ps[i].y + (ps[i + 1].y - ps[i - 1].y) * a;
+            }
+            if (i > ps.length - 3) {
+                var last = ps.length - 1
+                var pBx = ps[last].x - (ps[last].x - ps[last - 1].x) * b;
+                var pBy = ps[last].y - (ps[last].y - ps[last - 1].y) * b;
+            } else {
+                var pBx = ps[i + 1].x - (ps[i + 2].x - ps[i].x) * b;
+                var pBy = ps[i + 1].y - (ps[i + 2].y - ps[i].y) * b;
+            }
+            return {
+                pA: {
+                    x: pAx,
+                    y: pAy
+                },
+                pB: {
+                    x: pBx,
+                    y: pBy
+                }
+            }
+        };
+        function drawArrow(ctx, fromX, fromY, toX, toY, theta, headlen, width, color) {
+
+            theta = typeof (theta) != 'undefined' ? theta : 30;
+            headlen = typeof (theta) != 'undefined' ? headlen : 10;
+            width = typeof (width) != 'undefined' ? width : 1;
+            color = typeof (color) != 'color' ? color : '#000';
+
+            // 计算各角度和对应的P2,P3坐标
+            var angle = Math.atan2(fromY - toY, fromX - toX) * 180 / Math.PI,
+                angle1 = (angle + theta) * Math.PI / 180,
+                angle2 = (angle - theta) * Math.PI / 180,
+                topX = headlen * Math.cos(angle1),
+                topY = headlen * Math.sin(angle1),
+                botX = headlen * Math.cos(angle2),
+                botY = headlen * Math.sin(angle2);
+
+            ctx.save();
+            ctx.beginPath();
+
+            var arrowX = fromX - topX,
+                arrowY = fromY - topY;
+
+            // ctx.moveTo(arrowX, arrowY);
+            // ctx.moveTo(fromX, fromY);
+            // ctx.lineTo(toX, toY);
+            arrowX = toX + topX;
+            arrowY = toY + topY;
+            ctx.moveTo(arrowX, arrowY);
+            ctx.lineTo(toX, toY);
+            arrowX = toX + botX;
+            arrowY = toY + botY;
+            ctx.lineTo(arrowX, arrowY);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = width;
+            ctx.stroke();
+            ctx.restore();
+        };
+
+        function drawArrow1(ctx, toX, toY, angle, theta, headlen, width, color) {
+
+            theta = typeof (theta) != 'undefined' ? theta : 30;
+            headlen = typeof (theta) != 'undefined' ? headlen : 10;
+            width = typeof (width) != 'undefined' ? width : 1;
+            color = typeof (color) != 'color' ? color : '#f00';
+
+            // 计算各角度和对应的P2,P3坐标
+            var angle1 = (angle + theta) * Math.PI / 180,
+                angle2 = (angle - theta) * Math.PI / 180,
+                topX = headlen * Math.cos(angle1),
+                topY = headlen * Math.sin(angle1),
+                botX = headlen * Math.cos(angle2),
+                botY = headlen * Math.sin(angle2);
+
+            ctx.save();
+            ctx.beginPath();
+
+            var arrowX, arrowY;
+
+            arrowX = toX + topX;
+            arrowY = toY + topY;
+            ctx.moveTo(arrowX, arrowY);
+            ctx.lineTo(toX, toY);
+            arrowX = toX + botX;
+            arrowY = toY + botY;
+            ctx.lineTo(arrowX, arrowY);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = width;
+            ctx.stroke();
+            ctx.restore();
+        };
+
+        var arrow_x, arrow_y;
+        var cpa = [], cpb = [];
+
+        var can = document.getElementById('canvas');
+        var ctx = can.getContext("2d");
+        ctx.clearRect(0, 0, 900, 900);
+
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.moveTo(point[0].x, point[0].y);
+        for (var index = 1; index < point.length; index++) {
+            ctx.lineTo(point[index].x, point[index].y);
+        }
+        ctx.strokeStyle = 'blue';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 5;
+        ctx.moveTo(point[0].x, point[0].y);
+        for (var index = 1; index < point.length; index++) {
+            var ctrlP = getCtrlPoint(point, index - 1);
+            cpa.push({ x: ctrlP.pA.x, y: ctrlP.pA.y });
+            cpb.push({ x: ctrlP.pB.x, y: ctrlP.pB.y });
+            ctx.bezierCurveTo(ctrlP.pA.x, ctrlP.pA.y, ctrlP.pB.x, ctrlP.pB.y, point[index].x, point[index].y);
+            if (index == point.length - 1) {
+                // arrow_x = ctrlP.pA.x;
+                // arrow_y = ctrlP.pA.y;
+                arrow_x = (ctrlP.pB.x + ctrlP.pA.x) / 2;
+                arrow_y = (ctrlP.pB.y + ctrlP.pA.y) / 2;
+
+            }
+
+        }
+        ctx.strokeStyle = 'red';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.moveTo(cpa[0].x, cpa[0].y);
+        for (var index = 1; index < cpa.length; index++) {
+            ctx.lineTo(cpa[index].x, cpa[index].y);
+        }
+        ctx.strokeStyle = 'yellow';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.moveTo(cpb[0].x, cpb[0].y);
+        for (var index = 1; index < cpb.length; index++) {
+            ctx.lineTo(cpb[index].x, cpb[index].y);
+        }
+        ctx.strokeStyle = 'green';
+        ctx.stroke();
+
+        var arrow_index = point.length;
+
+        //drawArrow(ctx, arrow_x, arrow_y, point[point.length - 1].x, point[point.length - 1].y, 30, 20, 5, '#156');
+
+        drawArrow1(ctx, 400, 500, 90, 30, 20, 5);
+        drawArrow1(ctx, 400, 400, 180, 30, 20, 5, '#156');
+        drawArrow1(ctx, 500, 500, 270, 30, 20, 5);
+
+        drawArrow1(ctx, 500, 500, 355, 30, 20, 5);
+
+    </script>
+</body>

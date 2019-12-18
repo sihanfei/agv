@@ -1,0 +1,17 @@
+log_dir: "/work/log/"
+sensor_name: velodyne
+
+device_list:
+- device_name: lidar1
+  device_enable: true
+  device_ip: "192.168.2.201"
+  intput_port: 2369
+  topic_name_1: "/velodyne1/velodyne_points"
+  topic_name_2: "/"
+
+- device_name: radar2
+  device_enable: true
+  device_ip: "192.168.2.202"
+  intput_port: 2370
+  topic_name_1: "/velodyne2/velodyne_points"
+  topic_name_2: "/"

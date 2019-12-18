@@ -1,0 +1,629 @@
+VERSION "HNPBNNNYNNNNNNNNNNNNNNNNNNNNNNNNYNYYYYYYYY>4>%%%/4>'%**4YYY///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: ExternalUnit ARS_ISF
+
+
+BO_ 1548 Obj_2_Quality: 7 ARS_ISF
+ SG_ Obj_ProbOfExist : 55|3@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ Obj_MeasState : 52|3@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ Obj_ArelLong_rms : 27|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ Obj_ArelLat_rms : 38|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ Obj_VrelLong_rms : 21|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ Obj_VrelLat_rms : 16|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ Obj_Orientation_rms : 33|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ Obj_DistLong_rms : 15|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ Obj_DistLat_rms : 10|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ Obj_ID : 7|8@0+ (1,0) [0|255] ""  ExternalUnit
+
+BO_ 1549 Obj_3_Extended: 8 ARS_ISF
+ SG_ Obj_Class : 26|3@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ Obj_ArelLat : 20|9@0+ (0.01,-2.5) [-2.5|2.61] "m/s²"  ExternalUnit
+ SG_ Obj_ID : 7|8@0+ (1,0) [0|255] ""  ExternalUnit
+ SG_ Obj_OrientationAngle : 39|10@0+ (0.4,-180) [-180|229.2] "deg"  ExternalUnit
+ SG_ Obj_Width : 63|8@0+ (0.2,0) [0|51] "m"  ExternalUnit
+ SG_ Obj_Length : 55|8@0+ (0.2,0) [0|51] "m"  ExternalUnit
+ SG_ Obj_ArelLong : 15|11@0+ (0.01,-10) [-10|10.47] "m/s²"  ExternalUnit
+
+BO_ 1026 CollDetRegionState: 8 ARS_ISF
+ SG_ CollDetRegState_WarningLevel : 4|2@0+ (1,0) [0|3] ""  ExternalUnit
+ SG_ CollDetRegState_NofObjects : 63|8@0+ (1,0) [0|255] ""  ExternalUnit
+ SG_ CollDetRegState_RegionID : 7|3@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ CollDetRegState_Point2Y : 42|11@0+ (0.2,-204.6) [-204.6|204.8] "m"  ExternalUnit
+ SG_ CollDetRegState_Point2X : 39|13@0+ (0.2,-500) [-500|1138.2] "m"  ExternalUnit
+ SG_ CollDetRegState_Point1Y : 18|11@0+ (0.2,-204.6) [-204.6|204.8] "m"  ExternalUnit
+ SG_ CollDetRegState_Point1X : 15|13@0+ (0.2,-500) [-500|1138.2] "m"  ExternalUnit
+
+BO_ 1550 Obj_4_Warning: 4 ARS_ISF
+ SG_ Obj_CollDetRegionBitfield : 15|8@0+ (1,0) [0|255] ""  ExternalUnit
+ SG_ Obj_ID : 7|8@0+ (1,0) [0|255] ""  ExternalUnit
+
+BO_ 8 CollDetRelayCtrl: 1 ARS_ISF
+ SG_ CollDetRelayCtrl_Param : 7|8@0+ (1,0) [0|255] ""  ExternalUnit
+
+BO_ 516 FilterState_Cfg: 5 ARS_ISF
+ SG_ FilterState_Min_Y m9 : 11|12@0+ (0.2,-409.5) [-409.5|409.5] "m"  ExternalUnit
+ SG_ FilterState_Min_X m10 : 12|13@0+ (0.2,-500) [-500|1138.2] "m"  ExternalUnit
+ SG_ FilterState_Min_VYRightLeft m13 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Min_VYLeftRight m11 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Min_VXOncome m12 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Min_VXDepart m14 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Max_Y m9 : 27|12@0+ (0.2,-409.5) [-409.5|409.5] "m"  ExternalUnit
+ SG_ FilterState_Max_X m10 : 28|13@0+ (0.2,-500) [-500|1138.2] "m"  ExternalUnit
+ SG_ FilterState_Max_VYRightLeft m13 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Max_VYLeftRight m11 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Max_VXOncome m12 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Max_VXDepart m14 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Type : 7|1@0+ (1,0) [0|1] ""  ExternalUnit
+ SG_ FilterState_Min_VrelOncome m3 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Min_VrelDepart m4 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Min_Size m7 : 11|12@0+ (0.025,0) [0|102.375] "m2"  ExternalUnit
+ SG_ FilterState_Min_RCS m5 : 11|12@0+ (0.025,-50) [-50|52.375] "dB"  ExternalUnit
+ SG_ FilterState_Min_ProbExists m8 : 11|12@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ FilterState_Min_NofObj m0 : 11|12@0+ (1,0) [0|4095] ""  ExternalUnit
+ SG_ FilterState_Min_Lifetime m6 : 11|12@0+ (0.1,0) [0|409.5] "s"  ExternalUnit
+ SG_ FilterState_Min_Distance m1 : 11|12@0+ (0.1,0) [0|409.5] "m"  ExternalUnit
+ SG_ FilterState_Min_Azimuth m2 : 11|12@0+ (0.025,-50) [-50|52.375] "deg"  ExternalUnit
+ SG_ FilterState_Max_VrelOncome m3 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Max_VrelDepart m4 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ExternalUnit
+ SG_ FilterState_Max_Size m7 : 27|12@0+ (0.025,0) [0|102.375] "m2"  ExternalUnit
+ SG_ FilterState_Max_RCS m5 : 27|12@0+ (0.025,-50) [-50|52.375] "dB"  ExternalUnit
+ SG_ FilterState_Max_ProbExists m8 : 27|12@0+ (1,0) [0|4095] ""  ExternalUnit
+ SG_ FilterState_Max_NofObj m0 : 27|12@0+ (1,0) [0|4095] ""  ExternalUnit
+ SG_ FilterState_Max_Lifetime m6 : 27|12@0+ (0.1,0) [0|409.5] "s"  ExternalUnit
+ SG_ FilterState_Max_Distance m1 : 27|12@0+ (0.1,0) [0|409.5] "m"  ExternalUnit
+ SG_ FilterState_Max_Azimuth m2 : 27|12@0+ (0.025,-50) [-50|52.375] "deg"  ExternalUnit
+ SG_ FilterState_Index M : 6|4@0+ (1,0) [0|15] ""  ExternalUnit
+ SG_ FilterState_Active : 2|1@0+ (1,0) [0|1] ""  ExternalUnit
+
+BO_ 515 FilterState_Header: 2 ARS_ISF
+ SG_ FilterState_NofObjectFilterCfg : 15|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ FilterState_NofClusterFilterCfg : 7|5@0+ (1,0) [0|31] ""  ExternalUnit
+
+BO_ 514 FilterCfg: 5 ExternalUnit
+ SG_ FilterCfg_Min_Y m9 : 11|12@0+ (0.2,-409.5) [-409.5|409.5] "m"  ARS_ISF
+ SG_ FilterCfg_Min_X m10 : 12|13@0+ (0.2,-500) [-500|1138.2] "m"  ARS_ISF
+ SG_ FilterCfg_Min_VYRightLeft m13 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Min_VYLeftRight m11 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Min_VXOncome m12 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Min_VXDepart m14 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Max_Y m9 : 27|12@0+ (0.2,-409.5) [-409.5|409.5] "m"  ARS_ISF
+ SG_ FilterCfg_Max_X m10 : 28|13@0+ (0.2,-500) [-500|1138.2] "m"  ARS_ISF
+ SG_ FilterCfg_Max_VYRightLeft m13 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Max_VXOncome m12 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Max_VYLeftRight m11 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Max_VXDepart m14 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Valid : 1|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ FilterCfg_Active : 2|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ FilterCfg_Max_VrelOncome m3 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Max_VrelDepart m4 : 27|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Max_Size m7 : 27|12@0+ (0.025,0) [0|102.375] "m2"  ARS_ISF
+ SG_ FilterCfg_Max_RCS m5 : 27|12@0+ (0.025,-50) [-50|52.375] "dB"  ARS_ISF
+ SG_ FilterCfg_Max_ProbExists m8 : 27|12@0+ (1,0) [0|7] ""  ARS_ISF
+ SG_ FilterCfg_Max_NofObj m0 : 27|12@0+ (1,0) [0|4095] ""  ARS_ISF
+ SG_ FilterCfg_Max_Lifetime m6 : 27|12@0+ (0.1,0) [0|409.5] "s"  ARS_ISF
+ SG_ FilterCfg_Max_Distance m1 : 27|12@0+ (0.1,0) [0|409.5] "m"  ARS_ISF
+ SG_ FilterCfg_Max_Azimuth m2 : 27|12@0+ (0.025,-50) [-50|52.375] "deg"  ARS_ISF
+ SG_ FilterCfg_Min_VrelOncome m3 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Min_VrelDepart m4 : 11|12@0+ (0.0315,0) [0|128.9925] "m/s"  ARS_ISF
+ SG_ FilterCfg_Min_Size m7 : 11|12@0+ (0.025,0) [0|102.375] "m2"  ARS_ISF
+ SG_ FilterCfg_Min_RCS m5 : 11|12@0+ (0.025,-50) [-50|52.375] "dB"  ARS_ISF
+ SG_ FilterCfg_Min_ProbExists m8 : 11|12@0+ (1,0) [0|4095] ""  ARS_ISF
+ SG_ FilterCfg_Min_Lifetime m6 : 11|12@0+ (0.1,0) [0|409.5] "s"  ARS_ISF
+ SG_ FilterCfg_Min_Azimuth m2 : 11|12@0+ (0.025,-50) [-50|52.375] "deg"  ARS_ISF
+ SG_ FilterCfg_Min_NofObj m0 : 11|12@0+ (1,0) [0|4095] ""  ARS_ISF
+ SG_ FilterCfg_Min_Distance m1 : 11|12@0+ (0.1,0) [0|409.5] "m"  ARS_ISF
+ SG_ FilterCfg_Index M : 6|4@0+ (1,0) [0|15] ""  ARS_ISF
+ SG_ FilterCfg_Type : 7|1@0+ (1,0) [0|1] ""  ARS_ISF
+
+BO_ 512 RadarConfiguration: 8 ExternalUnit
+ SG_ RadarCfg_RCS_Threshold_Valid : 48|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RadarCfg_RCS_Threshold : 51|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ RadarCfg_StoreInNVM_valid : 7|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RadarCfg_SortIndex_valid : 6|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RadarCfg_SortIndex : 46|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ RadarCfg_StoreInNVM : 47|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_SendExtInfo_valid : 5|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_SendExtInfo : 43|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_CtrlRelay_valid : 40|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_CtrlRelay : 41|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_SendQuality_valid : 4|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_SendQuality : 42|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_MaxDistance_valid : 0|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_RadarPower_valid : 2|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_OutputType_valid : 3|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_SensorID_valid : 1|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ RadarCfg_MaxDistance : 15|10@0+ (2,0) [0|2046] "m"  ARS_ISF
+ SG_ RadarCfg_RadarPower : 39|3@0+ (1,0) [0|7] ""  ARS_ISF
+ SG_ RadarCfg_OutputType : 36|2@0+ (1,0) [0|2] ""  ARS_ISF
+ SG_ RadarCfg_SensorID : 34|3@0+ (1,0) [0|7] ""  ARS_ISF
+
+BO_ 513 RadarState: 8 ARS_ISF
+ SG_ RadarState_Interference : 20|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RadarState_Voltage_Error : 17|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RadarState_Temporary_Error : 18|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RadarState_Temperature_Error : 19|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RadarState_Persistent_Error : 21|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ RadarState_SortIndex : 38|3@0+ (1,0) [0|0] "" Vector__XXX
+ SG_ RadarState_RCS_Threshold : 60|3@0+ (1,0) [0|7] "" Vector__XXX
+ SG_ RadarState_CtrlRelayCfg : 41|1@0+ (1,0) [0|1] ""  ExternalUnit
+ SG_ RadarState_SendQualityCfg : 44|1@0+ (1,0) [0|1] ""  ExternalUnit
+ SG_ RadarState_SendExtInfoCfg : 45|1@0+ (1,0) [0|1] ""  ExternalUnit
+ SG_ RadarState_MotionRxState : 47|2@0+ (1,0) [0|3] ""  ExternalUnit
+ SG_ RadarState_SensorID : 34|3@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ RadarState_OutputTypeCfg : 43|2@0+ (1,0) [0|3] ""  ExternalUnit
+ SG_ RadarState_RadarPowerCfg : 25|3@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ RadarState_NVMReadStatus : 6|1@0+ (1,0) [0|1] ""  ExternalUnit
+ SG_ RadarState_NVMwriteStatus : 7|1@0+ (1,0) [0|1] ""  ExternalUnit
+ SG_ RadarState_MaxDistanceCfg : 15|10@0+ (2,0) [0|2046] ""  ExternalUnit
+
+BO_ 768 SpeedInformation: 2 ExternalUnit
+ SG_ RadarDevice_Speed : 4|13@0+ (0.02,0) [0|163.8] "m/s"  ARS_ISF
+ SG_ RadarDevice_SpeedDirection : 7|2@0+ (1,0) [0|2] ""  ARS_ISF
+
+BO_ 769 YawRateInformation: 2 ExternalUnit
+ SG_ RadarDevice_YawRate : 7|16@0+ (0.01,-327.68) [-327.68|327.66] "°/s"  ARS_ISF
+
+BO_ 1024 CollDetCfg: 2 ExternalUnit
+ SG_ CollDetCfg_ClearRegions : 7|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ CollDetCfg_WarningReset : 0|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ CollDetCfg_Activate : 1|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ CollDetCfg_MinTime_valid : 3|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ CollDetCfg_MinDetectTime : 15|8@0+ (0.1,0) [0|25.5] "s"  ARS_ISF
+
+BO_ 1025 CollDetRegionCfg: 8 ExternalUnit
+ SG_ CollDetRegCfg_Activate : 1|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ CollDetRegCfg_Coordinates_valid : 2|1@0+ (1,0) [0|1] ""  ARS_ISF
+ SG_ CollDetRegCfg_RegionID : 10|3@0+ (1,0) [0|7] ""  ARS_ISF
+ SG_ CollDetRegCfg_Point1X : 23|13@0+ (0.2,-500) [-500|1138.2] "m"  ARS_ISF
+ SG_ CollDetRegCfg_Point1Y : 26|11@0+ (0.2,-204.6) [-204.6|204.8] "m"  ARS_ISF
+ SG_ CollDetRegCfg_Point2X : 47|13@0+ (0.2,-500) [-500|1138.2] "m"  ARS_ISF
+ SG_ CollDetRegCfg_Point2Y : 50|11@0+ (0.2,-204.6) [-204.6|204.8] "m"  ARS_ISF
+
+BO_ 1032 CollDetState: 4 ARS_ISF
+ SG_ CollDetState_MeasCounter : 23|16@0+ (1,0) [0|65535] "" Vector__XXX
+ SG_ CollDetState_Active : 1|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ CollDetState_NofRegions : 7|4@0+ (1,0) [0|15] ""  ExternalUnit
+ SG_ CollDetState_MinDetectTime : 15|8@0+ (0.1,0) [0|25.5] "s"  ExternalUnit
+
+BO_ 1536 Cluster_0_Status: 5 ARS_ISF
+ SG_ Cluster_MeasCounter : 23|16@0+ (1,0) [0|65535] ""  ExternalUnit
+ SG_ Cluster_NofClustersNear : 7|8@0+ (1,0) [0|255] ""  ExternalUnit
+ SG_ Cluster_NofClustersFar : 15|8@0+ (1,0) [0|255] ""  ExternalUnit
+ SG_ Cluster_InterfaceVersion : 39|4@0+ (1,0) [0|15] ""  ExternalUnit
+
+BO_ 1546 Obj_0_Status: 4 ARS_ISF
+ SG_ Obj_NofObjects : 7|8@0+ (1,0) [0|255] "1"  ExternalUnit
+ SG_ Obj_MeasCounter : 15|16@0+ (1,0) [0|65535] ""  ExternalUnit
+ SG_ Obj_InterfaceVersion : 31|4@0+ (1,0) [0|16] ""  ExternalUnit
+
+BO_ 1547 Obj_1_General: 8 ARS_ISF
+ SG_ Obj_DynProp : 50|3@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ Obj_RCS : 63|8@0+ (0.5,-64) [-64|63.5] "dBm²"  ExternalUnit
+ SG_ Obj_VrelLat : 45|9@0+ (0.25,-64) [-64|63.75] "m/s"  ExternalUnit
+ SG_ Obj_ID : 7|8@0+ (1,0) [0|255] ""  ExternalUnit
+ SG_ Obj_DistLong : 15|13@0+ (0.2,-500) [-500|1138.2] "m"  ExternalUnit
+ SG_ Obj_VrelLong : 39|10@0+ (0.25,-128) [-128|127.75] "m/s"  ExternalUnit
+ SG_ Obj_DistLat : 18|11@0+ (0.2,-204.6) [-204.6|204.8] "m"  ExternalUnit
+
+BO_ 1792 VersionID: 4 ARS_ISF
+ SG_ Version_CountryCode : 24|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ Version_ExtendedRange : 25|1@0+ (1,0) [0|1] "" Vector__XXX
+ SG_ Version_MajorRelease : 7|8@0+ (1,0) [0|256] ""  ExternalUnit
+ SG_ Version_MinorRelease : 15|8@0+ (1,0) [0|256] ""  ExternalUnit
+ SG_ Version_PatchLevel : 23|8@0+ (1,0) [0|256] ""  ExternalUnit
+
+BO_ 1793 Cluster_1_General: 8 ARS_ISF
+ SG_ Cluster_DynProp : 50|3@0+ (1,0) [0|7] "1"  ExternalUnit
+ SG_ Cluster_VrelLat : 45|9@0+ (0.25,-64) [-64|63.75] "m/s"  ExternalUnit
+ SG_ Cluster_RCS : 63|8@0+ (0.5,-64) [-64|63.5] "dBm²"  ExternalUnit
+ SG_ Cluster_DistLong : 15|13@0+ (0.2,-500) [-500|1138.2] "m"  ExternalUnit
+ SG_ Cluster_ID : 7|8@0+ (1,0) [0|255] "1"  ExternalUnit
+ SG_ Cluster_VrelLong : 39|10@0+ (0.25,-128) [-128|127.75] "m/s"  ExternalUnit
+ SG_ Cluster_DistLat : 17|10@0+ (0.2,-102.3) [-102.3|102.3] "m"  ExternalUnit
+
+BO_ 1794 Cluster_2_Quality: 5 ARS_ISF
+ SG_ Cluster_ID : 7|8@0+ (1,0) [0|255] "1"  ExternalUnit
+ SG_ Cluster_VrelLat_rms : 16|5@0+ (1,0) [0|31] "m/s"  ExternalUnit
+ SG_ Cluster_InvalidState : 39|5@0+ (1,0) [0|31] ""  ExternalUnit
+ SG_ Cluster_DistLat_rms : 10|5@0+ (1,0) [0|31] "m"  ExternalUnit
+ SG_ Cluster_DistLong_rms : 15|5@0+ (1,0) [0|31] "m"  ExternalUnit
+ SG_ Cluster_VrelLong_rms : 21|5@0+ (1,0) [0|31] "m/s"  ExternalUnit
+ SG_ Cluster_PdH0 : 26|3@0+ (1,0) [0|7] ""  ExternalUnit
+ SG_ Cluster_AmbigState : 34|3@0+ (1,0) [0|7] "1"  ExternalUnit
+
+
+
+CM_ BO_ 1548 "Quality object information";
+CM_ SG_ 1548 Obj_ProbOfExist "Object probability of existence";
+CM_ SG_ 1548 Obj_MeasState "Object measurement status";
+CM_ SG_ 1548 Obj_ArelLong_rms "Object relative longitudinal acceleration standard deviation";
+CM_ SG_ 1548 Obj_ArelLat_rms "Object relative lateral acceleration standard deviation";
+CM_ SG_ 1548 Obj_VrelLong_rms "Object relative longitudinal velocity standard deviation";
+CM_ SG_ 1548 Obj_VrelLat_rms "Object relative lateral velocity standard deviation";
+CM_ SG_ 1548 Obj_Orientation_rms "Object orientation angle";
+CM_ SG_ 1548 Obj_DistLong_rms "Object longitudinal distance standard deviation";
+CM_ SG_ 1548 Obj_DistLat_rms "Object lateral distance standard deviation";
+CM_ SG_ 1548 Obj_ID "Object ID";
+CM_ BO_ 1549 "Extended object information";
+CM_ SG_ 1549 Obj_Class "Object classification";
+CM_ SG_ 1549 Obj_ArelLat "Object relative lateral acceleration";
+CM_ SG_ 1549 Obj_ID "Object ID";
+CM_ SG_ 1549 Obj_OrientationAngle "Object orientation angle";
+CM_ SG_ 1549 Obj_Width "Object width";
+CM_ SG_ 1549 Obj_Length "Object length";
+CM_ SG_ 1549 Obj_ArelLong "Object relative longitudinal acceleration";
+CM_ BO_ 1026 "Collision detection region configuration and warning status";
+CM_ BO_ 1550 "Collision detection warning object information";
+CM_ SG_ 1550 Obj_CollDetRegionBitfield "Region bit field with collision detection";
+CM_ SG_ 1550 Obj_ID "Object ID";
+CM_ BO_ 8 "Control message for relay to display collision detection";
+CM_ SG_ 8 CollDetRelayCtrl_Param "Region bit field for control relay";
+CM_ BO_ 516 "Filter configuration status";
+CM_ BO_ 515 "Header of filter configuration state";
+CM_ BO_ 514 "Filter configuration";
+CM_ BO_ 512 "Radar configuration";
+CM_ SG_ 512 RadarCfg_RCS_Threshold_Valid "Allows changing the RCS_Threshold parameter";
+CM_ SG_ 512 RadarCfg_RCS_Threshold "Standard or high sensitivity for cluster list output";
+CM_ SG_ 512 RadarCfg_StoreInNVM_valid "Allows changing the StoreInNvm parameter";
+CM_ SG_ 512 RadarCfg_SortIndex_valid "Allows changing the SortIndex parameter";
+CM_ SG_ 512 RadarCfg_SortIndex "Object sort index";
+CM_ SG_ 512 RadarCfg_StoreInNVM "Store configuration in Nvm";
+CM_ SG_ 512 RadarCfg_SendExtInfo_valid "Allows changing the SendExtInfo parameter";
+CM_ SG_ 512 RadarCfg_SendExtInfo "Enables output of extended message";
+CM_ SG_ 512 RadarCfg_CtrlRelay_valid "Allows changing the CtrlRelay parameter";
+CM_ SG_ 512 RadarCfg_CtrlRelay "Enables output of CtrlRelay message if CollDet is active";
+CM_ SG_ 512 RadarCfg_SendQuality_valid "Allows changing the SendQuality parameter";
+CM_ SG_ 512 RadarCfg_SendQuality "Enables output of quality message";
+CM_ SG_ 512 RadarCfg_MaxDistance_valid "Allows changing the MaxDistance parameter";
+CM_ SG_ 512 RadarCfg_RadarPower_valid "Allows changing the RadarPower parameter";
+CM_ SG_ 512 RadarCfg_OutputType_valid "Allows changing the OutputType parameter";
+CM_ SG_ 512 RadarCfg_SensorID_valid "Allows changing the SensorId parameter";
+CM_ SG_ 512 RadarCfg_MaxDistance "Maximum distance of far scan";
+CM_ SG_ 512 RadarCfg_RadarPower "Radar Tx output power reduction (Tx attenuation)";
+CM_ SG_ 512 RadarCfg_OutputType "Data output type";
+CM_ SG_ 512 RadarCfg_SensorID "Sensor ID (0 to 7)";
+CM_ BO_ 513 "Radar configuration status";
+CM_ SG_ 513 RadarState_Interference "
+";
+CM_ SG_ 513 RadarState_Voltage_Error "
+";
+CM_ SG_ 513 RadarState_Temporary_Error "
+";
+CM_ SG_ 513 RadarState_Temperature_Error "
+";
+CM_ SG_ 513 RadarState_Persistent_Error "
+";
+CM_ SG_ 513 RadarState_SortIndex "Current sorting of object list";
+CM_ SG_ 513 RadarState_RCS_Threshold "Current sensitivity mode";
+CM_ SG_ 513 RadarState_CtrlRelayCfg "Status of control relay message output";
+CM_ SG_ 513 RadarState_SendQualityCfg "Status of quality information output";
+CM_ SG_ 513 RadarState_SendExtInfoCfg "Status of extended information output";
+CM_ SG_ 513 RadarState_MotionRxState "Status of motion input signals";
+CM_ SG_ 513 RadarState_SensorID "Sensor ID (0 to 7)";
+CM_ SG_ 513 RadarState_OutputTypeCfg "Current output list type";
+CM_ SG_ 513 RadarState_RadarPowerCfg "Radar Tx output level (Tx attenuation)";
+CM_ SG_ 513 RadarState_NVMReadStatus "Gives the status of reading the radar configuration from EEPROM";
+CM_ SG_ 513 RadarState_NVMwriteStatus "Gives the status of writing the radar configuration from EEPROM
+";
+CM_ SG_ 513 RadarState_MaxDistanceCfg "Currently configured maximum distance of far scan";
+CM_ BO_ 768 "Device movement speed";
+CM_ SG_ 768 RadarDevice_Speed "Speed of the radar unit";
+CM_ SG_ 768 RadarDevice_SpeedDirection "Speed direction of the radar unit";
+CM_ BO_ 769 "Device movement yaw rate";
+CM_ SG_ 769 RadarDevice_YawRate "Yaw rate of the radar unit";
+CM_ BO_ 1024 "Collision detection configuration";
+CM_ BO_ 1025 "Collision detection region configuration";
+CM_ BO_ 1032 "Collision detection configuration status";
+CM_ BO_ 1536 "Status information about Clusters";
+CM_ SG_ 1536 Cluster_MeasCounter "Measurement counter";
+CM_ SG_ 1536 Cluster_NofClustersNear "Number of valid Clusters in near range scan";
+CM_ SG_ 1536 Cluster_NofClustersFar "Number of valid Clusters in far range scan";
+CM_ SG_ 1536 Cluster_InterfaceVersion "Cluster CAN Interface Version Number";
+CM_ BO_ 1546 "Status information about object";
+CM_ SG_ 1546 Obj_NofObjects "Number of Objects sent";
+CM_ SG_ 1546 Obj_MeasCounter "Measurement Counter";
+CM_ SG_ 1546 Obj_InterfaceVersion "Object CAN Interface Version Number";
+CM_ BO_ 1547 "General object information";
+CM_ SG_ 1547 Obj_DynProp "Object dynamic property";
+CM_ SG_ 1547 Obj_RCS "Object RCS value (radar cross section)";
+CM_ SG_ 1547 Obj_VrelLat "Object relative lateral velocity";
+CM_ SG_ 1547 Obj_ID "Object ID";
+CM_ SG_ 1547 Obj_DistLong "Object longitudinal displacement";
+CM_ SG_ 1547 Obj_VrelLong "Object relative longitudinal velocity";
+CM_ SG_ 1547 Obj_DistLat "Object lateral displacement";
+CM_ BO_ 1792 "Firmware version";
+CM_ SG_ 1792 Version_CountryCode "
+";
+CM_ SG_ 1792 Version_ExtendedRange "
+";
+CM_ SG_ 1792 Version_MajorRelease "Major Release Number";
+CM_ SG_ 1792 Version_MinorRelease "Minor Release Number";
+CM_ SG_ 1792 Version_PatchLevel "Patch Level";
+CM_ BO_ 1793 "General Cluster information";
+CM_ SG_ 1793 Cluster_DynProp "Cluster dynamic property";
+CM_ SG_ 1793 Cluster_VrelLat "Cluster relative lateral velocity";
+CM_ SG_ 1793 Cluster_RCS "Cluster RCS value (Radar cross section)";
+CM_ SG_ 1793 Cluster_DistLong "Cluster longitudinal distance";
+CM_ SG_ 1793 Cluster_ID "Cluster number";
+CM_ SG_ 1793 Cluster_VrelLong "Cluster relative longitudinal velocity";
+CM_ SG_ 1793 Cluster_DistLat "Cluster lateral distance";
+CM_ BO_ 1794 "Quality Cluster information";
+CM_ SG_ 1794 Cluster_ID "Cluster number";
+CM_ SG_ 1794 Cluster_VrelLat_rms "Cluster relative lateral velocity standard deviation";
+CM_ SG_ 1794 Cluster_InvalidState "Cluster invalid state";
+CM_ SG_ 1794 Cluster_DistLat_rms "Cluster lateral distance standard deviation";
+CM_ SG_ 1794 Cluster_DistLong_rms "Cluster longitudinal distance standard deviation";
+CM_ SG_ 1794 Cluster_VrelLong_rms "Cluster relative longitudinal velocity standard deviation";
+CM_ SG_ 1794 Cluster_PdH0 "Cluster false alarm probability";
+CM_ SG_ 1794 Cluster_AmbigState "Cluster Doppler ambiguity status";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "Version" HEX 0 255;
+BA_DEF_  "NmMessageCount" INT 0 64;
+BA_DEF_  "NWID" HEX 0 255;
+BA_DEF_  "NBTMax" INT 0 255;
+BA_DEF_  "NBTMin" INT 0 255;
+BA_DEF_  "SamplePointMax" FLOAT 0 100;
+BA_DEF_  "SamplePointMin" FLOAT 0 100;
+BA_DEF_ SG_  "RID" STRING ;
+BA_DEF_ BO_  "TpTxIndex" INT 0 99;
+BA_DEF_  "NWM-Basisadresse" HEX 0 536870911;
+BA_DEF_  "NWM-Typ" ENUM  "zentral (MB-W210)","dezentral (MB-OSAN)","keines","VAG-OSEK","BMW-OSEK","PAG-OSEK","DBAG-OSEK";
+BA_DEF_ BU_  "NWM-Knoten" ENUM  "nein","ja";
+BA_DEF_ BU_  "NWM-Stationsadresse" HEX 0 63;
+BA_DEF_ SG_  "GenSigStartValue" HEX 0 4294967295;
+BA_DEF_ SG_  "GenSigCycleTimeActive" INT 0 65535;
+BA_DEF_ SG_  "GenSigCycleTime" INT 0 65535;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "cyclicX","spontanX","cyclicIfActiveX","spontanWithDelay","cyclicAndSpontanX","cyclicAndSpontanWithDelay","spontanWithRepitition","cyclicIfActiveAndSpontanWD","cyclicIfActiveFast","cyclicWithRepeatOnDemand","none";
+BA_DEF_ BO_  "GenMsgNrOfRepetitions" INT 0 65535;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgCycleTimeActive" INT 0 65535;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "cyclicX","spontanX","cyclicIfActiveX","spontanWithDelay","cyclicAndSpontanX","cyclicAndSpontanWithDelay","spontanWithRepitition","cyclicIfActiveAndSpontanWD","cyclicIfActiveFast","cyclicWithRepeatOnDemand","none";
+BA_DEF_  "Baudrate" INT 0 1000000;
+BA_DEF_  "VersionWeek" INT 0 53;
+BA_DEF_  "VersionYear" INT 0 99;
+BA_DEF_  "Manufacturer" ENUM  "DBAG","VAG","BMWAG","PAG","GM","CONTI";
+BA_DEF_ BO_  "DiagResponse" ENUM  "nein","ja";
+BA_DEF_ BO_  "DiagRequest" ENUM  "nein","ja";
+BA_DEF_ BO_  "DiagState" ENUM  "nein","ja";
+BA_DEF_ BO_  "App-Botschaft" ENUM  "nein","ja";
+BA_DEF_ BO_  "NWM-Botschaft" ENUM  "nein","ja";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "Version" 176;
+BA_DEF_DEF_  "NmMessageCount" 64;
+BA_DEF_DEF_  "NWID" 11;
+BA_DEF_DEF_  "NBTMax" 21;
+BA_DEF_DEF_  "NBTMin" 9;
+BA_DEF_DEF_  "SamplePointMax" 81.25;
+BA_DEF_DEF_  "SamplePointMin" 75;
+BA_DEF_DEF_  "RID" "";
+BA_DEF_DEF_  "TpTxIndex" 0;
+BA_DEF_DEF_  "NWM-Basisadresse" 1024;
+BA_DEF_DEF_  "NWM-Typ" "keines";
+BA_DEF_DEF_  "NWM-Knoten" "";
+BA_DEF_DEF_  "NWM-Stationsadresse" 0;
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigCycleTimeActive" 0;
+BA_DEF_DEF_  "GenSigCycleTime" 0;
+BA_DEF_DEF_  "GenSigSendType" "";
+BA_DEF_DEF_  "GenMsgNrOfRepetitions" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeActive" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "";
+BA_DEF_DEF_  "Baudrate" 500000;
+BA_DEF_DEF_  "VersionWeek" 44;
+BA_DEF_DEF_  "VersionYear" 4;
+BA_DEF_DEF_  "Manufacturer" "DBAG";
+BA_DEF_DEF_  "DiagResponse" "";
+BA_DEF_DEF_  "DiagRequest" "";
+BA_DEF_DEF_  "DiagState" "";
+BA_DEF_DEF_  "App-Botschaft" "";
+BA_DEF_DEF_  "NWM-Botschaft" "";
+BA_ "Manufacturer" 0;
+BA_ "NWM-Typ" 2;
+BA_ "VersionYear" 6;
+BA_ "VersionWeek" 19;
+BA_ "NWM-Basisadresse" 0;
+BA_ "Baudrate" 500000;
+BA_ "SamplePointMin" 75;
+BA_ "SamplePointMax" 81.25;
+BA_ "NBTMin" 9;
+BA_ "NBTMax" 21;
+BA_ "NWID" 0;
+BA_ "NmMessageCount" 0;
+BA_ "Version" 0;
+BA_ "BusType" "CAN";
+BA_ "NWM-Knoten" BU_ ARS_ISF 0;
+BA_ "NWM-Botschaft" BO_ 513 0;
+BA_ "App-Botschaft" BO_ 513 0;
+BA_ "DiagState" BO_ 513 0;
+BA_ "DiagRequest" BO_ 513 0;
+BA_ "DiagResponse" BO_ 513 0;
+BA_ "GenMsgSendType" BO_ 513 0;
+BA_ "GenMsgCycleTime" BO_ 513 50;
+BA_ "GenMsgDelayTime" BO_ 513 20;
+BA_ "GenMsgNrOfRepetitions" BO_ 513 0;
+BA_ "GenSigStartValue" SG_ 1548 Obj_ArelLong_rms 0;
+BA_ "GenSigStartValue" SG_ 1548 Obj_ArelLat_rms 0;
+BA_ "GenSigStartValue" SG_ 1549 Obj_ArelLat 250;
+BA_ "GenSigStartValue" SG_ 1549 Obj_OrientationAngle 450;
+BA_ "GenSigStartValue" SG_ 1549 Obj_ArelLong 1000;
+BA_ "GenSigStartValue" SG_ 1026 CollDetRegState_Point2Y 1023;
+BA_ "GenSigStartValue" SG_ 1026 CollDetRegState_Point2X 2500;
+BA_ "GenSigStartValue" SG_ 1026 CollDetRegState_Point1Y 1023;
+BA_ "GenSigStartValue" SG_ 1026 CollDetRegState_Point1X 2500;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_Y 2047.5;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_X 2047.5;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_VYRightLeft 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_VYLeftRight 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_VXOncome 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_VXDepart 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_Y 2047.5;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_X 2047.5;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_VYRightLeft 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_VYLeftRight 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_VXOncome 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_VXDepart 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_VrelOncome 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_VrelDepart 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_Size 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_RCS 2000;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_ProbExists 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_Lifetime 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Min_Azimuth 2000;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_VrelOncome 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_VrelDepart 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_Size 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_RCS 2000;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_ProbExists 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_Lifetime 0;
+BA_ "GenSigStartValue" SG_ 516 FilterState_Max_Azimuth 2000;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_Y 2047.5;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_X 2500;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_VYRightLeft 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_VYLeftRight 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_VXOncome 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_VXDepart 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_Y 2047.5;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_X 2500;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_VYRightLeft 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_VXOncome 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_VYLeftRight 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_VXDepart 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_VrelOncome 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_VrelDepart 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_Size 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_RCS 2000;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_ProbExists 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_Lifetime 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Max_Azimuth 2000;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_VrelOncome 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_VrelDepart 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_Size 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_RCS 2000;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_ProbExists 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_Lifetime 0;
+BA_ "GenSigStartValue" SG_ 514 FilterCfg_Min_Azimuth 2000;
+BA_ "GenSigStartValue" SG_ 512 RadarCfg_MaxDistance 0;
+BA_ "GenSigStartValue" SG_ 513 RadarState_MotionRxState 0;
+BA_ "GenSigCycleTime" SG_ 513 RadarState_MotionRxState 50;
+BA_ "GenSigSendType" SG_ 513 RadarState_MotionRxState 0;
+BA_ "GenSigStartValue" SG_ 1025 CollDetRegCfg_Point1X 2500;
+BA_ "GenSigStartValue" SG_ 1025 CollDetRegCfg_Point1Y 1023;
+BA_ "GenSigStartValue" SG_ 1025 CollDetRegCfg_Point2X 2500;
+BA_ "GenSigStartValue" SG_ 1025 CollDetRegCfg_Point2Y 1023;
+BA_ "GenSigStartValue" SG_ 1547 Obj_VrelLat 256;
+BA_ "GenSigStartValue" SG_ 1547 Obj_DistLong 2500;
+BA_ "GenSigStartValue" SG_ 1547 Obj_VrelLong 512;
+BA_ "GenSigStartValue" SG_ 1547 Obj_DistLat 1023;
+BA_ "GenSigStartValue" SG_ 1793 Cluster_VrelLat 256;
+BA_ "GenSigStartValue" SG_ 1793 Cluster_DistLong 2500;
+BA_ "GenSigStartValue" SG_ 1793 Cluster_VrelLong 512;
+BA_ "GenSigStartValue" SG_ 1793 Cluster_DistLat 511.5;
+VAL_ 1548 Obj_ProbOfExist 7 "<=100%" 6 "<99.9%" 5 "<99%" 4 "<90%" 3 "<75%" 2 "<50%" 1 "<25%" 0 "invalid" ;
+VAL_ 1548 Obj_MeasState 5 "New from merge" 4 "Deleted for merge" 3 "Predicted" 2 "Measured" 1 "New" 0 "Deleted" ;
+VAL_ 1548 Obj_ArelLong_rms 31 "Invalid" 30 "<10.000 m/s²" 29 "<7.762 m/s²" 28 "<6.025 m/s²" 27 "<4.676 m/s²" 26 "<3.630 m/s²" 25 "<2.817 m/s²" 24 "<2.187 m/s²" 23 "<1.697 m/s²" 22 "<1.317 m/s²" 21 "<1.023 m/s²" 20 "<0.794 m/s²" 19 "<0.616 m/s²" 18 "<0.478 m/s²" 17 "<0.371 m/s²" 16 "<0.288 m/s²" 15 "<0.224 m/s²" 14 "<0.174 m/s²" 13 "<0.135 m/s²" 12 "<0.105 m/s²" 11 "<0.081 m/s²" 10 "<0.063 m/s²" 9 "<0.049 m/s²" 8 "<0.038 m/s²" 7 "<0.029 m/s²" 6 "<0.023 m/s²" 5 "<0.018 m/s²" 4 "<0.014 m/s²" 3 "<0.011 m/s²" 2 "<0.008 m/s²" 1 "<0.006 m/s²" 0 "<0.005 m/s²" ;
+VAL_ 1548 Obj_ArelLat_rms 31 "Invalid" 30 "<10.000 m/s²" 29 "<7.762 m/s²" 28 "<6.025 m/s²" 27 "<4.676 m/s²" 26 "<3.630 m/s²" 25 "<2.817 m/s²" 24 "<2.187 m/s²" 23 "<1.697 m/s²" 22 "<1.317 m/s²" 21 "<1.023 m/s²" 20 "<0.794 m/s²" 19 "<0.616 m/s²" 18 "<0.478 m/s²" 17 "<0.371 m/s²" 16 "<0.288 m/s²" 15 "<0.224 m/s²" 14 "<0.174 m/s²" 13 "<0.135 m/s²" 12 "<0.105 m/s²" 11 "<0.081 m/s²" 10 "<0.063 m/s²" 9 "<0.049 m/s²" 8 "<0.038 m/s²" 7 "<0.029 m/s²" 6 "<0.023 m/s²" 5 "<0.018 m/s²" 4 "<0.014 m/s²" 3 "<0.011 m/s²" 2 "<0.008 m/s²" 1 "<0.006 m/s²" 0 "<0.005 m/s²" ;
+VAL_ 1548 Obj_VrelLong_rms 31 "Invalid" 30 "<10.000 m/s" 29 "<7.762 m/s" 28 "<6.025 m/s" 27 "<4.676 m/s" 26 "<3.630 m/s" 25 "<2.817 m/s" 24 "<2.187 m/s" 23 "<1.697 m/s" 22 "<1.317 m/s" 21 "<1.023 m/s" 20 "<0.794 m/s" 19 "<0.616 m/s" 18 "<0.478 m/s" 17 "<0.371 m/s" 16 "<0.288 m/s" 15 "<0.224 m/s" 14 "<0.174 m/s" 13 "<0.135 m/s" 12 "<0.105 m/s" 11 "<0.081 m/s" 10 "<0.063 m/s" 9 "<0.049 m/s" 8 "<0.038 m/s" 7 "<0.029 m/s" 6 "<0.023 m/s" 5 "<0.018 m/s" 4 "<0.014 m/s" 3 "<0.011 m/s" 2 "<0.008 m/s" 1 "<0.006 m/s" 0 "<0.005 m/s" ;
+VAL_ 1548 Obj_VrelLat_rms 31 "Invalid" 30 "<10.000 m/s" 29 "<7.762 m/s" 28 "<6.025 m/s" 27 "<4.676 m/s" 26 "<3.630 m/s" 25 "<2.817 m/s" 24 "<2.187 m/s" 23 "<1.697 m/s" 22 "<1.317 m/s" 21 "<1.023 m/s" 20 "<0.794 m/s" 19 "<0.616 m/s" 18 "<0.478 m/s" 17 "<0.371 m/s" 16 "<0.288 m/s" 15 "<0.224 m/s" 14 "<0.174 m/s" 13 "<0.135 m/s" 12 "<0.105 m/s" 11 "<0.081 m/s" 10 "<0.063 m/s" 9 "<0.049 m/s" 8 "<0.038 m/s" 7 "<0.029 m/s" 6 "<0.023 m/s" 5 "<0.018 m/s" 4 "<0.014 m/s" 3 "<0.011 m/s" 2 "<0.008 m/s" 1 "<0.006 m/s" 0 "<0.005 m/s" ;
+VAL_ 1548 Obj_Orientation_rms 31 "Invalid" 30 "<180.000 deg" 29 "<126.881 deg" 28 "<89.437 deg" 27 "<63.044 deg" 26 "<44.439 deg" 25 "<31.325 deg" 24 "<22.081 deg" 23 "<15.565 deg" 22 "<10.971 deg" 21 "<7.734 deg" 20 "<5.451 deg" 19 "<3.843 deg" 18 "<2.709 deg" 17 "<1.909 deg" 16 "<1.346 deg" 15 "<0.949 deg" 14 "<0.669 deg" 13 "<0.471 deg" 12 "<0.332 deg" 11 "<0.234 deg" 10 "<0.165 deg" 9 "<0.116 deg" 8 "<0.082 deg" 7 "<0.058 deg" 6 "<0.041 deg" 5 "<0.029 deg" 4 "<0.020 deg" 3 "<0.014 deg" 2 "<0.010 deg" 1 "<0.007 deg" 0 "<0.005 deg" ;
+VAL_ 1548 Obj_DistLong_rms 31 "Invalid" 30 "<10.000 m" 29 "<7.762 m" 28 "<6.025 m" 27 "<4.676 m" 26 "<3.630 m" 25 "<2.817 m" 24 "<2.187 m" 23 "<1.697 m" 22 "<1.317 m" 21 "<1.023 m" 20 "<0.794 m" 19 "<0.616 m" 18 "<0.478 m" 17 "<0.371 m" 16 "<0.288 m" 15 "<0.224 m" 14 "<0.174 m" 13 "<0.135 m" 12 "<0.105 m" 11 "<0.081 m" 10 "<0.063 m" 9 "<0.049 m" 8 "<0.038 m" 7 "<0.029 m" 6 "<0.023 m" 5 "<0.018 m" 4 "<0.014 m" 3 "<0.011 m" 2 "<0.008 m" 1 "<0.006 m" 0 "<0.005 m" ;
+VAL_ 1548 Obj_DistLat_rms 31 "Invalid" 30 "<10.000 m" 29 "<7.762 m" 28 "<6.025 m" 27 "<4.676 m" 26 "<3.630 m" 25 "<2.817 m" 24 "<2.187 m" 23 "<1.697 m" 22 "<1.317 m" 21 "<1.023 m" 20 "<0.794 m" 19 "<0.616 m" 18 "<0.478 m" 17 "<0.371 m" 16 "<0.288 m" 15 "<0.224 m" 14 "<0.174 m" 13 "<0.135 m" 12 "<0.105 m" 11 "<0.081 m" 10 "<0.063 m" 9 "<0.049 m" 8 "<0.038 m" 7 "<0.029 m" 6 "<0.023 m" 5 "<0.018 m" 4 "<0.014 m" 3 "<0.011 m" 2 "<0.008 m" 1 "<0.006 m" 0 "<0.005 m" ;
+VAL_ 1549 Obj_Class 7 "Description for the value '0x7'" 6 "Wide" 5 "Bicycle" 4 "Motorcycle" 3 "Pedestrian" 2 "Truck" 1 "Car" 0 "Point" ;
+VAL_ 1026 CollDetRegState_WarningLevel 3 "Warning deactivated" 2 "Preliminary warning" 1 "Object warning" 0 "No warning" ;
+VAL_ 516 FilterState_Type 1 "Object filter" 0 "Cluster filter" ;
+VAL_ 516 FilterState_Min_ProbExists 7 "100%" 6 ">=99.9%" 5 ">=99%" 4 ">=90%" 3 ">=75%" 2 ">=50%" 1 ">=25%" 0 "invalid" ;
+VAL_ 516 FilterState_Max_ProbExists 7 "<=100%" 6 "<99.9%" 5 "<99%" 4 "<90%" 3 "<75%" 2 "<50%" 1 "<25%" 0 "invalid" ;
+VAL_ 516 FilterState_Index 15 "Reserved" 14 "Longitud. velocity for departing" 13 "Lateral velocity for right-left" 12 "Longitud. velocity for oncoming" 11 "Lateral velocity for left-right" 10 "Longitudinal distance" 9 "Lateral distance" 8 "Probability of existence" 7 "Size" 6 "Lifetime" 5 "RCS" 4 "Radial velocity for departing" 3 "Radial velocity for oncoming" 2 "Azimuth" 1 "Radial distance" 0 "Number of objects" ;
+VAL_ 516 FilterState_Active 1 "active" 0 "inactive" ;
+VAL_ 514 FilterCfg_Valid 1 "valid" 0 "invalid" ;
+VAL_ 514 FilterCfg_Active 1 "active" 0 "inactive" ;
+VAL_ 514 FilterCfg_Max_ProbExists 7 "<=100%" 6 "<99.9%" 5 "<99%" 4 "<90%" 3 "<75%" 2 "<50%" 1 "<25%" 0 "invalid" ;
+VAL_ 514 FilterCfg_Min_ProbExists 7 "100%" 6 ">=99.9%" 5 ">=99%" 4 ">=90%" 3 ">=75%" 2 ">=50%" 1 ">=25%" 0 "invalid" ;
+VAL_ 514 FilterCfg_Index 15 "Reserved" 14 "Longitud. velocity for departing" 13 "Lateral velocity for right-left" 12 "Longitud. velocity for oncoming" 11 "Lateral velocity for left-right" 10 "Longitudinal distance" 9 "Lateral distance" 8 "Probability of existence" 7 "Size" 6 "Lifetime" 5 "RCS" 4 "Radial velocity for departing" 3 "Radial velocity for oncoming" 2 "Azimuth" 1 "Radial distance" 0 "Number of objects" ;
+VAL_ 514 FilterCfg_Type 1 "Object filter" 0 "Cluster filter" ;
+VAL_ 512 RadarCfg_RCS_Threshold_Valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_RCS_Threshold 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Reserved" 2 "Reserved" 1 "High Sensitivity" 0 "Standard" ;
+VAL_ 512 RadarCfg_StoreInNVM_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_SortIndex_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_SortIndex 2 "Sorted by RCS" 1 "Sorted by range" 0 "No sorting" ;
+VAL_ 512 RadarCfg_StoreInNVM 1 "Active" 0 "Inactive" ;
+VAL_ 512 RadarCfg_SendExtInfo_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_SendExtInfo 1 "Active" 0 "Inactive" ;
+VAL_ 512 RadarCfg_CtrlRelay_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_CtrlRelay 1 "Active" 0 "Inactive" ;
+VAL_ 512 RadarCfg_SendQuality_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_SendQuality 1 "Active" 0 "Inactive" ;
+VAL_ 512 RadarCfg_MaxDistance_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_RadarPower_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_OutputType_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_SensorID_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 512 RadarCfg_RadarPower 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "-9 dB Tx gain" 2 "-6 dB Tx gain" 1 "-3 dB Tx gain" 0 "Standard" ;
+VAL_ 512 RadarCfg_OutputType 3 "reserved 2" 2 "SendClusters" 1 "SendObjects" 0 "None" ;
+VAL_ 513 RadarState_Interference 1 "Interference detected" 0 "No interference" ;
+VAL_ 513 RadarState_Voltage_Error 1 "Voltage error active" 0 "No error" ;
+VAL_ 513 RadarState_Temporary_Error 1 "Temporary error active" 0 "No error" ;
+VAL_ 513 RadarState_Temperature_Error 1 "Temperature error  active" 0 "No error" ;
+VAL_ 513 RadarState_Persistent_Error 1 "Persistent error active" 0 "No error" ;
+VAL_ 513 RadarState_RCS_Threshold 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "Reserved" 2 "Reserved" 1 "High Sensitivity" 0 "Standard" ;
+VAL_ 513 RadarState_CtrlRelayCfg 1 "Active" 0 "Inactive" ;
+VAL_ 513 RadarState_SendQualityCfg 1 "Active" 0 "Inactive" ;
+VAL_ 513 RadarState_SendExtInfoCfg 1 "Active" 0 "Inactive" ;
+VAL_ 513 RadarState_MotionRxState 3 "Speed and yaw rate missing" 2 "Yaw rate missing" 1 "Speed missing" 0 "Input ok" ;
+VAL_ 513 RadarState_OutputTypeCfg 3 "reserved 2" 2 "SendClusters" 1 "SendObjects" 0 "None" ;
+VAL_ 513 RadarState_RadarPowerCfg 7 "Reserved" 6 "Reserved" 5 "Reserved" 4 "Reserved" 3 "-9 dB Tx gain" 2 "-6 dB Tx gain" 1 "-3 dB Tx gain" 0 "Standard" ;
+VAL_ 513 RadarState_NVMReadStatus 1 "successful" 0 "pending" ;
+VAL_ 768 RadarDevice_SpeedDirection 3 "reserved" 2 "reverse" 1 "forward" 0 "standstill" ;
+VAL_ 1024 CollDetCfg_ClearRegions 1 "Clear all defined regions" 0 "Idle" ;
+VAL_ 1024 CollDetCfg_WarningReset 1 "Warn reset" 0 "Idle" ;
+VAL_ 1024 CollDetCfg_Activate 1 "Active" 0 "Inactive" ;
+VAL_ 1024 CollDetCfg_MinTime_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 1025 CollDetRegCfg_Activate 1 "Active" 0 "Inactive" ;
+VAL_ 1025 CollDetRegCfg_Coordinates_valid 1 "Valid" 0 "Invalid" ;
+VAL_ 1032 CollDetState_Active 1 "Active" 0 "Inactive" ;
+VAL_ 1547 Obj_DynProp 7 "Stopped" 6 "Crossing moving" 5 "Crossing stationary" 4 "Unknown" 3 "Stationary candidate" 2 "Oncoming" 1 "Stationary" 0 "Moving" ;
+VAL_ 1793 Cluster_DynProp 7 "Stopped" 6 "Crossing moving" 5 "Crossing stationary" 4 "Unknown" 3 "Stationary candidate" 2 "Oncoming" 1 "Stationary" 0 "Moving" ;
+VAL_ 1794 Cluster_VrelLat_rms 31 "Invalid" 30 "<10.000 m/s" 29 "<7.762 m/s" 28 "<6.025 m/s" 27 "<4.676 m/s" 26 "<3.630 m/s" 25 "<2.817 m/s" 24 "<2.187 m/s" 23 "<1.697 m/s" 22 "<1.317 m/s" 21 "<1.023 m/s" 20 "<0.794 m/s" 19 "<0.616 m/s" 18 "<0.478 m/s" 17 "<0.371 m/s" 16 "<0.288 m/s" 15 "<0.224 m/s" 14 "<0.174 m/s" 13 "<0.135 m/s" 12 "<0.105 m/s" 11 "<0.081 m/s" 10 "<0.063 m/s" 9 "<0.049 m/s" 8 "<0.038 m/s" 7 "<0.029 m/s" 6 "<0.023 m/s" 5 "<0.018 m/s" 4 "<0.014 m/s" 3 "<0.011 m/s" 2 "<0.008 m/s" 1 "<0.006 m/s" 0 "<0.005 m/s" ;
+VAL_ 1794 Cluster_InvalidState 17 "Valid suspicious angle" 16 "Valid multi-target" 15 "Valid near above 95 m" 14 "Invalid harmonics " 13 "reserved" 12 "Valid artefact " 11 "Valid but no local maximum" 10 "Valid 50 deg artefact" 9 "Valid child" 8 "Valid with elevation" 7 "Invalid outside field of view" 6 "Invalid mirror" 5 "reserved" 4 "Valid with low RCS" 3 "Invalid far not confirmed" 2 "Invalid nearfield" 1 "Invalid with too low RCS" 0 "Valid" ;
+VAL_ 1794 Cluster_DistLat_rms 31 "Invalid" 30 "<10.000 m" 29 "<7.762 m" 28 "<6.025 m" 27 "<4.676 m" 26 "<3.630 m" 25 "<2.817 m" 24 "<2.187 m" 23 "<1.697 m" 22 "<1.317 m" 21 "<1.023 m" 20 "<0.794 m" 19 "<0.616 m" 18 "<0.478 m" 17 "<0.371 m" 16 "<0.288 m" 15 "<0.224 m" 14 "<0.174 m" 13 "<0.135 m" 12 "<0.105 m" 11 "<0.081 m" 10 "<0.063 m" 9 "<0.049 m" 8 "<0.038 m" 7 "<0.029 m" 6 "<0.023 m" 5 "<0.018 m" 4 "<0.014 m" 3 "<0.011 m" 2 "<0.008 m" 1 "<0.006 m" 0 "<0.005 m" ;
+VAL_ 1794 Cluster_DistLong_rms 31 "Invalid" 30 "<10.000 m" 29 "<7.762 m" 28 "<6.025 m" 27 "<4.676 m" 26 "<3.630 m" 25 "<2.817 m" 24 "<2.187 m" 23 "<1.697 m" 22 "<1.317 m" 21 "<1.023 m" 20 "<0.794 m" 19 "<0.616 m" 18 "<0.478 m" 17 "<0.371 m" 16 "<0.288 m" 15 "<0.224 m" 14 "<0.174 m" 13 "<0.135 m" 12 "<0.105 m" 11 "<0.081 m" 10 "<0.063 m" 9 "<0.049 m" 8 "<0.038 m" 7 "<0.029 m" 6 "<0.023 m" 5 "<0.018 m" 4 "<0.014 m" 3 "<0.011 m" 2 "<0.008 m" 1 "<0.006 m" 0 "<0.005 m" ;
+VAL_ 1794 Cluster_VrelLong_rms 31 "Invalid" 30 "<10.000 m/s" 29 "<7.762 m/s" 28 "<6.025 m/s" 27 "<4.676 m/s" 26 "<3.630 m/s" 25 "<2.817 m/s" 24 "<2.187 m/s" 23 "<1.697 m/s" 22 "<1.317 m/s" 21 "<1.023 m/s" 20 "<0.794 m/s" 19 "<0.616 m/s" 18 "<0.478 m/s" 17 "<0.371 m/s" 16 "<0.288 m/s" 15 "<0.224 m/s" 14 "<0.174 m/s" 13 "<0.135 m/s" 12 "<0.105 m/s" 11 "<0.081 m/s" 10 "<0.063 m/s" 9 "<0.049 m/s" 8 "<0.038 m/s" 7 "<0.029 m/s" 6 "<0.023 m/s" 5 "<0.018 m/s" 4 "<0.014 m/s" 3 "<0.011 m/s" 2 "<0.008 m/s" 1 "<0.006 m/s" 0 "<0.005 m/s" ;
+VAL_ 1794 Cluster_PdH0 7 "<=100%" 6 "<99.9%" 5 "<99%" 4 "<90%" 3 "<75%" 2 "<50%" 1 "<25%" 0 "invalid" ;
+VAL_ 1794 Cluster_AmbigState 4 "Stationary candidate" 3 "Unambiguous" 2 "Staggered ramp" 1 "Ambiguous" 0 "Invalid" ;
+

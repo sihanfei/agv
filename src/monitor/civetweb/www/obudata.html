@@ -1,0 +1,163 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Superg.AGV</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript" src="./scripts/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+
+    <style type="text/css">
+        .container {
+            margin: 0 auto;
+            width: 800px;
+            height: 100px
+        }
+
+        #canv {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <input id="files" type="file" name="file1" multiple="multiple" accept=".csv">
+        <input type="button" id="fileImport" value="导入" />
+    </div>
+
+
+
+    <div id="results">
+        Command Log:
+        <div style="height: 100%; overflow: auto; border: 1px solid black;">
+            <table id="commandLog">
+            </table>
+        </div>
+        <br>
+    </div>
+    <script type="text/javascript">
+
+        var jq = $.noConflict();
+
+        var filename_;
+
+
+
+        jq(document).ready(function () {
+            document.getElementById("results").style.height = (window.innerHeight - 50) + "px";
+            document.getElementById("results").style.width = window.innerWidth + "px";
+
+
+            window.addEventListener('resize', function () {
+                document.getElementById("results").style.height = (window.innerHeight - 50) + "px";
+                document.getElementById("results").style.width = window.innerWidth + "px";
+
+
+            }, false);
+
+            function stringToHex(str) {
+                var val = "";
+                for (var i = 0; i < str.length; i++) {
+
+                    if (val == "")
+                        val = str.charCodeAt(i).toString(16);
+                    else
+                        val += "," + str.charCodeAt(i).toString(16);
+                }
+                return val;
+            };
+
+            function hexToString(str) {
+                var val = "";
+                var arr = str.split(",");
+                for (var i = 0; i < arr.length; i++) {
+                    val += arr[i].fromCharCode(i);
+                }
+                return val;
+            };
+
+            var dec2utf8 = function (arr) {
+                if (typeof arr === 'string') {
+                    return arr;
+                }
+
+                var unicodeString = '', _arr = arr;
+                for (var i = 0; i < _arr.length; i++) {
+                    var one = _arr[i].toString(2);
+                    var v = one.match(/^1+?(?=0)/);
+
+                    if (v && one.length === 8) {
+                        var bytesLength = v[0].length;
+                        var store = _arr[i].toString(2).slice(7 - bytesLength);
+
+                        for (var st = 1; st < bytesLength; st++) {
+                            store += _arr[st + i].toString(2).slice(2)
+                        }
+
+                        unicodeString += String.fromCharCode(parseInt(store, 2));
+                        i += bytesLength - 1;
+                    } else {
+                        unicodeString += String.fromCharCode(_arr[i]);
+                    }
+                }
+                return unicodeString
+            };
+
+            function hex2a(hexx) {
+                var hex = hexx.toString();//force conversion
+
+                var str_list = [];
+                for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
+                    str_list.push(parseInt(hex.substr(i, 2), 16));
+
+                return dec2utf8(str_list);
+            }
+
+
+            jq("#fileImport").click(function () {
+
+                //获取读取我文件的File对象
+                var selectedFile = document.getElementById('files').files[0];
+                var name = selectedFile.name;//读取选中文件的文件名
+                var size = selectedFile.size;//读取选中文件的大小
+                console.log("文件名:" + name + "大小:" + size);
+
+                var reader = new FileReader();//这是核心,读取操作就是由它完成.
+                reader.readAsText(selectedFile);//读取文件的内容,也可以读取文件的URL
+                reader.onload = function (e) {
+                    var fileText = e.target.result.split("\n");
+                    angular.forEach(fileText, function (data, index) {
+                        if (data.length) {
+                            data = data.split(',')
+                            addLog(data[0] + '***' + hex2a(data[2]));
+
+                        }
+                    })
+                    //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+                    //console.log(this.result);
+                }
+            });
+
+
+
+
+            function addLog(text, textColor) {
+                var table_log = document.getElementById("commandLog");
+                var row = table_log.insertRow(0);
+                var cell1 = row.insertCell(0);
+                if (textColor) {
+                    cell1.style.color = "red";
+                }
+                cell1.innerHTML = text;
+            };
+
+
+        });
+    </script>
+</body>
+
+</html>

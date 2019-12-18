@@ -1,0 +1,43 @@
+
+lidar_info_list:
+- file_path: "/work/agvdata/"
+  file_name: "velodyne1-192.168.2.201-2369-20191010-140800.csv"
+  device_ip: "192.168.2.46"
+  intput_port: 2369
+  packet_size: 1206
+  liadr_name: "vl-1"
+
+- file_path: "/work/agvdata/"
+  file_name: "velodyne2-192.168.2.202-2370-20191010-140800.csv"
+  device_ip: "192.168.2.46"
+  intput_port: 2370
+  packet_size: 1206
+  liadr_name: "vl-2"
+
+- file_path: "/work/agvdata/"
+  file_name: "rs1-192.168.2.109-6109-20191010-140800.csv"
+  device_ip: "192.168.2.46"
+  intput_port: 6109
+  packet_size: 1248
+  liadr_name: "rs-1"
+
+- file_path: "/work/agvdata/"
+  file_name: "rs2-192.168.2.110-6110-20191010-140800.csv"
+  device_ip: "192.168.2.46"
+  intput_port: 6110
+  packet_size: 1248
+  liadr_name: "rs-2"
+
+- file_path: "/work/agvdata/"
+  file_name: "rs1-192.168.2.109-7109-20191010-140800.csv"
+  device_ip: "192.168.2.46"
+  intput_port: 7109
+  packet_size: 1248
+  liadr_name: "rs-1-difop"
+
+- file_path: "/work/agvdata/"
+  file_name: "rs2-192.168.2.110-7110-20191010-140800.csv"
+  device_ip: "192.168.2.46"
+  intput_port: 7110
+  packet_size: 1248
+  liadr_name: "rs-2-difop"

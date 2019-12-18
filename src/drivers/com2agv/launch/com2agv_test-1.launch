@@ -1,0 +1,9 @@
+<!--此次测试功能是：程序运行后车辆会沿着车尾方向后退“Test_StraightLength_”米，
+后退的速度是以“Test_SquareMinSpd_”m/s 和“Test_SquareMaxSpd_”m/s 交替变换的方波形式，
+方波的周期是“Test_MovePeriod_”秒 -->
+<launch>
+    <node pkg= "com2agv" type= "com2agv" name= "com2agv" args= "test -1" output="screen"/>
+
+    <rosparam file="$(find com2agv)/config/test_params.yaml" command="load" />
+    
+</launch>

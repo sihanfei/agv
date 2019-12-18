@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/rs485_test.dir/rs485_test.cpp.o  -o rs485_test  -L/usr/local/adcusdk/examples/../lib -lWiseADCUSdk -lpthread -Wl,-rpath,/usr/local/adcusdk/examples/../lib 
