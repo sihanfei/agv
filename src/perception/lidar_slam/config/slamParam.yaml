@@ -1,5 +1,5 @@
 segmentParam: {
  segmentTheta: 20.0,
- segmentValidPointNum: 5,
+ segmentValidPointNum: 10,
  segmentValidLineNum: 3
 }

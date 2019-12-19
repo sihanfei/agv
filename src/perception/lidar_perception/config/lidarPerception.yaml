@@ -1,0 +1,4 @@
+basicParam: {
+  segmentedCloudTopic: "/segmented_cloud_pure",
+  carHeight: 2
+}

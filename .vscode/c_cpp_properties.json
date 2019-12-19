@@ -1,0 +1,46 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/ads/work/agv/devel/include/**",
+                "/home/ads/work/superg_agv/devel/include/**",
+                "/opt/ros/kinetic/include/**",
+                "/home/ads/work/agv/src/drivers/can_wr/include/**",
+                "/home/ads/work/agv/src/drivers/com2agv/include/**",
+                "/home/ads/work/agv/src/drivers/com2veh/include/**",
+                "/home/ads/work/agv/src/common/include/**",
+                "/home/ads/work/agv/src/control/include/**",
+                "/home/ads/work/agv/src/planning/decision/include/**",
+                "/home/ads/work/agv/src/security/exception/include/**",
+                "/home/ads/work/agv/src/fsm/include/**",
+                "/home/ads/work/agv/src/simulation/gps_imu/include/**",
+                "/home/ads/work/agv/src/perception/lidar_slam/include/**",
+                "/home/ads/work/agv/src/drivers/lidar_fusion/include/**",
+                "/home/ads/work/agv/src/perception/lidar_perception/include/**",
+                "/home/ads/work/agv/src/map/include/**",
+                "/home/ads/work/agv/src/perception/per_prescan/include/**",
+                "/home/ads/work/superg_agv/src/perception/perception_camera/include/**",
+                "/home/ads/work/agv/src/perception/perception_fusion/include/**",
+                "/home/ads/work/agv/src/perception/perception_lidar/include/**",
+                "/home/ads/work/agv/src/drivers/roborsensor_driver/include/**",
+                "/home/ads/work/agv/src/drivers/rs_lidar_driver/include/**",
+                "/home/ads/work/agv/src/monitor/rviz_monitor/include/**",
+                "/home/ads/work/agv/src/simulation/simlink_udp/include/**",
+                "/home/ads/work/agv/src/drivers/tanway_lidar_driver/include/**",
+                "/home/ads/work/agv/src/drivers/udp_socket/include/**",
+                "/home/ads/work/agv/src/drivers/velodyne_driver/include/**",
+                "/home/ads/work/agv/src/drivers/vl_lidar_driver/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/clang",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

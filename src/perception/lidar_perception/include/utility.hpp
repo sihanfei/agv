@@ -29,14 +29,15 @@ using namespace std;
 
 typedef pcl::PointXYZI PointType;
 
-extern const string segmentedCloudTopic = "/segmented_cloud_pure";
+string segmentedCloudTopic = "/segmented_cloud_pure";
+float carHeight = 2.0;
 
 typedef struct
 {
-  jsk_recognition_msgs::BoundingBox bouding_box;
-  pcl::PointXYZ object_centroid;
-  uint object_id;
-  float object_speed;
+  jsk_recognition_msgs::BoundingBox bounding_box;
+  PointType min_pt;  // intensity = object_id
+  PointType max_pt;
+  PointType centroid_pt;  // intensity = uint object_speed;
 } detectedObject, *detectedObjectPtr;
 
 extern vector<detectedObject> global_objects;

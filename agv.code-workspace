@@ -4,5 +4,11 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"python.autoComplete.extraPaths": [
+			"/home/ads/work/agv/devel/lib/python2.7/dist-packages",
+			"/home/ads/work/superg_agv/devel/lib/python2.7/dist-packages",
+			"/opt/ros/kinetic/lib/python2.7/dist-packages"
+		]
+	}
 }

@@ -1,0 +1,26 @@
+%YAML:1.0
+---
+rotation vector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: f
+   data: [ 1.231, -1.207, 1.204]
+translation vector: !!opencv-matrix
+   rows: 3
+   cols: 1
+   dt: f
+   data: [0, 0, 0]
+cameraMatrix: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [561.724858, 0.000000, 647.253365, 0.000000, 561.047084, 335.914659, 0.000000, 0.000000, 1.000000]
+distCoeffs: !!opencv-matrix
+   rows: 5
+   cols: 1
+   dt: d
+   data: [-0.000848, -0.036099, -0.001363, 0.007765, 0.000000]
+
+focus: 2.6
+fdx: 561.724858
+fdy: 561.047084

@@ -40,16 +40,16 @@ link_directories(
   include
   ${PCL_LIBRARY_DIRS})
 
-add_executable(lidar_obstacle
+add_executable(lidarDetection
   src/lidarObstacle.cpp
 )
 
-add_dependencies(lidar_obstacle 
+add_dependencies(lidarDetection 
   ${${PROJECT_NAME}_EXPORTED_TARGETS} 
   ${catkin_EXPORTED_TARGETS}
 )
 
-target_link_libraries(lidar_obstacle
+target_link_libraries(lidarDetection
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
 )
